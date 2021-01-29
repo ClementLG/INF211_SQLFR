@@ -2,5 +2,11 @@
   <persistence-unit name="CabinetRecrutement_EJB">
     <jta-data-source>jdbc/cabinet_recrutement_bd</jta-data-source>
     <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Messagecandidature</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Messageoffredemploi</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Niveauqualification</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite</class>
   </persistence-unit>
 </persistence>

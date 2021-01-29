@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.data.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -11,59 +12,78 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Entreprise.findAll", query="SELECT e FROM Entreprise e")
 public class Entreprise implements Serializable {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @SequenceGenerator(name="ENTREPRISE_ID_GENERATOR", sequenceName="ENTREPRISE_ID_SEQ", allocationSize=1)
-  @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENTREPRISE_ID_GENERATOR")
-  private Integer id;
+	@Id
+	@SequenceGenerator(name="ENTREPRISE_ID_GENERATOR", sequenceName="ENTREPRISE_ID_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENTREPRISE_ID_GENERATOR")
+	private Integer id;
 
-  @Column(name="adresse_postale")
-  private String adressePostale;
+	private String adressepostale;
 
-  private String descriptif;
+	private String descriptif;
 
-  private String nom;
+	private String nom;
 
-  public Entreprise() {
-  }
+	//bi-directional many-to-one association to Offreemploi
+	@OneToMany(mappedBy="entrepriseBean")
+	private Set<Offreemploi> offreemplois;
 
-  public Integer getId() {
-    return this.id;
-  }
+	public Entreprise() {
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public Integer getId() {
+		return this.id;
+	}
 
-  public String getAdressePostale() {
-    return this.adressePostale;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public void setAdressePostale(String adressePostale) {
-    this.adressePostale = adressePostale;
-  }
+	public String getAdressepostale() {
+		return this.adressepostale;
+	}
 
-  public String getDescriptif() {
-    return this.descriptif;
-  }
+	public void setAdressepostale(String adressepostale) {
+		this.adressepostale = adressepostale;
+	}
 
-  public void setDescriptif(String descriptif) {
-    this.descriptif = descriptif;
-  }
+	public String getDescriptif() {
+		return this.descriptif;
+	}
 
-  public String getNom() {
-    return this.nom;
-  }
+	public void setDescriptif(String descriptif) {
+		this.descriptif = descriptif;
+	}
 
-  public void setNom(String nom) {
-    this.nom = nom;
-  }
+	public String getNom() {
+		return this.nom;
+	}
 
-  @Override
-  public String toString()
-  {
-    return "Entreprise [id=" + id + ", nom=" + nom + ", adressePostale=" + adressePostale + "]";
-  }
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Set<Offreemploi> getOffreemplois() {
+		return this.offreemplois;
+	}
+
+	public void setOffreemplois(Set<Offreemploi> offreemplois) {
+		this.offreemplois = offreemplois;
+	}
+
+	public Offreemploi addOffreemploi(Offreemploi offreemploi) {
+		getOffreemplois().add(offreemploi);
+		offreemploi.setEntrepriseBean(this);
+
+		return offreemploi;
+	}
+
+	public Offreemploi removeOffreemploi(Offreemploi offreemploi) {
+		getOffreemplois().remove(offreemploi);
+		offreemploi.setEntrepriseBean(null);
+
+		return offreemploi;
+	}
 
 }
