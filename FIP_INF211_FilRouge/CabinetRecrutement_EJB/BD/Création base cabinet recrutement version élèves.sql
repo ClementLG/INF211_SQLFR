@@ -127,5 +127,7 @@ CREATE TABLE messagecandidature (
 
 INSERT INTO niveauqualification (intitule) VALUES ('CAP/BEP'), ('Bac'), ('Bac+3'), ('Bac+5'), ('Doctorat');
 INSERT INTO secteuractivite (intitule) VALUES ('Achats/Logistique'),('Assistanat/Secrétariat'),('Agriculture'),('Agroali- mentaire'),('Assurance'),('Audit/Conseil/Expertises'),('BTP/Immobilier'),('Commercial'),('Com- munication/Art/Média/Mode'),('Comptabilité'),('Direction Générale/Executive'),('Distribution/- Commerce'),('Electronique/Microélectronique'),('Environnement'),('Finance/Banque'),('Forma- tion/Enseignement'),('Hôtellerie/Restauration/Tourisme'),('Industrie/Ingénierie/Production'),('Informatique'),('Juridique/Fiscal/Droit'),('Marketing'),('Public/Parapublic'),('Ressources Hu- maines'),('Santé/Social/Biologie/Humanitaire'),('Télécom/Réseaux');
-			 
+
+INSERT INTO entreprise (nom, descriptif, adressepostale) values ('IMT Atlantique','IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...','Plouzané');
+INSERT INTO entreprise (nom, descriptif, adressepostale) values ('ENIB','Une école d''ingénieur juste à côté...','Plouzané');
 -- CLLG - 28012021 : ok avec querytool postgresql								 
