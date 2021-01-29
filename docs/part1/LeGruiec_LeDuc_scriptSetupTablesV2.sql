@@ -11,19 +11,19 @@
 -- Remise a zero
 --
 
--- commande : DROP DATABASE IF EXISTS XXX ; pour éviter erreurs (si table déjà existante...)
+-- commande : DROP DATABASE IF EXISTS XXX  pour éviter erreurs (si table déjà existante...)
 -- postgresql aime pas trop, enlever si erreur
 
-DROP DATABASE IF EXISTS "secteuroffre";
-DROP DATABASE IF EXISTS "secteurcandidature";
-DROP DATABASE IF EXISTS "secteuractivite";
-DROP DATABASE IF EXISTS "messageoffredemploi";
-DROP DATABASE IF EXISTS "messagecandidature";
-DROP DATABASE IF EXISTS "candidature";
-DROP DATABASE IF EXISTS "offreemploi";
-DROP DATABASE IF EXISTS "entreprise";
-DROP DATABASE IF EXISTS "niveauqualification";
---note: ordre important avec les FK
+DROP  TABLE IF EXISTS secteuroffre;
+DROP TABLE IF EXISTS secteurcandidature;
+DROP TABLE IF EXISTS secteuractivite;
+DROP TABLE IF EXISTS messageoffredemploi;
+DROP TABLE IF EXISTS messagecandidature;
+DROP TABLE IF EXISTS candidature;
+DROP TABLE IF EXISTS offreemploi;
+DROP TABLE IF EXISTS entreprise;
+DROP TABLE IF EXISTS niveauqualification;
+-- note ordre important avec les FK
 
 --
 -- Creation des tables (ordre important aussi)
