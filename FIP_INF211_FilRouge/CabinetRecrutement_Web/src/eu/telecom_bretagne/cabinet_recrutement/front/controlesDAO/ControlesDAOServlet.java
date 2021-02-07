@@ -99,6 +99,22 @@ public class ControlesDAOServlet extends HttpServlet {
 		out.println(e.getOffreemplois());
 		out.println();
 		
+		Entreprise e_test = new Entreprise();
+		Entreprise e_recup = null;
+		e_test.setId(4);
+		e_test.setNom("TEST&CO");
+		e_test.setDescriptif("Entreprise de TEST");
+		e_test.setAdressePostale("42 rue du test, TESTLAND");
+		e_test.setOffreemplois(null);
+		
+		entrepriseDAO.persist(e_test);
+		e_recup = entrepriseDAO.findById(4);
+		if (e_test.equals(e_recup)) {
+			out.println("test OK");
+		} else {
+			out.println("test KO");
+		}
+		
 		// -----------------------------------------------------------------------------
 		// Récupération de la référence vers le(s) DAO(s)
 		CandidatureDAO candidatureDAO = null;
@@ -166,8 +182,8 @@ public class ControlesDAOServlet extends HttpServlet {
 		MessagecandidatureDAO messagecandidatureDAO = null;
 		try {
 			messagecandidatureDAO = (MessagecandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("MessagecandidatureDAO");
-		} catch(ServicesLocatorException e1) {
-			e1.printStackTrace();
+		} catch(ServicesLocatorException e2) {
+			e2.printStackTrace();
 		}
 		out.println("Contrôles de fonctionnement du DAO MessagecandidatureDAO");
 		out.println();
@@ -213,8 +229,8 @@ public class ControlesDAOServlet extends HttpServlet {
 		MessageoffredemploiDAO messageoffredemploiDAO = null;
 		try {
 			messageoffredemploiDAO = (MessageoffredemploiDAO) ServicesLocator.getInstance().getRemoteInterface("MessageoffredemploiDAO");
-		} catch(ServicesLocatorException e1) {
-			e1.printStackTrace();
+		} catch(ServicesLocatorException e3) {
+			e3.printStackTrace();
 		}
 		out.println("Contrôles de fonctionnement du DAO MessageoffredemploiDAO");
 		out.println();
@@ -260,8 +276,8 @@ public class ControlesDAOServlet extends HttpServlet {
 		NiveauqualificationDAO niveauqualificationDAO = null;
 		try {
 			niveauqualificationDAO = (NiveauqualificationDAO) ServicesLocator.getInstance().getRemoteInterface("NiveauqualificationDAO");
-		} catch(ServicesLocatorException e1) {
-			e1.printStackTrace();
+		} catch(ServicesLocatorException e4) {
+			e4.printStackTrace();
 		}
 		out.println("Contrôles de fonctionnement du DAO NiveauqualificationDAO");
 		out.println();
@@ -304,8 +320,8 @@ public class ControlesDAOServlet extends HttpServlet {
 		OffreemploiDAO offreemploiDAO = null;
 		try {
 			offreemploiDAO = (OffreemploiDAO) ServicesLocator.getInstance().getRemoteInterface("OffreemploiDAO");
-		} catch(ServicesLocatorException e1) {
-			e1.printStackTrace();
+		} catch(ServicesLocatorException e5) {
+			e5.printStackTrace();
 		}
 		out.println("Contrôles de fonctionnement du DAO OffreemploiDAO");
 		out.println();
@@ -366,8 +382,8 @@ public class ControlesDAOServlet extends HttpServlet {
 		SecteuractiviteDAO secteuractiviteDAO = null;
 		try {
 			secteuractiviteDAO = (SecteuractiviteDAO) ServicesLocator.getInstance().getRemoteInterface("SecteuractiviteDAO");
-		} catch(ServicesLocatorException e1) {
-			e1.printStackTrace();
+		} catch(ServicesLocatorException e6) {
+			e6.printStackTrace();
 		}
 		out.println("Contrôles de fonctionnement du DAO SecteuractiviteDAO");
 		out.println();

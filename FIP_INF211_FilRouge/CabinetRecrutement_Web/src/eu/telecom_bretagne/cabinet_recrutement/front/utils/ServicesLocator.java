@@ -62,7 +62,7 @@ public class ServicesLocator
     else if(nomEJB.equals("CandidatureDAO"))
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/CandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO";
     else if(nomEJB.equals("MessageCandidatureDAO"))
-        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageCandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO";
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessagecandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessagecandidatureDAO";
     else if(nomEJB.equals("MessageoffredemploiDAO"))
         nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageoffredemploiDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageoffredemploiDAO";
     else if(nomEJB.equals("NiveauqualificationDAO"))
