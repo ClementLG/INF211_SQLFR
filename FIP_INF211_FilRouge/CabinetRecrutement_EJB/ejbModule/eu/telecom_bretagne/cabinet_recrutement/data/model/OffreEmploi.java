@@ -7,49 +7,52 @@ import java.util.Set;
 
 
 /**
- * The persistent class for the candidature database table.
+ * The persistent class for the offre_emploi database table.
  * 
  */
 @Entity
-@NamedQuery(name="Candidature.findAll", query="SELECT c FROM Candidature c")
-public class Candidature implements Serializable {
+@Table(name="offre_emploi")
+@NamedQuery(name="OffreEmploi.findAll", query="SELECT o FROM OffreEmploi o")
+public class OffreEmploi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CANDIDATURE_ID_GENERATOR", sequenceName="CANDIDATURE_ID_SEQ",allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CANDIDATURE_ID_GENERATOR")
+	@SequenceGenerator(name="OFFRE_EMPLOI_ID_GENERATOR", sequenceName="OFFRE_EMPLOI_ID_SEQ",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OFFRE_EMPLOI_ID_GENERATOR")
 	private Integer id;
-
-	private String adresseemail;
-
-	private String adressepostale;
-
-	private String cv;
 
 	@Temporal(TemporalType.DATE)
 	private Date datedepot;
 
-	@Temporal(TemporalType.DATE)
-	private Date datenaissance;
+	private String descriptifmission;
+
+	private String profilrecherche;
+
+	private String titre;
+
+	//bi-directional many-to-one association to MessageCandidature
+	@OneToMany(mappedBy="offreEmploiBean")
+	private Set<MessageCandidature> messageCandidatures;
+
+	//bi-directional many-to-one association to MessageOffredemploi
+	@OneToMany(mappedBy="offreEmploiBean")
+	private Set<MessageOffredemploi> messageOffredemplois;
+
+	//bi-directional many-to-one association to Entreprise
+	@ManyToOne
+	@JoinColumn(name="entreprise")
+	private Entreprise entrepriseBean;
 
 	//bi-directional many-to-one association to NiveauQualification
 	@ManyToOne
 	@JoinColumn(name="niveau_qualification")
 	private NiveauQualification niveauQualificationBean;
 
-	//bi-directional many-to-one association to MessageCandidature
-	@OneToMany(mappedBy="candidatureBean")
-	private Set<MessageCandidature> messageCandidatures;
-
-	//bi-directional many-to-one association to MessageOffredemploi
-	@OneToMany(mappedBy="candidatureBean")
-	private Set<MessageOffredemploi> messageOffredemplois;
-
 	//bi-directional many-to-many association to SecteurActivite
-	@ManyToMany(mappedBy="candidatures")
+	@ManyToMany(mappedBy="offreEmplois")
 	private Set<SecteurActivite> secteurActivites;
 
-	public Candidature() {
+	public OffreEmploi() {
 	}
 
 	public Integer getId() {
@@ -60,30 +63,6 @@ public class Candidature implements Serializable {
 		this.id = id;
 	}
 
-	public String getAdresseemail() {
-		return this.adresseemail;
-	}
-
-	public void setAdresseemail(String adresseemail) {
-		this.adresseemail = adresseemail;
-	}
-
-	public String getAdressepostale() {
-		return this.adressepostale;
-	}
-
-	public void setAdressepostale(String adressepostale) {
-		this.adressepostale = adressepostale;
-	}
-
-	public String getCv() {
-		return this.cv;
-	}
-
-	public void setCv(String cv) {
-		this.cv = cv;
-	}
-
 	public Date getDatedepot() {
 		return this.datedepot;
 	}
@@ -92,20 +71,28 @@ public class Candidature implements Serializable {
 		this.datedepot = datedepot;
 	}
 
-	public Date getDatenaissance() {
-		return this.datenaissance;
+	public String getDescriptifmission() {
+		return this.descriptifmission;
 	}
 
-	public void setDatenaissance(Date datenaissance) {
-		this.datenaissance = datenaissance;
+	public void setDescriptifmission(String descriptifmission) {
+		this.descriptifmission = descriptifmission;
 	}
 
-	public NiveauQualification getNiveauQualificationBean() {
-		return this.niveauQualificationBean;
+	public String getProfilrecherche() {
+		return this.profilrecherche;
 	}
 
-	public void setNiveauQualificationBean(NiveauQualification niveauQualificationBean) {
-		this.niveauQualificationBean = niveauQualificationBean;
+	public void setProfilrecherche(String profilrecherche) {
+		this.profilrecherche = profilrecherche;
+	}
+
+	public String getTitre() {
+		return this.titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 
 	public Set<MessageCandidature> getMessageCandidatures() {
@@ -118,14 +105,14 @@ public class Candidature implements Serializable {
 
 	public MessageCandidature addMessageCandidature(MessageCandidature messageCandidature) {
 		getMessageCandidatures().add(messageCandidature);
-		messageCandidature.setCandidatureBean(this);
+		messageCandidature.setOffreEmploiBean(this);
 
 		return messageCandidature;
 	}
 
 	public MessageCandidature removeMessageCandidature(MessageCandidature messageCandidature) {
 		getMessageCandidatures().remove(messageCandidature);
-		messageCandidature.setCandidatureBean(null);
+		messageCandidature.setOffreEmploiBean(null);
 
 		return messageCandidature;
 	}
@@ -140,16 +127,32 @@ public class Candidature implements Serializable {
 
 	public MessageOffredemploi addMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
 		getMessageOffredemplois().add(messageOffredemploi);
-		messageOffredemploi.setCandidatureBean(this);
+		messageOffredemploi.setOffreEmploiBean(this);
 
 		return messageOffredemploi;
 	}
 
 	public MessageOffredemploi removeMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
 		getMessageOffredemplois().remove(messageOffredemploi);
-		messageOffredemploi.setCandidatureBean(null);
+		messageOffredemploi.setOffreEmploiBean(null);
 
 		return messageOffredemploi;
+	}
+
+	public Entreprise getEntrepriseBean() {
+		return this.entrepriseBean;
+	}
+
+	public void setEntrepriseBean(Entreprise entrepriseBean) {
+		this.entrepriseBean = entrepriseBean;
+	}
+
+	public NiveauQualification getNiveauQualificationBean() {
+		return this.niveauQualificationBean;
+	}
+
+	public void setNiveauQualificationBean(NiveauQualification niveauQualificationBean) {
+		this.niveauQualificationBean = niveauQualificationBean;
 	}
 
 	public Set<SecteurActivite> getSecteurActivites() {

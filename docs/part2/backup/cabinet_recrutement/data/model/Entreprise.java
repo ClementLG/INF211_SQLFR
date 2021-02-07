@@ -15,7 +15,7 @@ public class Entreprise implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ENTREPRISE_ID_GENERATOR", sequenceName="ENTREPRISE_ID_SEQ")
+	@SequenceGenerator(name="ENTREPRISE_ID_GENERATOR", sequenceName="ENTREPRISE_ID_SEQ", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENTREPRISE_ID_GENERATOR")
 	private Integer id;
 
@@ -25,9 +25,9 @@ public class Entreprise implements Serializable {
 
 	private String nom;
 
-	//bi-directional many-to-one association to OffreEmploi
+	//bi-directional many-to-one association to Offreemploi
 	@OneToMany(mappedBy="entrepriseBean")
-	private Set<OffreEmploi> offreEmplois;
+	private Set<Offreemploi> offreemplois;
 
 	public Entreprise() {
 	}
@@ -64,26 +64,26 @@ public class Entreprise implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<OffreEmploi> getOffreEmplois() {
-		return this.offreEmplois;
+	public Set<Offreemploi> getOffreemplois() {
+		return this.offreemplois;
 	}
 
-	public void setOffreEmplois(Set<OffreEmploi> offreEmplois) {
-		this.offreEmplois = offreEmplois;
+	public void setOffreemplois(Set<Offreemploi> offreemplois) {
+		this.offreemplois = offreemplois;
 	}
 
-	public OffreEmploi addOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreEmplois().add(offreEmploi);
-		offreEmploi.setEntrepriseBean(this);
+	public Offreemploi addOffreemploi(Offreemploi offreemploi) {
+		getOffreemplois().add(offreemploi);
+		offreemploi.setEntrepriseBean(this);
 
-		return offreEmploi;
+		return offreemploi;
 	}
 
-	public OffreEmploi removeOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreEmplois().remove(offreEmploi);
-		offreEmploi.setEntrepriseBean(null);
+	public Offreemploi removeOffreemploi(Offreemploi offreemploi) {
+		getOffreemplois().remove(offreemploi);
+		offreemploi.setEntrepriseBean(null);
 
-		return offreEmploi;
+		return offreemploi;
 	}
 
 }

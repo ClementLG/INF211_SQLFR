@@ -47,31 +47,4 @@ public class EntrepriseDAO
     return (List<Entreprise>)l;
   }
   //-----------------------------------------------------------------------------
-  public Entreprise persist(Entreprise entreprise)
-  {
-	  if (entreprise!=null)
-	  {
-		  entityManager.persist(entreprise);
-	  }
-	  return entreprise;
-  }
-  
-  public Entreprise update(Entreprise entreprise)
-  {
-	  if (entreprise!=null)
-	  {
-		  entityManager.merge(entreprise); 
-	  }
-	  return entreprise;
-  }
-  
-  public void remove(Entreprise entreprise)
-  {
-	  if (entreprise!=null)
-	  {
-		  entityManager.remove(entreprise);
-	  }
-  }
-  
-  
 }
