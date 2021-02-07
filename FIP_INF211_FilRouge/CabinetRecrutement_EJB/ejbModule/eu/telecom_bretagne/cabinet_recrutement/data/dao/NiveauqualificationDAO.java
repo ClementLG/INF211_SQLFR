@@ -8,10 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 
 /**
- * Session Bean implementation class EntrepriseDAO
+ * Session Bean implementation class NiveauQualificationDAO
  * 
  * @author Elouan LE DUC
  * @author Clement LE GRUIEC
@@ -19,7 +19,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 
 @Stateless
 @LocalBean
-public class EntrepriseDAO {
+public class NiveauqualificationDAO {
 	// -----------------------------------------------------------------------------
 	/**
 	 * Référence vers le gestionnaire de persistance.
@@ -29,47 +29,40 @@ public class EntrepriseDAO {
 
 	// -----------------------------------------------------------------------------
 	/**
-	 * Default constructor.
-	 */
-	public EntrepriseDAO() {
-		// TODO Auto-generated constructor stub
-	}
+			   * Default constructor.
+			   */
+			  public NiveauqualificationDAO()
+			  {
+			    // TODO Auto-generated constructor stub
+			  }
 
 	// -----------------------------------------------------------------------------
-	public Entreprise findById(Integer id) {
-		return entityManager.find(Entreprise.class, id);
+	public NiveauQualification findById(Integer id) {
+		return entityManager.find(NiveauQualification.class, id);
 	}
 
 	// ----------------------------------------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<Entreprise> findAll() {
-		Query query = entityManager.createQuery("select entreprise from Entreprise entreprise order by entreprise.id");
+	public List<NiveauQualification> findAll() {
+		Query query = entityManager.createQuery(
+				"select niveauqualification from NiveauQualification niveauqualification order by NiveauQualification.id");
 		List l = query.getResultList();
 
-		return (List<Entreprise>) l;
+		return (List<NiveauQualification>) l;
 	}
 
 	// -----------------------------------------------------------------------------
-	public Entreprise persist(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.persist(entreprise);
+	public NiveauQualification persist(NiveauQualification NiveauQualification) {
+		if (NiveauQualification != null) {
+			entityManager.persist(NiveauQualification);
 		}
-		return entreprise;
+		return NiveauQualification;
 	}
-
-	// -----------------------------------------------------------------------------
-	public Entreprise update(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.merge(entreprise);
-		}
-		return entreprise;
-	}
-
 	//-----------------------------------------------------------------------------
-	public void remove(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.remove(entreprise);
+	public NiveauQualification update(NiveauQualification NiveauQualification) {
+		if (NiveauQualification != null) {
+			entityManager.merge(NiveauQualification);
 		}
+		return NiveauQualification;
 	}
-
 }

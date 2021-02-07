@@ -40,7 +40,7 @@ public class Entreprise implements Serializable {
 		this.id = id;
 	}
 
-	public String getAdressepostale() {
+	public String getAdressePostale() {
 		return this.adressepostale;
 	}
 
@@ -64,7 +64,7 @@ public class Entreprise implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<OffreEmploi> getOffreEmplois() {
+	public Set<OffreEmploi> getOffreemplois() {
 		return this.offreEmplois;
 	}
 
@@ -73,14 +73,14 @@ public class Entreprise implements Serializable {
 	}
 
 	public OffreEmploi addOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreEmplois().add(offreEmploi);
+		getOffreemplois().add(offreEmploi);
 		offreEmploi.setEntrepriseBean(this);
 
 		return offreEmploi;
 	}
 
 	public OffreEmploi removeOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreEmplois().remove(offreEmploi);
+		getOffreemplois().remove(offreEmploi);
 		offreEmploi.setEntrepriseBean(null);
 
 		return offreEmploi;

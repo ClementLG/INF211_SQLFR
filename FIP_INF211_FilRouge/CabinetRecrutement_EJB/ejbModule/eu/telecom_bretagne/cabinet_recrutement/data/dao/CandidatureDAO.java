@@ -11,78 +11,76 @@ import javax.persistence.Query;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 
 /**
- * Session Bean implementation class CandidatureDAO
- * @author Philippe TANGUY
- */
+* Session Bean implementation class CandidatureDAO
+* @author Elouan LE DUC
+* @author Clement LE GRUIEC
+*/
+
 @Stateless
 @LocalBean
-public class CandidatureDAO
-{
-  //-----------------------------------------------------------------------------
-  /**
-   * Référence vers le gestionnaire de persistance.
-   */
-  @PersistenceContext
-  EntityManager entityManager;
-  //-----------------------------------------------------------------------------
-  /**
-   * Default constructor.
-   */
-  public CandidatureDAO()
-  {
-    // TODO Auto-generated constructor stub
-  }
-  //-----------------------------------------------------------------------------
-  public Candidature findById(Integer id)
-  {
-    return entityManager.find(Candidature.class, id);
-  }
-  //----------------------------------------------------------------------------
-  @SuppressWarnings({ "rawtypes", "unchecked" })
-  public List<Candidature> findAll()
-  {
-    Query query = entityManager.createQuery("select Candidature from Candidature Candidature order by Candidature.id");
-    List l = query.getResultList(); 
-    
-    return (List<Candidature>)l;
-  }
-  //-----------------------------------------------------------------------------
-  public Candidature persist(Candidature Candidature)
-  {
-	  if (Candidature!=null)
+public class CandidatureDAO {
+	// -----------------------------------------------------------------------------
+	/**
+	 * Référence vers le gestionnaire de persistance.
+	 */
+	@PersistenceContext
+	EntityManager entityManager;
+
+	// -----------------------------------------------------------------------------
+	/**
+	 * Default constructor.
+	 */
+	public CandidatureDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	// -----------------------------------------------------------------------------
+	public Candidature findById(Integer id) {
+		return entityManager.find(Candidature.class, id);
+	}
+	
+	// -----------------------------------------------------------------------------
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<Candidature> findAll()
 	  {
-		  entityManager.persist(Candidature);
+	    Query query = entityManager.createQuery("select candidature from Candidature candidature order by candidature.id desc");
+	    List l = query.getResultList(); 
+	    
+	    return (List<Candidature>)l;
 	  }
-	  return Candidature;
-  }
-  
-  public Candidature update(Candidature Candidature)
-  {
-	  if (Candidature!=null)
-	  {
-		  entityManager.merge(Candidature); 
-	  }
-	  return Candidature;
-  }
-  
-  public void remove(Candidature Candidature)
-  {
-	  if (Candidature!=null)
-	  {
-		  entityManager.remove(Candidature);
-	  }
-  }
-  public List<Candidature> CandidatureAvecNiveauEtSecteur(String secteur,String nvQualif )
-  {
-	  List l=null;
-	  if (secteur!=null && nvQualif!=null)
-	  {
-		  Query query = entityManager.createQuery("select candidature FROM (SELECT * FROM candidature JOIN secteur_candidature on secteur_candidature.candidature = candidature.id) as test JOIN secteur_activite on secteur_activite = secteur_activite.id;");
-		  l = query.getResultList(); 
-		  
-	  }
-	  return l;
-  }
-  
-  
+
+	// -----------------------------------------------------------------------------
+	//Ajout d’une méthode pour l’obtention de la liste des candidatures qui correspondent à un secteur d’activité et un niveau de qualiﬁcation donnés.
+	@SuppressWarnings({"unchecked" })
+	public List<Candidature> findByActivitySector(int idSecteurActivite, int idNiveauQualification)
+	{
+		Query query = entityManager.createQuery("select candidature from Candidature candidature join candidature.secteursActivite secteur "
+				+ "where secteur.id = :idSA and candidature.niveauQualification.id = :idNQ " + "order by candidature.id desc");
+		query.setParameter("idSA", idSecteurActivite);
+		query.setParameter("idNQ", idNiveauQualification);
+		List<Candidature> l = query.getResultList();
+		return l;
+	}
+
+	// -----------------------------------------------------------------------------
+	public Candidature persist(Candidature Candidature) {
+		if (Candidature != null) {
+			entityManager.persist(Candidature);
+		}
+		return Candidature;
+	}
+	//-----------------------------------------------------------------------------
+	public Candidature update(Candidature Candidature) {
+		if (Candidature != null) {
+			entityManager.merge(Candidature);
+		}
+		return Candidature;
+	}
+	//-----------------------------------------------------------------------------
+	public void remove(Candidature Candidature) {
+		if (Candidature != null) {
+			entityManager.remove(Candidature);
+		}
+	}
+
 }

@@ -8,10 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
- * Session Bean implementation class EntrepriseDAO
+ * Session Bean implementation class SecteurActiviteDAO
  * 
  * @author Elouan LE DUC
  * @author Clement LE GRUIEC
@@ -19,7 +19,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 
 @Stateless
 @LocalBean
-public class EntrepriseDAO {
+public class SecteuractiviteDAO {
 	// -----------------------------------------------------------------------------
 	/**
 	 * Référence vers le gestionnaire de persistance.
@@ -31,45 +31,38 @@ public class EntrepriseDAO {
 	/**
 	 * Default constructor.
 	 */
-	public EntrepriseDAO() {
+	public SecteuractiviteDAO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	// -----------------------------------------------------------------------------
-	public Entreprise findById(Integer id) {
-		return entityManager.find(Entreprise.class, id);
+	public SecteurActivite findById(Integer id) {
+		return entityManager.find(SecteurActivite.class, id);
 	}
 
 	// ----------------------------------------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<Entreprise> findAll() {
-		Query query = entityManager.createQuery("select entreprise from Entreprise entreprise order by entreprise.id");
+	public List<SecteurActivite> findAll() {
+		Query query = entityManager
+				.createQuery("select secteuractivite from SecteurActivite secteuractivite order by SecteurActivite.id");
 		List l = query.getResultList();
 
-		return (List<Entreprise>) l;
+		return (List<SecteurActivite>) l;
 	}
 
 	// -----------------------------------------------------------------------------
-	public Entreprise persist(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.persist(entreprise);
+	public SecteurActivite persist(SecteurActivite SecteurActivite) {
+		if (SecteurActivite != null) {
+			entityManager.persist(SecteurActivite);
 		}
-		return entreprise;
+		return SecteurActivite;
 	}
 
 	// -----------------------------------------------------------------------------
-	public Entreprise update(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.merge(entreprise);
+	public SecteurActivite update(SecteurActivite SecteurActivite) {
+		if (SecteurActivite != null) {
+			entityManager.merge(SecteurActivite);
 		}
-		return entreprise;
+		return SecteurActivite;
 	}
-
-	//-----------------------------------------------------------------------------
-	public void remove(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.remove(entreprise);
-		}
-	}
-
 }

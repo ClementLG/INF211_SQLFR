@@ -100,7 +100,7 @@ public class Candidature implements Serializable {
 		this.datenaissance = datenaissance;
 	}
 
-	public NiveauQualification getNiveauQualificationBean() {
+	public NiveauQualification getNiveauqualificationBean() {
 		return this.niveauQualificationBean;
 	}
 
@@ -108,7 +108,7 @@ public class Candidature implements Serializable {
 		this.niveauQualificationBean = niveauQualificationBean;
 	}
 
-	public Set<MessageCandidature> getMessageCandidatures() {
+	public Set<MessageCandidature> getMessagecandidatures() {
 		return this.messageCandidatures;
 	}
 
@@ -117,20 +117,20 @@ public class Candidature implements Serializable {
 	}
 
 	public MessageCandidature addMessageCandidature(MessageCandidature messageCandidature) {
-		getMessageCandidatures().add(messageCandidature);
+		getMessagecandidatures().add(messageCandidature);
 		messageCandidature.setCandidatureBean(this);
 
 		return messageCandidature;
 	}
 
 	public MessageCandidature removeMessageCandidature(MessageCandidature messageCandidature) {
-		getMessageCandidatures().remove(messageCandidature);
+		getMessagecandidatures().remove(messageCandidature);
 		messageCandidature.setCandidatureBean(null);
 
 		return messageCandidature;
 	}
 
-	public Set<MessageOffredemploi> getMessageOffredemplois() {
+	public Set<MessageOffredemploi> getMessageoffredemplois() {
 		return this.messageOffredemplois;
 	}
 
@@ -139,20 +139,20 @@ public class Candidature implements Serializable {
 	}
 
 	public MessageOffredemploi addMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
-		getMessageOffredemplois().add(messageOffredemploi);
+		getMessageoffredemplois().add(messageOffredemploi);
 		messageOffredemploi.setCandidatureBean(this);
 
 		return messageOffredemploi;
 	}
 
 	public MessageOffredemploi removeMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
-		getMessageOffredemplois().remove(messageOffredemploi);
+		getMessageoffredemplois().remove(messageOffredemploi);
 		messageOffredemploi.setCandidatureBean(null);
 
 		return messageOffredemploi;
 	}
 
-	public Set<SecteurActivite> getSecteurActivites() {
+	public Set<SecteurActivite> getSecteuractivites() {
 		return this.secteurActivites;
 	}
 
