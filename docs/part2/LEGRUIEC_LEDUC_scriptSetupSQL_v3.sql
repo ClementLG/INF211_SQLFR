@@ -14,6 +14,7 @@
 -- commande : DROP DATABASE IF EXISTS XXX  pour éviter erreurs (si table déjà existante...)
 -- postgresql aime pas trop, enlever si erreur
 DROP  TABLE IF EXISTS secteur_offre;
+DROP TABLE IF EXISTS secteur_offre;
 DROP TABLE IF EXISTS secteur_candidature;
 DROP TABLE IF EXISTS secteur_activite;
 DROP TABLE IF EXISTS message_offredemploi;
@@ -129,6 +130,34 @@ CREATE TABLE message_candidature (
 INSERT INTO niveau_qualification (intitule) VALUES ('CAP/BEP'), ('Bac'), ('Bac+3'), ('Bac+5'), ('Doctorat');
 INSERT INTO secteur_activite (intitule) VALUES ('Achats/Logistique'),('Assistanat/Secrétariat'),('Agriculture'),('Agroali- mentaire'),('Assurance'),('Audit/Conseil/Expertises'),('BTP/Immobilier'),('Commercial'),('Com- munication/Art/Média/Mode'),('Comptabilité'),('Direction Générale/Executive'),('Distribution/- Commerce'),('Electronique/Microélectronique'),('Environnement'),('Finance/Banque'),('Forma- tion/Enseignement'),('Hôtellerie/Restauration/Tourisme'),('Industrie/Ingénierie/Production'),('Informatique'),('Juridique/Fiscal/Droit'),('Marketing'),('Public/Parapublic'),('Ressources Hu- maines'),('Santé/Social/Biologie/Humanitaire'),('Télécom/Réseaux');
 
-INSERT INTO entreprise (nom, descriptif, adressepostale) values ('IMT Atlantique','IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...','Plouzané');
-INSERT INTO entreprise (nom, descriptif, adressepostale) values ('ENIB','Une école d''ingénieur juste à côté...','Plouzané');
--- CLLG - 28012021 : ok avec querytool postgresql								 
+INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('IMT Atlantique','IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...','Plouzané');
+INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('ENIB','Une école d''ingénieur juste à côté...','Plouzané');
+INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('GOOGLE','Grande entreprise de la Tech','DUBLIN Irlande');
+
+INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV1',TO_DATE('01/01/1999','DD-MM-YYYY'),'jean@gmail.com','4 rue des bouleaux PARIS',3,TO_DATE('06/02/2021','DD-MM-YYYY'));
+INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV2',TO_DATE('18/11/2000','DD-MM-YYYY'),'paul@gmail.com','46 rue des ifs BORDEAUX',2,TO_DATE('03/02/2021','DD-MM-YYYY'));
+INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV3',TO_DATE('27/09/1998','DD-MM-YYYY'),'jacques@gmail.com','12 rue des hetres MARSEILLE',4,TO_DATE('24/01/2021','DD-MM-YYYY'));
+
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage codage de PASS',1,'Coder tout le backend en PHP',1,'Etudiant Ingénieur',TO_DATE('01/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage gestion BDD',2,'Analyse BDD du personnel',4,'Etudiant Ingénieur',TO_DATE('05/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Thèse en IA',3,'Ameliorer recherche avec une IA',5,'Doctorant Informatique',TO_DATE('18/01/2021','DD-MM-YYYY'));
+
+INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Bonjour je souhaite avoir le stage',TO_DATE('03/02/2021','DD-MM-YYYY'));
+INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Bonsoir je souhaite avoir le stage siouplait',TO_DATE('03/02/2021','DD-MM-YYYY'));
+INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (3,1,'Bonjour je souhaite être docteur',TO_DATE('03/02/2021','DD-MM-YYYY'));
+
+INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Voici une offre de stage pour vous',TO_DATE('01/01/2021','DD-MM-YYYY'));
+INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Voici une offre de stage pour vous',TO_DATE('05/01/2021','DD-MM-YYYY'));
+INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (3,1,'Voici une offre de thèse pour vous',TO_DATE('18/01/2021','DD-MM-YYYY'));
+
+INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (1,19);
+INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (1,25);
+INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (2,19);
+INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (3,19);
+
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (1,19);
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (2,19);
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (3,19);
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (3,25);
+
+-- CLLG - 28012021 : ok avec querytool postgresql								
