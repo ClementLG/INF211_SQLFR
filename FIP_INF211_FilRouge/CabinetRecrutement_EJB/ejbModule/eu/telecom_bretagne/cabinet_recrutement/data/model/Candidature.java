@@ -33,7 +33,7 @@ public class Candidature implements Serializable {
 
 	// bi-directional many-to-one association to Niveauqualification
 	@ManyToOne
-	@JoinColumn(name = "niveauqualification")
+	@JoinColumn(name = "niveau_qualification")
 	private NiveauQualification niveauqualificationBean;
 
 	// bi-directional many-to-one association to Messagecandidature
