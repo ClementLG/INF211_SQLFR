@@ -52,6 +52,8 @@ public class ControlesDAOServlet extends HttpServlet
     // Flot de sortie pour écriture des résultats.
     PrintWriter out = response.getWriter();
     
+ // -----------------ENTREPRISE------------------------------------------
+
     // Récupération de la réféence vers le(s) DAO(s)
     EntrepriseDAO entrepriseDAO = null;
     try
@@ -101,7 +103,7 @@ public class ControlesDAOServlet extends HttpServlet
 	
 	out.println("-----------------------------------------------------------------------------\n");
 	
-// -----------------------------------------------------------------------------
+// -----------------CANDIDATURE------------------------------------------
 	
 	
 	// Récupération de la référence vers le(s) DAO(s)
@@ -158,7 +160,7 @@ public class ControlesDAOServlet extends HttpServlet
 
 	out.println("-----------------------------------------------------------------------------");
 	
-// -----------------------------------------------------------------------------
+// ----------------- NIVEAU QUALIF------------------------------------------
 	
 	
 	// Récupération de la référence vers le(s) DAO(s)
@@ -201,7 +203,8 @@ public class ControlesDAOServlet extends HttpServlet
 	out.println("-----------------------------------------------------------------------------");
 	
 
- // -----------------------------------------------------------------------------
+// -----------------OFFRE EMPLOi------------------------------------------
+	
 	// Récupération de la référence vers le(s) DAO(s)
 	out.println(); 
 	OffreemploiDAO offreemploiDAO = null;
@@ -262,7 +265,8 @@ public class ControlesDAOServlet extends HttpServlet
 	out.println("-----------------------------------------------------------------------------");
 	
 
- // -----------------------------------------------------------------------------
+// -----------------Secteur Activité ------------------------------------------
+	
 	// Récupération de la référence vers le(s) DAO(s)
 	out.println(); 
 	SecteuractiviteDAO secteuractiviteDAO = null;
@@ -283,7 +287,8 @@ public class ControlesDAOServlet extends HttpServlet
 	out.println("-----------------------------------------------------------------------------");
 	
 
- // -----------------------------------------------------------------------------	
+// -----------------MSG CANDIDATURE------------------------------------------
+	
 	// Récupération de la référence vers le(s) DAO(s)
 	MessagecandidatureDAO messagecandidatureDAO = null;
 	out.println("Contrôles de fonctionnement du DAO MessagecandidatureDAO");
@@ -337,7 +342,8 @@ public class ControlesDAOServlet extends HttpServlet
 	out.println("-----------------------------------------------------------------------------");
 	
 
- // -----------------------------------------------------------------------------		
+// -----------------Msg Offreemploi------------------------------------------
+	
 	// Récupération de la référence vers le(s) DAO(s)
 	MessageoffredemploiDAO messageoffredemploiDAO = null;
 	try {
