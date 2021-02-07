@@ -12,11 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessagecandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageoffredemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffredemploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator;
 import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorException;
@@ -125,9 +131,7 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(c.getAdresseemail());
     out.println(c.getDatenaissance());
     out.println(c.getAdressepostale());
-    out.println(c.getMessagecandidatures());
-    out.println(c.getMessageoffredemplois());
-    out.println(c.getSecteuractivites());
+    out.println(c.getNiveauqualificationBean().getIntitule());
     out.println();
     
     out.println("Obtention de la candidature n° 2 :");
@@ -138,10 +142,7 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(c.getAdresseemail());
     out.println(c.getDatenaissance());
     out.println(c.getAdressepostale());
-    out.println(c.getNiveauqualificationBean());
-    out.println(c.getMessagecandidatures());
-    out.println(c.getMessageoffredemplois());
-    out.println(c.getSecteuractivites());
+    out.println(c.getNiveauqualificationBean().getIntitule());
     out.println();
     
     out.println("Obtention de la candidature n° 3 :");
@@ -152,10 +153,7 @@ public class ControlesDAOServlet extends HttpServlet
     out.println(c.getAdresseemail());
     out.println(c.getDatenaissance());
     out.println(c.getAdressepostale());
-    out.println(c.getNiveauqualificationBean());
-    out.println(c.getMessagecandidatures());
-    out.println(c.getMessageoffredemplois());
-    out.println(c.getSecteuractivites());
+    out.println(c.getNiveauqualificationBean().getIntitule());
     out.println();
 
 	out.println("-----------------------------------------------------------------------------");
@@ -186,33 +184,211 @@ public class ControlesDAOServlet extends HttpServlet
     NiveauQualification nq = niveauqualificationDAO.findById(1);
     out.println(nq.getId());
     out.println(nq.getIntitule());
-    out.println(nq.getCandidatures());
-    out.println(nq.getOffreEmplois());
     out.println();
     
     out.println("Obtention du niveauqualification n° 2 :");
     nq = niveauqualificationDAO.findById(2);
     out.println(nq.getId());
     out.println(nq.getIntitule());
-    out.println(nq.getCandidatures());
-    out.println(nq.getOffreEmplois());
     out.println();
     
     out.println("Obtention du niveauqualification n° 3 :");
     nq = niveauqualificationDAO.findById(3);
     out.println(nq.getId());
     out.println(nq.getIntitule());
-    out.println(nq.getCandidatures());
-    out.println(nq.getOffreEmplois());
     out.println();
 
+	out.println("-----------------------------------------------------------------------------");
+	
+
  // -----------------------------------------------------------------------------
-    
-    
-  }
+	// Récupération de la référence vers le(s) DAO(s)
+	out.println(); 
+	OffreemploiDAO offreemploiDAO = null;
+	try {
+		offreemploiDAO = (OffreemploiDAO) ServicesLocator.getInstance().getRemoteInterface("OffreemploiDAO");
+		
+	} catch(ServicesLocatorException e1) {
+		e1.printStackTrace();
+	}
+	try {
+		out.println("Contrôles de fonctionnement du DAO OffreemploiDAO");
+		out.println();  
+	    
+		// Contrôle(s) de fonctionnalités.
+		out.println("Liste des offresemplois :");
+		List<OffreEmploi> offresemplois = offreemploiDAO.findAll();
+
+		for (OffreEmploi offreemploi : offresemplois) {
+			offreemploi.getTitre();	
+		}
+		out.println();
+		out.println("Obtention de l'offre n° 1 :");
+	    OffreEmploi of = offreemploiDAO.findById(1);
+	    out.println(of.getId());
+	    out.println(of.getEntrepriseBean().getNom());
+	    out.println(of.getDescriptifmission());
+	    out.println(of.getProfilrecherche());
+	    out.println(of.getNiveauQualificationBean().getIntitule());
+	    out.println(of.getDatedepot());
+	    out.println();
+	    
+	    out.println("Obtention de l'offre n° 2 :");
+	    of = offreemploiDAO.findById(2);
+	    out.println(of.getId());
+	    out.println(of.getEntrepriseBean().getNom());
+	    out.println(of.getDescriptifmission());
+	    out.println(of.getProfilrecherche());
+	    out.println(of.getNiveauQualificationBean().getIntitule());
+	    out.println(of.getDatedepot());
+	    out.println();
+	    
+	    out.println("Obtention de l'offre n° 3 :");
+	    of = offreemploiDAO.findById(3);
+	    out.println(of.getId());
+	    out.println(of.getEntrepriseBean().getNom());
+	    out.println(of.getDescriptifmission());
+	    out.println(of.getProfilrecherche());
+	    out.println(of.getNiveauQualificationBean().getIntitule());
+	    out.println(of.getDatedepot());
+	    out.println();
+		
+	} catch (Exception e2) {
+		// TODO: handle exception
+	}
+	
+	
+
+	out.println("-----------------------------------------------------------------------------");
+	
+
+ // -----------------------------------------------------------------------------
+	// Récupération de la référence vers le(s) DAO(s)
+	out.println(); 
+	SecteuractiviteDAO secteuractiviteDAO = null;
+	try {
+		secteuractiviteDAO = (SecteuractiviteDAO) ServicesLocator.getInstance().getRemoteInterface("SecteuractiviteDAO");
+		out.println("Liste des secteurs d'activités :");
+		List<SecteurActivite> secteursactivites = secteuractiviteDAO.findAll();
+
+		for (SecteurActivite secteuractivite : secteursactivites) {
+	out.println(secteuractivite.getIntitule());
+		}
+		out.println();
+	} catch(ServicesLocatorException e1) {
+		e1.printStackTrace();
+	}
+
+
+	out.println("-----------------------------------------------------------------------------");
+	
+
+ // -----------------------------------------------------------------------------	
+	// Récupération de la référence vers le(s) DAO(s)
+	MessagecandidatureDAO messagecandidatureDAO = null;
+	out.println("Contrôles de fonctionnement du DAO MessagecandidatureDAO");
+	try {
+		messagecandidatureDAO = (MessagecandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("MessagecandidatureDAO");
+		
+		
+		
+	} catch(ServicesLocatorException e1) {
+		e1.printStackTrace();
+	}
+	
+	try {
+		// Contrôle(s) de fonctionnalités.
+		out.println("Liste des messagescandidatures :");
+		List<MessageCandidature> messagescandidatures = messagecandidatureDAO.findAll();
+
+		for (MessageCandidature messagecandidature : messagescandidatures) {
+			out.println(messagecandidature.getCorpsmessage());
+		}
+		out.println();
+		out.println("Obtention de msg candi n° 1 :");		
+		MessageCandidature mc = messagecandidatureDAO.findById(1);
+		out.println(mc.getId());
+		out.println(mc.getOffreEmploiBean().getTitre());
+		out.println(mc.getCandidatureBean().getCv());
+		out.println(mc.getDateenvoi());
+		out.println(mc.getCorpsmessage());
+		out.println();
+		out.println("Obtention de msg candi n° 2:");		
+		mc = messagecandidatureDAO.findById(2);
+		out.println(mc.getId());
+		out.println(mc.getOffreEmploiBean().getTitre());
+		out.println(mc.getCandidatureBean().getCv());
+		out.println(mc.getDateenvoi());
+		out.println(mc.getCorpsmessage());
+		out.println("Obtention de msg candi n° 3:");		
+		mc = messagecandidatureDAO.findById(3);
+		out.println(mc.getId());
+		out.println(mc.getOffreEmploiBean().getTitre());
+		out.println(mc.getCandidatureBean().getCv());
+		out.println(mc.getDateenvoi());
+		out.println(mc.getCorpsmessage());
+		
+	} catch (Exception e2) {
+		// TODO: handle exception
+	}
+	
+
+
+	out.println("-----------------------------------------------------------------------------");
+	
+
+ // -----------------------------------------------------------------------------		
+	// Récupération de la référence vers le(s) DAO(s)
+	MessageoffredemploiDAO messageoffredemploiDAO = null;
+	try {
+		messageoffredemploiDAO = (MessageoffredemploiDAO) ServicesLocator.getInstance().getRemoteInterface("MessageoffredemploiDAO");
+	} catch(ServicesLocatorException e1) {
+		e1.printStackTrace();
+	}
+	out.println("Contrôles de fonctionnement du DAO MessageoffredemploiDAO");
+	out.println();
+	
+	// Contrôle(s) de fonctionnalités.
+	out.println("Liste des messagesoffresdemplois :");
+	List<MessageOffredemploi> messagesoffresdemplois = messageoffredemploiDAO.findAll();
+
+	for (MessageOffredemploi messageoffredemploi : messagesoffresdemplois) {
+		out.println(messageoffredemploi.getCorpsmessage());
+	}
+	out.println();
+
+	out.println("Obtention du messageoffrecandidature n° 1 :");
+	MessageOffredemploi mod = messageoffredemploiDAO.findById(1);
+	out.println(mod.getId());
+	out.println(mod.getCorpsmessage());
+	out.println(mod.getDateenvoi());
+	out.println(mod.getCandidatureBean().getCv());
+	out.println(mod.getOffreEmploiBean().getTitre());
+	out.println();
+	
+	out.println("Obtention du messageoffrecandidature n° 2 :");
+	mod = messageoffredemploiDAO.findById(2);
+	out.println(mod.getId());
+	out.println(mod.getCorpsmessage());
+	out.println(mod.getDateenvoi());
+	out.println(mod.getCandidatureBean().getCv());
+	out.println(mod.getOffreEmploiBean().getTitre());
+	out.println();
+	
+	out.println("Obtention du messageoffrecandidature n° 3 :");
+	mod = messageoffredemploiDAO.findById(3);
+	out.println(mod.getId());
+	out.println(mod.getCorpsmessage());
+	out.println(mod.getDateenvoi());
+	out.println(mod.getCandidatureBean().getCv());
+	out.println(mod.getOffreEmploiBean().getTitre());
+	out.println();
+	
+	
+ }
   
   
-  //-----------------------------------------------------------------------------
+ //-----------------------------------------------------------------------------
   
   
   

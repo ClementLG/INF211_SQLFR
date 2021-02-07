@@ -43,7 +43,7 @@ public class CandidatureDAO {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Candidature> findAll()
 	  {
-	    Query query = entityManager.createQuery("select candidature from Candidature candidature order by candidature.id desc");
+	    Query query = entityManager.createQuery("select candidature from Candidature candidature order by candidature.id");
 	    List l = query.getResultList(); 
 	    
 	    return (List<Candidature>)l;

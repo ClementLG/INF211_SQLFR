@@ -43,14 +43,15 @@ public class OffreemploiDAO {
 	}
 
 	// ----------------------------------------------------------------------------
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<OffreEmploi> findAll() {
-		Query query = entityManager.createQuery(
-				"select offreemploi from OffreEmploi offreemploi order by OffreEmploi.id");
-		List l = query.getResultList();
+	@SuppressWarnings({ "rawtypes", "unchecked" }) 
+	public List<OffreEmploi> findAll()
+	 {
+	   Query query = entityManager.createQuery("select offreEmploi from OffreEmploi offreEmploi " +
+	                                           "order by offreEmploi.id desc");
+	   List<OffreEmploi> l = query.getResultList();
+	   return l;
+	 }
 
-		return (List<OffreEmploi>) l;
-	}
 	// ----------------------------------------------------------------------------
     //Ajout d’une méthode pour l’obtention de la liste des offres d’emploi pour une entreprise donnée.
 	@SuppressWarnings({ "rawtypes", "unchecked" })
