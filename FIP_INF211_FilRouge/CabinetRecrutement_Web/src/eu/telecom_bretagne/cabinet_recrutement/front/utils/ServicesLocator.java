@@ -51,8 +51,7 @@ public class ServicesLocator
     String nomJNDI = null;
     if(nomEJB.equals("ServiceEntreprise"))
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceEntreprise!eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise";
-    else if(nomEJB.equals("Service_XXX"))
-      nomJNDI = "*** À compléter ***";
+    
 
     // ATTENTION !!! La récupération d'un DAO n'existe ici que
     // pour les contrôles (utilisés dans la servlet ControleDAOServlet) :
@@ -60,6 +59,18 @@ public class ServicesLocator
     
     else if(nomEJB.equals("EntrepriseDAO"))
       nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/EntrepriseDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO";
+    else if(nomEJB.equals("CandidatureDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/CandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO";
+    else if(nomEJB.equals("MessageCandidatureDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageCandidatureDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageCandidatureDAO";
+    else if(nomEJB.equals("MessageoffredemploiDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/MessageoffredemploiDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageoffredemploiDAO";
+    else if(nomEJB.equals("NiveauqualificationDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/NiveauqualificationDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO";
+    else if(nomEJB.equals("OfrreemploiDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/OfrreemploiDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.OfrreemploiDAO";
+    else if(nomEJB.equals("SecteuractiviteDAO"))
+        nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/SecteuractiviteDAO!eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO";
 
     else
       throw new ServicesLocatorException("Il n'y a pas d'EJB avec ce nom...");

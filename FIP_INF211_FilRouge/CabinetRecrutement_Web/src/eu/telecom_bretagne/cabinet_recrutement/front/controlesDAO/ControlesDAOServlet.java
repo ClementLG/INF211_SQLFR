@@ -401,12 +401,9 @@ public class ControlesDAOServlet extends HttpServlet {
 		sa = secteuractiviteDAO.findById(3);
 		out.println(sa.getId());
 		out.println(sa.getIntitule());
-		out.println(sa.getCandidatures());
+		out.println(sa.getCandidatures()); 
 		out.println(sa.getOffreEmplois());
 		out.println();
 		
 	}
-
-	
-
 }
