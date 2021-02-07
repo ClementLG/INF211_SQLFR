@@ -3,10 +3,10 @@
     <jta-data-source>jdbc/cabinet_recrutement_bd</jta-data-source>
     <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise</class>
     <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature</class>
-    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Messagecandidature</class>
-    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Messageoffredemploi</class>
-    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Niveauqualification</class>
-    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi</class>
-    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffredemploi</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi</class>
+    <class>eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite</class>
   </persistence-unit>
 </persistence>

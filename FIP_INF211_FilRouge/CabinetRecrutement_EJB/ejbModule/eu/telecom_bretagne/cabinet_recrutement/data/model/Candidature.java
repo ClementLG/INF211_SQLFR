@@ -5,19 +5,18 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-
 /**
  * The persistent class for the candidature database table.
  * 
  */
 @Entity
-@NamedQuery(name="Candidature.findAll", query="SELECT c FROM Candidature c")
+@NamedQuery(name = "Candidature.findAll", query = "SELECT c FROM Candidature c")
 public class Candidature implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CANDIDATURE_ID_GENERATOR", sequenceName="CANDIDATURE_ID_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CANDIDATURE_ID_GENERATOR")
+	@SequenceGenerator(name = "CANDIDATURE_ID_GENERATOR", sequenceName = "CANDIDATURE_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CANDIDATURE_ID_GENERATOR")
 	private Integer id;
 
 	private String adresseemail;
@@ -32,22 +31,38 @@ public class Candidature implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date datenaissance;
 
-	//bi-directional many-to-one association to Niveauqualification
+	// bi-directional many-to-one association to Niveauqualification
 	@ManyToOne
-	@JoinColumn(name="niveauqualification")
-	private Niveauqualification niveauqualificationBean;
+	@JoinColumn(name = "niveauqualification")
+	private NiveauQualification niveauqualificationBean;
 
-	//bi-directional many-to-one association to Messagecandidature
-	@OneToMany(mappedBy="candidatureBean")
-	private Set<Messagecandidature> messagecandidatures;
+	// bi-directional many-to-one association to Messagecandidature
+	@OneToMany(mappedBy = "candidatureBean")
+	private Set<MessageCandidature> messagecandidatures;
 
-	//bi-directional many-to-one association to Messageoffredemploi
-	@OneToMany(mappedBy="candidatureBean")
-	private Set<Messageoffredemploi> messageoffredemplois;
+	// bi-directional many-to-one association to Messageoffredemploi
+	@OneToMany(mappedBy = "candidatureBean")
+	private Set<MessageOffredemploi> messageoffredemplois;
 
-	//bi-directional many-to-many association to Secteuractivite
-	@ManyToMany(mappedBy="candidatures")
-	private Set<Secteuractivite> secteuractivites;
+	// bi-directional many-to-many association to Secteuractivite
+	@ManyToMany(mappedBy = "candidatures")
+	private Set<SecteurActivite> secteuractivites;
+	// bi-directional many-to-one association to NiveauQualification
+	@ManyToOne
+	@JoinColumn(name = "niveau_qualification")
+	private NiveauQualification niveauQualificationBean;
+
+	// bi-directional many-to-one association to MessageCandidature
+	@OneToMany(mappedBy = "candidatureBean")
+	private Set<MessageCandidature> messageCandidatures;
+
+	// bi-directional many-to-one association to MessageOffredemploi
+	@OneToMany(mappedBy = "candidatureBean")
+	private Set<MessageOffredemploi> messageOffredemplois;
+
+	// bi-directional many-to-many association to SecteurActivite
+	@ManyToMany(mappedBy = "candidatures")
+	private Set<SecteurActivite> secteurActivites;
 
 	public Candidature() {
 	}
@@ -100,64 +115,124 @@ public class Candidature implements Serializable {
 		this.datenaissance = datenaissance;
 	}
 
-	public Niveauqualification getNiveauqualificationBean() {
+	public NiveauQualification getNiveauqualificationBean() {
 		return this.niveauqualificationBean;
 	}
 
-	public void setNiveauqualificationBean(Niveauqualification niveauqualificationBean) {
+	public void setNiveauqualificationBean(NiveauQualification niveauqualificationBean) {
 		this.niveauqualificationBean = niveauqualificationBean;
 	}
 
-	public Set<Messagecandidature> getMessagecandidatures() {
+	public Set<MessageCandidature> getMessagecandidatures() {
 		return this.messagecandidatures;
 	}
 
-	public void setMessagecandidatures(Set<Messagecandidature> messagecandidatures) {
+	public void setMessagecandidatures(Set<MessageCandidature> messagecandidatures) {
 		this.messagecandidatures = messagecandidatures;
 	}
 
-	public Messagecandidature addMessagecandidature(Messagecandidature messagecandidature) {
+	public MessageCandidature addMessagecandidature(MessageCandidature messagecandidature) {
 		getMessagecandidatures().add(messagecandidature);
 		messagecandidature.setCandidatureBean(this);
 
 		return messagecandidature;
 	}
 
-	public Messagecandidature removeMessagecandidature(Messagecandidature messagecandidature) {
+	public MessageCandidature removeMessagecandidature(MessageCandidature messagecandidature) {
 		getMessagecandidatures().remove(messagecandidature);
 		messagecandidature.setCandidatureBean(null);
 
 		return messagecandidature;
 	}
 
-	public Set<Messageoffredemploi> getMessageoffredemplois() {
+	public Set<MessageOffredemploi> getMessageoffredemplois() {
 		return this.messageoffredemplois;
 	}
 
-	public void setMessageoffredemplois(Set<Messageoffredemploi> messageoffredemplois) {
+	public void setMessageoffredemplois(Set<MessageOffredemploi> messageoffredemplois) {
 		this.messageoffredemplois = messageoffredemplois;
 	}
 
-	public Messageoffredemploi addMessageoffredemploi(Messageoffredemploi messageoffredemploi) {
+	public MessageOffredemploi addMessageoffredemploi(MessageOffredemploi messageoffredemploi) {
 		getMessageoffredemplois().add(messageoffredemploi);
 		messageoffredemploi.setCandidatureBean(this);
 
 		return messageoffredemploi;
 	}
 
-	public Messageoffredemploi removeMessageoffredemploi(Messageoffredemploi messageoffredemploi) {
+	public MessageOffredemploi removeMessageoffredemploi(MessageOffredemploi messageoffredemploi) {
 		getMessageoffredemplois().remove(messageoffredemploi);
 		messageoffredemploi.setCandidatureBean(null);
 
 		return messageoffredemploi;
 	}
 
-	public Set<Secteuractivite> getSecteuractivites() {
+	public Set<SecteurActivite> getSecteuractivites() {
 		return this.secteuractivites;
 	}
 
-	public void setSecteuractivites(Set<Secteuractivite> secteuractivites) {
+	public void setSecteuractivites(Set<SecteurActivite> secteuractivites) {
 		this.secteuractivites = secteuractivites;
+	}
+
+	public NiveauQualification getNiveauQualificationBean() {
+		return this.niveauQualificationBean;
+	}
+
+	public void setNiveauQualificationBean(NiveauQualification niveauQualificationBean) {
+		this.niveauQualificationBean = niveauQualificationBean;
+	}
+
+	public Set<MessageCandidature> getMessageCandidatures() {
+		return this.messageCandidatures;
+	}
+
+	public void setMessageCandidatures(Set<MessageCandidature> messageCandidatures) {
+		this.messageCandidatures = messageCandidatures;
+	}
+
+	public MessageCandidature addMessageCandidature(MessageCandidature messageCandidature) {
+		getMessageCandidatures().add(messageCandidature);
+		messageCandidature.setCandidatureBean(this);
+
+		return messageCandidature;
+	}
+
+	public MessageCandidature removeMessageCandidature(MessageCandidature messageCandidature) {
+		getMessageCandidatures().remove(messageCandidature);
+		messageCandidature.setCandidatureBean(null);
+
+		return messageCandidature;
+	}
+
+	public Set<MessageOffredemploi> getMessageOffredemplois() {
+		return this.messageOffredemplois;
+	}
+
+	public void setMessageOffredemplois(Set<MessageOffredemploi> messageOffredemplois) {
+		this.messageOffredemplois = messageOffredemplois;
+	}
+
+	public MessageOffredemploi addMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
+		getMessageOffredemplois().add(messageOffredemploi);
+		messageOffredemploi.setCandidatureBean(this);
+
+		return messageOffredemploi;
+	}
+
+	public MessageOffredemploi removeMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
+		getMessageOffredemplois().remove(messageOffredemploi);
+		messageOffredemploi.setCandidatureBean(null);
+
+		return messageOffredemploi;
+	}
+
+	public Set<SecteurActivite> getSecteurActivites() {
+		return this.secteurActivites;
+	}
+
+	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
+		this.secteurActivites = secteurActivites;
 	}
 
 }

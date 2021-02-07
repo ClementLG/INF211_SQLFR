@@ -6,17 +6,18 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the messageoffredemploi database table.
+ * The persistent class for the message_candidature database table.
  * 
  */
 @Entity
-@NamedQuery(name="Messageoffredemploi.findAll", query="SELECT m FROM Messageoffredemploi m")
-public class Messageoffredemploi implements Serializable {
+@Table(name="message_candidature")
+@NamedQuery(name="MessageCandidature.findAll", query="SELECT m FROM MessageCandidature m")
+public class MessageCandidature implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="MESSAGEOFFREDEMPLOI_ID_GENERATOR", sequenceName="MESSAGEOFFREDEMPLOI_ID_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MESSAGEOFFREDEMPLOI_ID_GENERATOR")
+	@SequenceGenerator(name="MESSAGE_CANDIDATURE_ID_GENERATOR", sequenceName="MESSAGE_CANDIDATURE_ID_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MESSAGE_CANDIDATURE_ID_GENERATOR")
 	private Integer id;
 
 	private String corpsmessage;
@@ -29,12 +30,12 @@ public class Messageoffredemploi implements Serializable {
 	@JoinColumn(name="candidature")
 	private Candidature candidatureBean;
 
-	//bi-directional many-to-one association to Offreemploi
+	//bi-directional many-to-one association to OffreEmploi
 	@ManyToOne
-	@JoinColumn(name="offreemploi")
-	private Offreemploi offreemploiBean;
+	@JoinColumn(name="offre_emploi")
+	private OffreEmploi offreEmploiBean;
 
-	public Messageoffredemploi() {
+	public MessageCandidature() {
 	}
 
 	public Integer getId() {
@@ -69,12 +70,12 @@ public class Messageoffredemploi implements Serializable {
 		this.candidatureBean = candidatureBean;
 	}
 
-	public Offreemploi getOffreemploiBean() {
-		return this.offreemploiBean;
+	public OffreEmploi getOffreEmploiBean() {
+		return this.offreEmploiBean;
 	}
 
-	public void setOffreemploiBean(Offreemploi offreemploiBean) {
-		this.offreemploiBean = offreemploiBean;
+	public void setOffreEmploiBean(OffreEmploi offreEmploiBean) {
+		this.offreEmploiBean = offreEmploiBean;
 	}
 
 }

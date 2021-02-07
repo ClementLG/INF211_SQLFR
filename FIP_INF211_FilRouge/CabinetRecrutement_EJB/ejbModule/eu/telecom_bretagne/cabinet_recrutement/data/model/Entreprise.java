@@ -27,7 +27,10 @@ public class Entreprise implements Serializable {
 
 	//bi-directional many-to-one association to Offreemploi
 	@OneToMany(mappedBy="entrepriseBean")
-	private Set<Offreemploi> offreemplois;
+	private Set<OffreEmploi> offreemplois;
+	//bi-directional many-to-one association to OffreEmploi
+	@OneToMany(mappedBy="entrepriseBean")
+	private Set<OffreEmploi> offreEmplois;
 
 	public Entreprise() {
 	}
@@ -40,11 +43,11 @@ public class Entreprise implements Serializable {
 		this.id = id;
 	}
 
-	public String getAdressepostale() {
+	public String getAdressePostale() {
 		return this.adressepostale;
 	}
 
-	public void setAdressepostale(String adressepostale) {
+	public void setAdressePostale(String adressepostale) {
 		this.adressepostale = adressepostale;
 	}
 
@@ -64,26 +67,48 @@ public class Entreprise implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Offreemploi> getOffreemplois() {
+	public Set<OffreEmploi> getOffreemplois() {
 		return this.offreemplois;
 	}
 
-	public void setOffreemplois(Set<Offreemploi> offreemplois) {
+	public void setOffreemplois(Set<OffreEmploi> offreemplois) {
 		this.offreemplois = offreemplois;
 	}
 
-	public Offreemploi addOffreemploi(Offreemploi offreemploi) {
-		getOffreemplois().add(offreemploi);
+	public OffreEmploi addOffreemploi(OffreEmploi offreemploi) {
+		getOffreEmplois().add(offreemploi);
 		offreemploi.setEntrepriseBean(this);
 
 		return offreemploi;
 	}
 
-	public Offreemploi removeOffreemploi(Offreemploi offreemploi) {
-		getOffreemplois().remove(offreemploi);
+	public OffreEmploi removeOffreemploi(OffreEmploi offreemploi) {
+		getOffreEmplois().remove(offreemploi);
 		offreemploi.setEntrepriseBean(null);
 
 		return offreemploi;
+	}
+	
+	public Set<OffreEmploi> getOffreEmplois() {
+		return this.offreEmplois;
+	}
+
+	public void setOffreEmplois(Set<OffreEmploi> offreEmplois) {
+		this.offreEmplois = offreEmplois;
+	}
+
+	public OffreEmploi addOffreEmploi(OffreEmploi offreEmploi) {
+		getOffreEmplois().add(offreEmploi);
+		offreEmploi.setEntrepriseBean(this);
+
+		return offreEmploi;
+	}
+
+	public OffreEmploi removeOffreEmploi(OffreEmploi offreEmploi) {
+		getOffreEmplois().remove(offreEmploi);
+		offreEmploi.setEntrepriseBean(null);
+
+		return offreEmploi;
 	}
 
 }
