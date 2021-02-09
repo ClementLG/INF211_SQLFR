@@ -160,7 +160,7 @@ public class ControlesDAOServlet extends HttpServlet
 
 	out.println("-----------------------------------------------------------------------------");
 	
-// ----------------- NIVEAU QUALIF------------------------------------------
+// ----------------- NIVEAU QUALIFICATION------------------------------------------
 	
 	
 	// Récupération de la référence vers le(s) DAO(s)
