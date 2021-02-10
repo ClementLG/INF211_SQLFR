@@ -223,7 +223,7 @@ public class ControlesDAOServlet extends HttpServlet
 		List<OffreEmploi> offresemplois = offreemploiDAO.findAll();
 
 		for (OffreEmploi offreemploi : offresemplois) {
-			offreemploi.getTitre();	
+			out.println(offreemploi.getTitre());	
 		}
 		out.println();
 		out.println("Obtention de l'offre n° 1 :");
