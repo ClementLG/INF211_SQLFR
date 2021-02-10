@@ -54,6 +54,15 @@ public class OffreEmploi implements Serializable {
 
 	public OffreEmploi() {
 	}
+	
+	public OffreEmploi(Date depot, String descriptif, String profil, String titre, Entreprise entreprise, NiveauQualification qualif) {
+		this.datedepot = depot;
+		this.descriptifmission = descriptif;
+		this.profilrecherche = profil;
+		this.titre = titre;
+		this.entrepriseBean = entreprise;
+		this.niveauQualificationBean = qualif;
+	}
 
 	public Integer getId() {
 		return this.id;
