@@ -16,7 +16,7 @@ public class NiveauQualification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="NIVEAU_QUALIFICATION_ID_GENERATOR", sequenceName="NIVEAU_QUALIFICATION_ID_SEQ", allocationSize=1)
+	@SequenceGenerator(name="NIVEAU_QUALIFICATION_ID_GENERATOR", sequenceName="NIVEAU_QUALIFICATION_ID_SEQ",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NIVEAU_QUALIFICATION_ID_GENERATOR")
 	private Integer id;
 
