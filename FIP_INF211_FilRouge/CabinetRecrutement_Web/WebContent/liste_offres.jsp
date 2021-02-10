@@ -1,22 +1,19 @@
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 java.util.List"%>
 
 <%
-  IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
-  List<Entreprise> entreprises = serviceEntreprise.listeDesEntreprises();
   IServiceOffreEmploi serviceOffreEmploi = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+  List<OffreEmploi> offreemplois = serviceOffreEmploi.listeOffreEmploi();
 %>
 
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3><i class="fa fa-th"></i> Liste des entreprises référencées </h3></div> <!-- /.panel-heading -->
+      <div class="panel-heading"><h3><i class="fa fa-th"></i> Liste des offres d'emploi référencées </h3></div> <!-- /.panel-heading -->
       <div class="panel-body">
         <div class="dataTable_wrapper">
           <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -25,11 +22,13 @@
             -->
             <thead>
               <tr>
-                <th>Identifiant</th>
-                <th>Nom</th>
-                <th>Adresse postale (ville)</th>
-                <th>Nombre d'offres d'emploi déposées</th>
-                <th>Informations</th>
+              	<th>ID</th>
+                <th>Titre</th>
+                <th>Entreprise</th>
+                <th>Description</th>
+                <th>Profil recherche</th>
+                <th>Niveau qualification</th>
+                <th>date de depot</th>
               </tr>
             </thead>
             <!--
@@ -37,15 +36,21 @@
             -->
             <tbody>
               <%
-              for(Entreprise entreprise : entreprises)
+              for(OffreEmploi offreemploi : offreemplois)
               {
                 %>
                 <tr>
-                 <td>ENT_<%=entreprise.getId()%></td>
-                 <td><%=entreprise.getNom()%></td>
-                 <td><%=entreprise.getAdressePostale()%></td>
-                 <td><%=serviceOffreEmploi.NbOffreByEntID(entreprise.getId())%></td>
-                  <td align="center"><a href="template.jsp?action=infos_entreprise&id=<%=entreprise.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
+                 <td>OF<%=offreemploi.getId()%></td>
+                 <td><%=offreemploi.getTitre()%></td>
+                 <td><%=offreemploi.getEntrepriseBean().getNom()%></td>
+                 <td><%=offreemploi.getDescriptifmission()%></td>
+                 <td><%=offreemploi.getProfilrecherche()%></td>
+                 <td><%=offreemploi.getNiveauQualificationBean().getIntitule()%></td>
+                 <td><%=offreemploi.getDatedepot()%></td>
+                 <td>
+                   XXX
+                 </td>
+                  <td align="center"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
               }
