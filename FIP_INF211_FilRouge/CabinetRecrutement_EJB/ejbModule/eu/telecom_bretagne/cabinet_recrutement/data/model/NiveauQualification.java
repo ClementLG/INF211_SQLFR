@@ -32,6 +32,10 @@ public class NiveauQualification implements Serializable {
 
 	public NiveauQualification() {
 	}
+	
+	public NiveauQualification(String intitule) {
+		this.intitule = intitule;
+	}
 
 	public Integer getId() {
 		return this.id;

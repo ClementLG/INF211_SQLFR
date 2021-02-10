@@ -50,6 +50,10 @@ public class SecteurActivite implements Serializable {
 
 	public SecteurActivite() {
 	}
+	
+	public SecteurActivite(String intitule)  {
+		this.intitule = intitule;
+	}
 
 	public Integer getId() {
 		return this.id;

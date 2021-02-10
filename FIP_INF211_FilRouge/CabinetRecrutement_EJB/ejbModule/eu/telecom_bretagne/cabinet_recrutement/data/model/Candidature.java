@@ -48,8 +48,17 @@ public class Candidature implements Serializable {
 	//bi-directional many-to-many association to SecteurActivite
 	@ManyToMany(mappedBy="candidatures")
 	private Set<SecteurActivite> secteurActivites;
-
+	
 	public Candidature() {
+		
+	}
+
+	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance) {
+		this.adresseemail = mail;
+		this.adressepostale = adresse;
+		this.cv = CV;
+		this.datedepot = depot;
+		this.datenaissance = naissance;
 	}
 
 	public Integer getId() {
