@@ -97,6 +97,30 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Descriptif : " + e.getDescriptif());
 			out.println("Adresse Postale : " + e.getAdressePostale());
 			out.println();
+			
+			Entreprise e_test = new Entreprise("42 rue du test", "Entreprise de Test", "TEST&CO");
+			Entreprise e_recup = null;
+			entrepriseDAO.persist(e_test);
+			
+			out.println("Liste des entreprises : ");
+			for (Entreprise entreprise : entreprises) {
+				out.println(entreprise.getNom());
+			}
+			
+			e_recup = entrepriseDAO.findById(4);
+			if (e_test.equals(e_recup)) {
+				out.println("test OK");
+			} else {
+				out.println("test KO");
+			}
+			entrepriseDAO.remove(e_test);
+			
+			out.println("Liste des entreprises : ");
+			for (Entreprise entreprise : entreprises) {
+				out.println(entreprise.getNom());
+			}
+			
+			
 		} catch (Exception e_tests) {
 			// TODO Auto-generated catch block
 			e_tests.printStackTrace();
