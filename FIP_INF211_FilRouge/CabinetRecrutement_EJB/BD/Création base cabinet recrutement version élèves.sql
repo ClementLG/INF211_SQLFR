@@ -141,10 +141,13 @@ INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qua
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage codage de PASS',1,'Coder tout le backend en PHP',1,'Etudiant Ingénieur',TO_DATE('01/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage gestion BDD',2,'Analyse BDD du personnel',4,'Etudiant Ingénieur',TO_DATE('05/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Thèse en IA',3,'Ameliorer recherche avec une IA',5,'Doctorant Informatique',TO_DATE('18/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Trayeur de mouches',3,'Traire avec des gants de boxe',5,'Un gars motive',TO_DATE('13/01/2021','DD-MM-YYYY'));
+
 
 INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Bonjour je souhaite avoir le stage',TO_DATE('03/02/2021','DD-MM-YYYY'));
 INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Bonsoir je souhaite avoir le stage siouplait',TO_DATE('03/02/2021','DD-MM-YYYY'));
 INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (3,1,'Bonjour je souhaite être docteur',TO_DATE('03/02/2021','DD-MM-YYYY'));
+
 
 INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Voici une offre de stage pour vous',TO_DATE('01/01/2021','DD-MM-YYYY'));
 INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Voici une offre de stage pour vous',TO_DATE('05/01/2021','DD-MM-YYYY'));

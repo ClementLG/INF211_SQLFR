@@ -26,7 +26,7 @@ public class Entreprise implements Serializable {
 	private String nom;
 
 	//bi-directional many-to-one association to OffreEmploi
-	@OneToMany(mappedBy="entrepriseBean")
+	@OneToMany(mappedBy="entrepriseBean", fetch=FetchType.EAGER)
 	private Set<OffreEmploi> offreEmplois;
 
 	public Entreprise() {

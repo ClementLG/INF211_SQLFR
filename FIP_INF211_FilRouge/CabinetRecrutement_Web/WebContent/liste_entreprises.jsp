@@ -3,14 +3,11 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
-                eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi,
                 java.util.List"%>
 
 <%
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
   List<Entreprise> entreprises = serviceEntreprise.listeDesEntreprises();
-  IServiceOffreEmploi serviceOffreEmploi = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
 %>
 
 <div class="row">
@@ -44,7 +41,7 @@
                  <td>ENT_<%=entreprise.getId()%></td>
                  <td><%=entreprise.getNom()%></td>
                  <td><%=entreprise.getAdressePostale()%></td>
-                 <td><%=serviceOffreEmploi.NbOffreByEntID(entreprise.getId())%></td>
+                 <td><%=entreprise.getOffreemplois().size()%></td>
                   <td align="center"><a href="template.jsp?action=infos_entreprise&id=<%=entreprise.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%

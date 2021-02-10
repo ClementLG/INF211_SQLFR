@@ -44,18 +44,6 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
     return offreemploiDAO.findAll();
   }
   //-----------------------------------------------------------------------------
-  //-----------------------------------------------------------------------------
-  @Override
-  public int NbOffreByEntID(int idEnterprise)
-  {
-	int nb=9999;
-	try {
-		nb=offreemploiDAO.findOfferByEnterprise(idEnterprise).size();
-		
-	} catch (Exception e) {
-		System.out.println("--------------------KASSE KASSE");
-	}
-	
-    return nb;
-  }
+  
+  
 }

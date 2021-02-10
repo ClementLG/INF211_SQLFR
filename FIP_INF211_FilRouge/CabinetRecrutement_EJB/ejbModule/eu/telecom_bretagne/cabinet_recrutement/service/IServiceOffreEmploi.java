@@ -29,5 +29,4 @@ public interface IServiceOffreEmploi
    */
   public List<OffreEmploi> listeOffreEmploi();
   //-----------------------------------------------------------------------------
-int NbOffreByEntID(int idEnterprise);
 }
