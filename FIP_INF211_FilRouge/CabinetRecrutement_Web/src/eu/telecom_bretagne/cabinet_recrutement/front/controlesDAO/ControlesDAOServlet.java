@@ -105,16 +105,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Ajout de l'entreprise de test");
 				ent_test = entrepriseDAO.persist(ent_test);
 				id_ent = ent_test.getId();
-				out.println("Ajout OK");
-				out.println();
-
-				out.println("Liste des entreprises : ");
-				entreprises = entrepriseDAO.findAll();
-				for (Entreprise entreprise : entreprises) {
-					out.println(entreprise.getNom());
-				}
-				out.println();
-
+				
 				ent_recup = entrepriseDAO.findById(id_ent);
 				if ((ent_test.getId() == ent_recup.getId()) && (ent_test.getNom().equals(ent_recup.getNom()))
 						&& (ent_test.getDescriptif().equals(ent_recup.getDescriptif()))
@@ -123,12 +114,39 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
+				}		
+				out.println();
+
+				out.println("Liste des entreprises : ");
+				entreprises = entrepriseDAO.findAll();
+				for (Entreprise entreprise : entreprises) {
+					out.println(entreprise.getNom());
 				}
 				out.println();
 				
+				out.println("Modification de l'entreprise de test");
+				ent_recup.setNom("TEST&COModif");
+				entrepriseDAO.update(ent_recup);
+				
+				ent_recup = entrepriseDAO.findById(id_ent);
+				if (ent_test.getNom() != ent_recup.getNom()) {
+					out.println("Modif OK");
+					out.println(ent_test.getNom());
+					out.println(ent_recup.getNom());
+				}else {
+					out.println("Modif KO");
+					out.println(ent_test.getNom());
+					out.println(ent_recup.getNom());
+				}
+				
 				out.println("Suppression de l'entreprise de test");
 				entrepriseDAO.remove(ent_recup);
-				out.println("Suppression OK");
+				
+				if (entrepriseDAO.findById(id_ent)==null) {
+					out.println("Suppression OK");
+				}else {
+					out.println("Suppression KO");
+				}
 				out.println();
 
 				out.println("Liste des entreprises : ");
