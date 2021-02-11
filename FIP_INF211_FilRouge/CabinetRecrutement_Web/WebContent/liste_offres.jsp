@@ -40,7 +40,7 @@
               {
                 %>
                 <tr>
-                 <td>OF<%=offreemploi.getId()%></td>
+                 <td>OF_<%=offreemploi.getId()%></td>
                  <td><%=offreemploi.getTitre()%></td>
                  <td><%=offreemploi.getEntrepriseBean().getNom()%></td>
                  <td><%=offreemploi.getDescriptifmission()%></td>
