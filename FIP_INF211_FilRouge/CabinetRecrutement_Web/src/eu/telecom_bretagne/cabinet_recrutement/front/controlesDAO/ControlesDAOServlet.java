@@ -212,6 +212,69 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + nq.getId());
 			out.println("Intitule : " + nq.getIntitule());
 			out.println();
+			
+			try {
+				NiveauQualification nq_test = new NiveauQualification("LE MEGA BREVET DES COLLEGES");
+				NiveauQualification nq_recup = null;
+				int id_ent = 0;
+				out.println("Ajout du niveauqualification de test");
+				nq_test = niveauqualificationDAO.persist(nq_test);
+				id_ent = nq_test.getId();
+
+				nq_recup = niveauqualificationDAO.findById(id_ent);
+				if ((nq_test.getId() == nq_recup.getId()) && (nq_test.getIntitule().equals(nq_recup.getIntitule()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des niveauxqualifications : ");
+				niveauxqualifications = niveauqualificationDAO.findAll();
+				for (NiveauQualification niveauqualification : niveauxqualifications) {
+					out.println(niveauqualification.getIntitule());
+				}
+				out.println();
+
+				out.println("Modification du niveauqualification de test");
+				nq_recup.setIntitule("LE DNB");
+				niveauqualificationDAO.update(nq_recup);
+
+				nq_recup = niveauqualificationDAO.findById(id_ent);
+				if (nq_test.getIntitule() != nq_recup.getIntitule()) {
+					out.println("Modif OK");
+					out.println("Ancien Intitule : " + nq_test.getIntitule());
+					out.println("Nouveau Intitule : " + nq_recup.getIntitule());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien Intitule : " + nq_test.getIntitule());
+					out.println("Nouveau Intitule : " + nq_recup.getIntitule());
+				}
+				out.println();
+
+				out.println("Suppression du niveauqualification de test");
+				niveauqualificationDAO.remove(nq_recup);
+
+				if (niveauqualificationDAO.findById(id_ent) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des niveauxqualifications : ");
+				niveauxqualifications = niveauqualificationDAO.findAll();
+				for (NiveauQualification niveauqualification : niveauxqualifications) {
+					out.println(niveauqualification.getIntitule());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_2) {
+				// TODO Auto-generated catch block
+				e_ajout_2.printStackTrace();
+			}
+			
+			
 		} catch (Exception e_tests_2) {
 			// TODO Auto-generated catch block
 			e_tests_2.printStackTrace();
@@ -295,7 +358,7 @@ public class ControlesDAOServlet extends HttpServlet {
 						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
 						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
 						&& (cand_test.getDatedepot().equals(cand_recup.getDatedepot()))
-						&& (cand_test.getNiveauqualificationBean().equals(cand_recup.getNiveauqualificationBean()))) {
+						&& (cand_test.getNiveauqualificationBean().getId().equals(cand_recup.getNiveauqualificationBean().getId()))) {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");

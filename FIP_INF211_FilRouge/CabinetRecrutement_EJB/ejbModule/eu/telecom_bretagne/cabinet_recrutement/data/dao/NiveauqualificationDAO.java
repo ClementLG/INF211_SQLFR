@@ -65,4 +65,12 @@ public class NiveauqualificationDAO {
 		}
 		return NiveauQualification;
 	}
+	//-----------------------------------------------------------------------------
+	public NiveauQualification remove(NiveauQualification NiveauQualification) {
+		if (NiveauQualification != null) {
+			NiveauQualification nq_suppr = entityManager.merge(NiveauQualification);
+			entityManager.remove(nq_suppr);
+		}
+		return NiveauQualification;
+	}
 }

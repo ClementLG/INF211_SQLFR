@@ -54,7 +54,7 @@ public class CandidatureDAO {
 	@SuppressWarnings({"unchecked" })
 	public List<Candidature> findByActivitySector(int idSecteurActivite, int idNiveauQualification)
 	{
-		Query query = entityManager.createQuery("select candidature from Candidature candidature join candidature.secteursActivite secteur "
+		Query query = entityManager.createQuery("select candidature from Candidature candidature join candidature.secteurActivites secteur "
 				+ "where secteur.id = :idSA and candidature.niveauQualificationBean.id = :idNQ " + "order by candidature.id desc");
 		query.setParameter("idSA", idSecteurActivite);
 		query.setParameter("idNQ", idNiveauQualification);
