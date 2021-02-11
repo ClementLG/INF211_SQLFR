@@ -9,7 +9,7 @@
   IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
   List<Candidature> candidatures = serviceCandidature.listeCandidature();
 %>
-
+<!-- base code demo -->
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">

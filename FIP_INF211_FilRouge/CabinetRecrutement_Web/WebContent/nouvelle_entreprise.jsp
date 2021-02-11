@@ -8,8 +8,10 @@
 <%
   IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator.getInstance().getRemoteInterface("ServiceEntreprise");
   List<Entreprise> entreprises = serviceEntreprise.listeDesEntreprises();
+  //base code demo
 %>
 
+<!-- base code demo -->
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -40,7 +42,22 @@
     </div> <!-- /.panel -->
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
+<%
+//Entreprise ent_test = new Entreprise("42 rue du test", "Entreprise de Test", "TEST&CO");
+//ent_test = en.persist(ent_test);
+out.println(request.getParameter("adresse_postale")+ ","+request.getParameter("descriptif")+ ","+request.getParameter("nom"));
 
-
+if(request.getParameter("submit-insertion") != null){
+	if(request.getParameter("adresse_postale").length() >0
+	&& request.getParameter("descriptif").length() >0
+	&& request.getParameter("nom").length() >0){
+		out.println("<h1> OK </h1>");
+	}
+	else {
+		out.println("<h1 style=\"color: red\"> merci de rentrer des champs ! </h1>");
+	}
+}
+//action=nouvelle_entreprise&nom=test&descriptif=test&adresse_postale=plouzane&submit-insertion=
+%>
         
 
