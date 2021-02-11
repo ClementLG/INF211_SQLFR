@@ -170,13 +170,15 @@ public class ControlesDAOServlet extends HttpServlet {
 		}
 
 		out.println("-----------------------------------------------------------------------------\n");
-		
-		// ---------------------------- NIVEAU QUALIFICATION------------------------------------------
+
+		// ---------------------------- NIVEAU
+		// QUALIFICATION------------------------------------------
 
 		// Récupération de la référence vers le(s) DAO(s)
 		NiveauqualificationDAO niveauqualificationDAO = null;
 		try {
-			niveauqualificationDAO = (NiveauqualificationDAO) ServicesLocator.getInstance().getRemoteInterface("NiveauqualificationDAO");
+			niveauqualificationDAO = (NiveauqualificationDAO) ServicesLocator.getInstance()
+					.getRemoteInterface("NiveauqualificationDAO");
 		} catch (ServicesLocatorException e2) {
 			e2.printStackTrace();
 		}
@@ -216,7 +218,6 @@ public class ControlesDAOServlet extends HttpServlet {
 		}
 
 		out.println("-----------------------------------------------------------------------------");
-
 
 		// -----------------------------------CANDIDATURE------------------------------------------
 
@@ -272,13 +273,14 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Adresse Postale : " + c.getAdressepostale());
 			out.println("Niveau Qualification : " + c.getNiveauqualificationBean().getIntitule());
 			out.println();
-			
+
 			try {
 				String s_datenaissance = "23/05/1998";
 				Date datenaissance = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
 				s_datenaissance = "11/03/2021";
 				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
-				Candidature cand_test = new Candidature("Florianelanesse@gmail.com", "Carquefou", "CV trop lourd", datedepot, datenaissance, niveauqualificationDAO.findById(1));
+				Candidature cand_test = new Candidature("Florianelanesse@gmail.com", "Carquefou", "CV trop lourd",
+						datedepot, datenaissance, niveauqualificationDAO.findById(1));
 				Candidature cand_recup = null;
 				int id_cand = 0;
 				out.println("Ajout de la candidature de test");
@@ -287,7 +289,8 @@ public class ControlesDAOServlet extends HttpServlet {
 				id_cand = cand_test.getId();
 				cand_recup = candidatureDAO.findById(id_cand);
 				out.println();
-				if ((cand_test.getId() == cand_recup.getId()) && (cand_test.getAdresseemail().equals(cand_recup.getAdresseemail()))
+				if ((cand_test.getId() == cand_recup.getId())
+						&& (cand_test.getAdresseemail().equals(cand_recup.getAdresseemail()))
 						&& (cand_test.getCv().equals(cand_recup.getCv()))
 						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
 						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
@@ -301,8 +304,8 @@ public class ControlesDAOServlet extends HttpServlet {
 
 				out.println("Liste des Candidatures : ");
 				candidatures = candidatureDAO.findAll();
-				for (Candidature Candidature : candidatures) {
-					out.println(Candidature.getCv());
+				for (Candidature candidature : candidatures) {
+					out.println(candidature.getCv());
 				}
 				out.println();
 
@@ -321,10 +324,17 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Nouveau CV : " + cand_recup.getCv());
 				}
 				out.println();
+				
+				out.println("Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) ");
+				List<Candidature> list_test = candidatureDAO.findByActivitySector(19, 4);
+				for (Candidature candidature : list_test) {
+					out.println(candidature.getCv());
+				}
+				out.println();
 
 				out.println("Suppression de la Candidature de test");
 				candidatureDAO.remove(cand_recup);
-				
+
 				if (candidatureDAO.findById(id_cand) == null) {
 					out.println("Suppression OK");
 				} else {
@@ -343,7 +353,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e_ajout_1.printStackTrace();
 			}
-			
+
 		} catch (Exception e_tests_1) {
 			// TODO Auto-generated catch block
 			e_tests_1.printStackTrace();
