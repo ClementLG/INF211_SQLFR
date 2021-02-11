@@ -47,7 +47,7 @@ public class Candidature implements Serializable {
 
 	//bi-directional many-to-many association to SecteurActivite
 	@ManyToMany(mappedBy="candidatures")
-	private Set<SecteurActivite> secteursActivite;
+	private Set<SecteurActivite> secteurActivites;
 	
 	public Candidature() {
 	}
@@ -162,11 +162,11 @@ public class Candidature implements Serializable {
 	}
 
 	public Set<SecteurActivite> getSecteuractivites() {
-		return this.secteursActivite;
+		return this.secteurActivites;
 	}
 
 	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
-		this.secteursActivite = secteurActivites;
+		this.secteurActivites = secteurActivites;
 	}
 
 }
