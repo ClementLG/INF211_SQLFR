@@ -66,7 +66,7 @@ public class ControlesDAOServlet extends HttpServlet {
 		out.println();
 
 		try {
-			// Contrôle(s) de fonctionnalités.
+			// Contrôle(s) de fonctionnalités d'affichage
 			out.println("Liste des entreprises : ");
 			List<Entreprise> entreprises = entrepriseDAO.findAll();
 			for (Entreprise entreprise : entreprises) {
@@ -97,30 +97,52 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Descriptif : " + e.getDescriptif());
 			out.println("Adresse Postale : " + e.getAdressePostale());
 			out.println();
-			
-			Entreprise e_test = new Entreprise("42 rue du test", "Entreprise de Test", "TEST&CO");
-			Entreprise e_recup = null;
-			entrepriseDAO.persist(e_test);
-			
-			out.println("Liste des entreprises : ");
-			for (Entreprise entreprise : entreprises) {
-				out.println(entreprise.getNom());
+
+			try {
+				Entreprise ent_test = new Entreprise("42 rue du test", "Entreprise de Test", "TEST&CO");
+				Entreprise ent_recup = null;
+				int id_ent = 0;
+				out.println("Ajout de l'entreprise de test");
+				ent_test = entrepriseDAO.persist(ent_test);
+				id_ent = ent_test.getId();
+				out.println("Ajout OK");
+				out.println();
+
+				out.println("Liste des entreprises : ");
+				entreprises = entrepriseDAO.findAll();
+				for (Entreprise entreprise : entreprises) {
+					out.println(entreprise.getNom());
+				}
+				out.println();
+
+				ent_recup = entrepriseDAO.findById(id_ent);
+				if ((ent_test.getId() == ent_recup.getId()) && (ent_test.getNom().equals(ent_recup.getNom()))
+						&& (ent_test.getDescriptif().equals(ent_recup.getDescriptif()))
+						&& (ent_test.getAdressePostale().equals(ent_recup.getAdressePostale()))
+						&& (ent_test.getOffreemplois().equals(ent_recup.getOffreemplois()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+				
+				out.println("Suppression de l'entreprise de test");
+				entrepriseDAO.remove(ent_recup);
+				out.println("Suppression OK");
+				out.println();
+
+				out.println("Liste des entreprises : ");
+				entreprises = entrepriseDAO.findAll();
+				for (Entreprise entreprise : entreprises) {
+					out.println(entreprise.getNom());
+				}
+				out.println();
+
+			} catch (Exception e_ajout) {
+				// TODO Auto-generated catch block
+				e_ajout.printStackTrace();
 			}
-			
-			e_recup = entrepriseDAO.findById(4);
-			if (e_test.equals(e_recup)) {
-				out.println("test OK");
-			} else {
-				out.println("test KO");
-			}
-			entrepriseDAO.remove(e_test);
-			
-			out.println("Liste des entreprises : ");
-			for (Entreprise entreprise : entreprises) {
-				out.println(entreprise.getNom());
-			}
-			
-			
+
 		} catch (Exception e_tests) {
 			// TODO Auto-generated catch block
 			e_tests.printStackTrace();
