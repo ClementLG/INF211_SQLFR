@@ -107,7 +107,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println(entreprise.getNom());
 			}
 			
-			e_recup = entrepriseDAO.findById(4);
+			/**e_recup = entrepriseDAO.findById(4);
 			if (e_test.equals(e_recup)) {
 				out.println("test OK");
 			} else {
@@ -118,7 +118,7 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Liste des entreprises : ");
 			for (Entreprise entreprise : entreprises) {
 				out.println(entreprise.getNom());
-			}
+			}*/
 			
 			
 		} catch (Exception e_tests) {

@@ -47,10 +47,7 @@
                  <td><%=offreemploi.getProfilrecherche()%></td>
                  <td><%=offreemploi.getNiveauQualificationBean().getIntitule()%></td>
                  <td><%=offreemploi.getDatedepot()%></td>
-                 <td>
-                   XXX
-                 </td>
-                  <td align="center"><i class="fa fa-eye fa-lg"></i></a></td>
+                  <td align="center"><a href="template.jsp?action=infos_offre&id=<%=offreemploi.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
               }
