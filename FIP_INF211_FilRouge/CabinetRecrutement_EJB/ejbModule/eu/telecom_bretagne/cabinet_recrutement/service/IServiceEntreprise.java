@@ -28,4 +28,11 @@ public interface IServiceEntreprise
    */
   public List<Entreprise> listeDesEntreprises();
   //-----------------------------------------------------------------------------
+  /**
+   * Permet d'envoyer le tuble dans la table
+   * 
+   * @return l'objet entreprise créé
+   */
+  public Entreprise execPersist(Entreprise entreprise);
+//-----------------------------------------------------------------------------
 }

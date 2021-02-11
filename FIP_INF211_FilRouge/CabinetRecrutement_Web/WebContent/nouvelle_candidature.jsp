@@ -20,12 +20,15 @@
                         col-xs-12">
               <form role="form" action="template.jsp" method="get">
                 <input type="hidden" name="action" value="nouvelle_candidature" />
+                <% /**FAUDRA AJOUTER A LA FIN...
                 <div class="form-group">
-                  <input class="form-control" placeholder="Nom" name="nom" />
-                </div>
-                <div class="form-group">
-                  <input class="form-control" placeholder="Prénom" name="prenom" />
-                </div>
+                <input class="form-control" placeholder="Nom" name="nom" />
+              </div>
+              <div class="form-group">
+                <input class="form-control" placeholder="Prénom" name="prenom" />
+              </div>*/
+                %>
+                
                 <div class="form-group">
                   <input class="form-control" placeholder="Date de naissance (format jj/mm/aaaa)" name="date_naissance" />
                 </div>
@@ -226,3 +229,26 @@
     </div> <!-- /.panel -->
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
+<%
+//?action=nouvelle_candidature&date_naissance=a&adresse_postale=b&adresse_email=c&cv=d&niveau=5&secteur=23&submit-insertion=
+//Pas de nom prenom car on a zappe che pas pk...
+if(request.getParameter("submit-insertion") != null){
+
+	if(request.getParameter("date_naissance").length() >0
+	&& request.getParameter("adresse_postale").length() >0
+	&& request.getParameter("adresse_email").length() >0
+	&& request.getParameter("cv").length() >0
+	&& request.getParameter("niveau").length() >0
+	&& request.getParameter("secteur").length() >0){
+		//Entreprise ent_new = new Entreprise(request.getParameter("adresse_postale"), 
+				//request.getParameter("descriptif"),
+				//request.getParameter("nom"));
+		//serviceEntreprise.execPersist(ent_new);
+		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
+		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
+	}
+	else {
+		out.println("<h1 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h1>");
+	}
+}
+%>

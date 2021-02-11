@@ -43,20 +43,27 @@
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
 <%
+//exemple et tests
 //Entreprise ent_test = new Entreprise("42 rue du test", "Entreprise de Test", "TEST&CO");
-//ent_test = en.persist(ent_test);
-out.println(request.getParameter("adresse_postale")+ ","+request.getParameter("descriptif")+ ","+request.getParameter("nom"));
+//ent_test = entrepriseDAO.persist(ent_test);
+//out.println(request.getParameter("adresse_postale")+ ","+request.getParameter("descriptif")+ ","+request.getParameter("nom"));
 
 if(request.getParameter("submit-insertion") != null){
 	if(request.getParameter("adresse_postale").length() >0
 	&& request.getParameter("descriptif").length() >0
 	&& request.getParameter("nom").length() >0){
-		out.println("<h1> OK </h1>");
+		Entreprise ent_new = new Entreprise(request.getParameter("adresse_postale"), 
+				request.getParameter("descriptif"),
+				request.getParameter("nom"));
+		serviceEntreprise.execPersist(ent_new);
+		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
+		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
 	}
 	else {
-		out.println("<h1 style=\"color: red\"> merci de rentrer des champs ! </h1>");
+		out.println("<h1 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h1>");
 	}
 }
+//get
 //action=nouvelle_entreprise&nom=test&descriptif=test&adresse_postale=plouzane&submit-insertion=
 %>
         
