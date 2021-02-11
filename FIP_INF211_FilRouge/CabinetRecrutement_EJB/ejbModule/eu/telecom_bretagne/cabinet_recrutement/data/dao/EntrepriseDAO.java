@@ -48,7 +48,6 @@ public class EntrepriseDAO {
 
 		return (List<Entreprise>) l;
 	}
-
 	// -----------------------------------------------------------------------------
 	public Entreprise persist(Entreprise entreprise) {
 		if (entreprise != null) {

@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3><i class="fa fa-user"></i> Référencer une nouvelle candidature</h3></div> <!-- /.panel-heading -->
+      <div class="panel-heading"><h3><i class="fa fa-user"></i> DEV EN COURS - Référencer une nouvelle candidature</h3></div> <!-- /.panel-heading -->
       <div class="panel-body">
         
             <div class="col-lg-offset-2 col-lg-8
@@ -233,13 +233,13 @@
 //?action=nouvelle_candidature&date_naissance=a&adresse_postale=b&adresse_email=c&cv=d&niveau=5&secteur=23&submit-insertion=
 //Pas de nom prenom car on a zappe che pas pk...
 if(request.getParameter("submit-insertion") != null){
-
-	if(request.getParameter("date_naissance").length() >0
+	if(request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
 	&& request.getParameter("adresse_postale").length() >0
-	&& request.getParameter("adresse_email").length() >0
+	&& request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
 	&& request.getParameter("cv").length() >0
 	&& request.getParameter("niveau").length() >0
-	&& request.getParameter("secteur").length() >0){
+	&& request.getParameter("secteur").length() >0
+	){
 		//Entreprise ent_new = new Entreprise(request.getParameter("adresse_postale"), 
 				//request.getParameter("descriptif"),
 				//request.getParameter("nom"));
@@ -248,7 +248,16 @@ if(request.getParameter("submit-insertion") != null){
 		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
 	}
 	else {
-		out.println("<h1 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h1>");
+		if(!request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
+				&& request.getParameter("date_naissance").length() > 0){
+			out.println("<h2 style=\"color: red;text-align: center\"> Date  au incorrecte !  (jj/mm/aaaa) ! </h2>");
+		}
+		else if(!request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
+				&& request.getParameter("adresse_email").length() > 0){
+				
+			out.println("<h2 style=\"color: red;text-align: center\"> adresse email incorrecte ! (exemple@fournisseur.ex) </h2>");
+		}
+		else out.println("<h2 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h2>");
 	}
 }
 %>
