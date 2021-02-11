@@ -50,15 +50,15 @@ public class Candidature implements Serializable {
 	private Set<SecteurActivite> secteurActivites;
 	
 	public Candidature() {
-		
 	}
 
-	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance) {
+	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif) {
 		this.adresseemail = mail;
 		this.adressepostale = adresse;
 		this.cv = CV;
 		this.datedepot = depot;
 		this.datenaissance = naissance;
+		this.niveauQualificationBean = qualif;
 	}
 
 	public Integer getId() {
