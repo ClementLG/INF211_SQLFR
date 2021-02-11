@@ -2,6 +2,8 @@ package eu.telecom_bretagne.cabinet_recrutement.front.controlesDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -105,6 +107,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Ajout de l'entreprise de test");
 				ent_test = entrepriseDAO.persist(ent_test);
 				id_ent = ent_test.getId();
+
 				ent_recup = entrepriseDAO.findById(id_ent);
 				if ((ent_test.getId() == ent_recup.getId()) && (ent_test.getNom().equals(ent_recup.getNom()))
 						&& (ent_test.getDescriptif().equals(ent_recup.getDescriptif()))
@@ -113,7 +116,7 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
-				}		
+				}
 				out.println();
 
 				out.println("Liste des entreprises : ");
@@ -122,28 +125,29 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println(entreprise.getNom());
 				}
 				out.println();
-				
+
 				out.println("Modification de l'entreprise de test");
 				ent_recup.setNom("TEST&COModif");
 				entrepriseDAO.update(ent_recup);
-				
+
 				ent_recup = entrepriseDAO.findById(id_ent);
 				if (ent_test.getNom() != ent_recup.getNom()) {
 					out.println("Modif OK");
-					out.println(ent_test.getNom());
-					out.println(ent_recup.getNom());
-				}else {
+					out.println("Ancien Nom : " + ent_test.getNom());
+					out.println("Nouveau Nom : " + ent_recup.getNom());
+				} else {
 					out.println("Modif KO");
-					out.println(ent_test.getNom());
-					out.println(ent_recup.getNom());
+					out.println("Ancien Nom : " + ent_test.getNom());
+					out.println("Nouveau Nom : " + ent_recup.getNom());
 				}
-				
+				out.println();
+
 				out.println("Suppression de l'entreprise de test");
 				entrepriseDAO.remove(ent_recup);
-				
-				if (entrepriseDAO.findById(id_ent)==null) {
+
+				if (entrepriseDAO.findById(id_ent) == null) {
 					out.println("Suppression OK");
-				}else {
+				} else {
 					out.println("Suppression KO");
 				}
 				out.println();
@@ -167,7 +171,55 @@ public class ControlesDAOServlet extends HttpServlet {
 
 		out.println("-----------------------------------------------------------------------------\n");
 
-		// -----------------CANDIDATURE------------------------------------------
+		// ---------------------------- NIVEAU
+		// QUALIFICATION------------------------------------------
+
+		// Récupération de la référence vers le(s) DAO(s)
+		NiveauqualificationDAO niveauqualificationDAO = null;
+		try {
+			niveauqualificationDAO = (NiveauqualificationDAO) ServicesLocator.getInstance()
+					.getRemoteInterface("NiveauqualificationDAO");
+		} catch (ServicesLocatorException e2) {
+			e2.printStackTrace();
+		}
+		out.println("Contrôles de fonctionnement du DAO NiveauqualificationDAO");
+		out.println();
+
+		try {
+			// Contrôle(s) de fonctionnalités.
+			out.println("Liste des niveauxqualifications :");
+			List<NiveauQualification> niveauxqualifications = niveauqualificationDAO.findAll();
+
+			for (NiveauQualification niveauqualification : niveauxqualifications) {
+				out.println(niveauqualification.getIntitule());
+			}
+			out.println();
+
+			out.println("Obtention du niveauqualification n° 1 :");
+			NiveauQualification nq = niveauqualificationDAO.findById(1);
+			out.println("Id : " + nq.getId());
+			out.println("Intitule : " + nq.getIntitule());
+			out.println();
+
+			out.println("Obtention du niveauqualification n° 2 :");
+			nq = niveauqualificationDAO.findById(2);
+			out.println("Id : " + nq.getId());
+			out.println("Intitule : " + nq.getIntitule());
+			out.println();
+
+			out.println("Obtention du niveauqualification n° 3 :");
+			nq = niveauqualificationDAO.findById(3);
+			out.println("Id : " + nq.getId());
+			out.println("Intitule : " + nq.getIntitule());
+			out.println();
+		} catch (Exception e_tests_2) {
+			// TODO Auto-generated catch block
+			e_tests_2.printStackTrace();
+		}
+
+		out.println("-----------------------------------------------------------------------------");
+
+		// -----------------------------------CANDIDATURE------------------------------------------
 
 		// Récupération de la référence vers le(s) DAO(s)
 		CandidatureDAO candidatureDAO = null;
@@ -221,57 +273,90 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Adresse Postale : " + c.getAdressepostale());
 			out.println("Niveau Qualification : " + c.getNiveauqualificationBean().getIntitule());
 			out.println();
+
+			try {
+				String s_datenaissance = "23/05/1998";
+				Date datenaissance = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
+				s_datenaissance = "11/03/2021";
+				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
+				Candidature cand_test = new Candidature("Florianelanesse@gmail.com", "Carquefou", "CV trop lourd",
+						datedepot, datenaissance, niveauqualificationDAO.findById(1));
+				Candidature cand_recup = null;
+				int id_cand = 0;
+				out.println("Ajout de la candidature de test");
+				cand_test = candidatureDAO.persist(cand_test);
+				out.println();
+				id_cand = cand_test.getId();
+				cand_recup = candidatureDAO.findById(id_cand);
+				out.println();
+				if ((cand_test.getId() == cand_recup.getId())
+						&& (cand_test.getAdresseemail().equals(cand_recup.getAdresseemail()))
+						&& (cand_test.getCv().equals(cand_recup.getCv()))
+						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
+						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
+						&& (cand_test.getDatedepot().equals(cand_recup.getDatedepot()))
+						&& (cand_test.getNiveauqualificationBean().equals(cand_recup.getNiveauqualificationBean()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des Candidatures : ");
+				candidatures = candidatureDAO.findAll();
+				for (Candidature candidature : candidatures) {
+					out.println(candidature.getCv());
+				}
+				out.println();
+
+				out.println("Modification de la candidature de test");
+				cand_recup.setCv("CV pas si lourd en fait");
+				candidatureDAO.update(cand_recup);
+
+				cand_recup = candidatureDAO.findById(id_cand);
+				if (cand_test.getCv() != cand_recup.getCv()) {
+					out.println("Modif OK");
+					out.println("Ancien CV : " + cand_test.getCv());
+					out.println("Nouveau CV : " + cand_recup.getCv());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien CV : " + cand_test.getCv());
+					out.println("Nouveau CV : " + cand_recup.getCv());
+				}
+				out.println();
+				
+				out.println("Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) ");
+				List<Candidature> list_test = candidatureDAO.findByActivitySector(19, 4);
+				for (Candidature candidature : list_test) {
+					out.println(candidature.getCv());
+				}
+				out.println();
+
+				out.println("Suppression de la Candidature de test");
+				candidatureDAO.remove(cand_recup);
+
+				if (candidatureDAO.findById(id_cand) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des Candidatures : ");
+				candidatures = candidatureDAO.findAll();
+				for (Candidature candidature : candidatures) {
+					out.println(candidature.getCv());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_1) {
+				// TODO Auto-generated catch block
+				e_ajout_1.printStackTrace();
+			}
+
 		} catch (Exception e_tests_1) {
 			// TODO Auto-generated catch block
 			e_tests_1.printStackTrace();
-		}
-
-		out.println("-----------------------------------------------------------------------------");
-
-		// ----------------- NIVEAU
-		// QUALIFICATION------------------------------------------
-
-		// Récupération de la référence vers le(s) DAO(s)
-		NiveauqualificationDAO niveauqualificationDAO = null;
-		try {
-			niveauqualificationDAO = (NiveauqualificationDAO) ServicesLocator.getInstance()
-					.getRemoteInterface("NiveauqualificationDAO");
-		} catch (ServicesLocatorException e2) {
-			e2.printStackTrace();
-		}
-		out.println("Contrôles de fonctionnement du DAO NiveauqualificationDAO");
-		out.println();
-
-		try {
-			// Contrôle(s) de fonctionnalités.
-			out.println("Liste des niveauxqualifications :");
-			List<NiveauQualification> niveauxqualifications = niveauqualificationDAO.findAll();
-
-			for (NiveauQualification niveauqualification : niveauxqualifications) {
-				out.println(niveauqualification.getIntitule());
-			}
-			out.println();
-
-			out.println("Obtention du niveauqualification n° 1 :");
-			NiveauQualification nq = niveauqualificationDAO.findById(1);
-			out.println("Id : " + nq.getId());
-			out.println("Intitule : " + nq.getIntitule());
-			out.println();
-
-			out.println("Obtention du niveauqualification n° 2 :");
-			nq = niveauqualificationDAO.findById(2);
-			out.println("Id : " + nq.getId());
-			out.println("Intitule : " + nq.getIntitule());
-			out.println();
-
-			out.println("Obtention du niveauqualification n° 3 :");
-			nq = niveauqualificationDAO.findById(3);
-			out.println("Id : " + nq.getId());
-			out.println("Intitule : " + nq.getIntitule());
-			out.println();
-		} catch (Exception e_tests_2) {
-			// TODO Auto-generated catch block
-			e_tests_2.printStackTrace();
 		}
 
 		out.println("-----------------------------------------------------------------------------");
