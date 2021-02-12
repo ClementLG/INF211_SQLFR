@@ -216,12 +216,12 @@ public class ControlesDAOServlet extends HttpServlet {
 			try {
 				NiveauQualification nq_test = new NiveauQualification("LE MEGA BREVET DES COLLEGES");
 				NiveauQualification nq_recup = null;
-				int id_ent = 0;
+				int id_nq = 0;
 				out.println("Ajout du niveauqualification de test");
 				nq_test = niveauqualificationDAO.persist(nq_test);
-				id_ent = nq_test.getId();
+				id_nq = nq_test.getId();
 
-				nq_recup = niveauqualificationDAO.findById(id_ent);
+				nq_recup = niveauqualificationDAO.findById(id_nq);
 				if ((nq_test.getId() == nq_recup.getId()) && (nq_test.getIntitule().equals(nq_recup.getIntitule()))) {
 					out.println("Ajout et Recup OK");
 				} else {
@@ -240,7 +240,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				nq_recup.setIntitule("LE DNB");
 				niveauqualificationDAO.update(nq_recup);
 
-				nq_recup = niveauqualificationDAO.findById(id_ent);
+				nq_recup = niveauqualificationDAO.findById(id_nq);
 				if (nq_test.getIntitule() != nq_recup.getIntitule()) {
 					out.println("Modif OK");
 					out.println("Ancien Intitule : " + nq_test.getIntitule());
@@ -255,7 +255,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Suppression du niveauqualification de test");
 				niveauqualificationDAO.remove(nq_recup);
 
-				if (niveauqualificationDAO.findById(id_ent) == null) {
+				if (niveauqualificationDAO.findById(id_nq) == null) {
 					out.println("Suppression OK");
 				} else {
 					out.println("Suppression KO");
@@ -483,12 +483,12 @@ public class ControlesDAOServlet extends HttpServlet {
 				OffreEmploi offre_test = new OffreEmploi(datedepot, "OFFRE DE FOUMALADE", "INGENIEUR TROP FORT",
 						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(4));
 				OffreEmploi offre_recup = null;
-				int id_cand = 0;
+				int id_oe = 0;
 				out.println("Ajout de l'offreemploi de test");
 				offre_test = offreemploiDAO.persist(offre_test);
 
-				id_cand = offre_test.getId();
-				offre_recup = offreemploiDAO.findById(id_cand);
+				id_oe = offre_test.getId();
+				offre_recup = offreemploiDAO.findById(id_oe);
 				if ((offre_test.getId() == offre_recup.getId())
 						&& (offre_test.getDescriptifmission().equals(offre_recup.getDescriptifmission()))
 						&& (offre_test.getTitre().equals(offre_recup.getTitre()))
@@ -513,7 +513,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				offre_recup.setTitre("HACKER LA DGSE");
 				offreemploiDAO.update(offre_recup);
 
-				offre_recup = offreemploiDAO.findById(id_cand);
+				offre_recup = offreemploiDAO.findById(id_oe);
 				if (offre_test.getTitre() != offre_recup.getTitre()) {
 					out.println("Modif OK");
 					out.println("Ancien Titre : " + offre_test.getTitre());
@@ -535,7 +535,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Suppression de l'offreemploi de test");
 				offreemploiDAO.remove(offre_recup);
 
-				if (offreemploiDAO.findById(id_cand) == null) {
+				if (offreemploiDAO.findById(id_oe) == null) {
 					out.println("Suppression OK");
 				} else {
 					out.println("Suppression KO");
@@ -549,9 +549,9 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 
-			} catch (Exception e_ajout_1) {
+			} catch (Exception e_ajout_3) {
 				// TODO Auto-generated catch block
-				e_ajout_1.printStackTrace();
+				e_ajout_3.printStackTrace();
 			}
 
 		} catch (Exception e_tests_3) {
@@ -600,6 +600,68 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + sa.getId());
 			out.println("Intitule : " + sa.getIntitule());
 			out.println();
+			
+			try {
+				SecteurActivite sa_test = new SecteurActivite("Le monde merveilleux du curling sur gazon (FFCG)");
+				SecteurActivite sa_recup = null;
+				int id_sa = 0;
+				out.println("Ajout du secteuractivite de test");
+				sa_test = secteuractiviteDAO.persist(sa_test);
+				id_sa = sa_test.getId();
+
+				sa_recup = secteuractiviteDAO.findById(id_sa);
+				if ((sa_test.getId() == sa_recup.getId()) && (sa_test.getIntitule().equals(sa_recup.getIntitule()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des secteursactivites : ");
+				secteursactivites = secteuractiviteDAO.findAll();
+				for (SecteurActivite secteuractivite : secteursactivites) {
+					out.println(secteuractivite.getIntitule());
+				}
+				out.println();
+
+				out.println("Modification du secteuractivite de test");
+				sa_recup.setIntitule("L'incroyable fédération du bobsleigh (FIBT)");
+				secteuractiviteDAO.update(sa_recup);
+
+				sa_recup = secteuractiviteDAO.findById(id_sa);
+				if (sa_test.getIntitule() != sa_recup.getIntitule()) {
+					out.println("Modif OK");
+					out.println("Ancien Intitule : " + sa_test.getIntitule());
+					out.println("Nouveau Intitule : " + sa_recup.getIntitule());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien Intitule : " + sa_test.getIntitule());
+					out.println("Nouveau Intitule : " + sa_recup.getIntitule());
+				}
+				out.println();
+
+				out.println("Suppression du secteuractivite de test");
+				secteuractiviteDAO.remove(sa_recup);
+
+				if (secteuractiviteDAO.findById(id_sa) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des secteursactivites : ");
+				secteursactivites = secteuractiviteDAO.findAll();
+				for (SecteurActivite secteuractivite : secteursactivites) {
+					out.println(secteuractivite.getIntitule());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_4) {
+				// TODO Auto-generated catch block
+				e_ajout_4.printStackTrace();
+			}	
+			
 		} catch (Exception e_tests_4) {
 			// TODO Auto-generated catch block
 			e_tests_4.printStackTrace();
@@ -655,6 +717,75 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Cv : " + mc.getCandidatureBean().getCv());
 			out.println("Offre Emploi : " + mc.getOffreEmploiBean().getTitre());
 			out.println();
+			
+			try {
+				String s_envoi = "12/02/2021";
+				Date dateenvoi = new SimpleDateFormat("dd/MM/yyyy").parse(s_envoi);
+				MessageCandidature mc_test = new MessageCandidature("Bonjour j'aime l'argent, embauchez moi.",dateenvoi, candidatureDAO.findById(5), offreemploiDAO.findById(1));
+				MessageCandidature mc_recup = null;
+				int id_mc = 0;
+				out.println("Ajout du messagecandidature de test");
+				mc_test = messagecandidatureDAO.persist(mc_test);
+
+				id_mc = mc_test.getId();
+				mc_recup = messagecandidatureDAO.findById(id_mc);
+				if ((mc_test.getId() == mc_recup.getId())
+						&& (mc_test.getCorpsmessage().equals(mc_recup.getCorpsmessage()))
+						&& (mc_test.getDateenvoi().equals(mc_recup.getDateenvoi()))
+						&& (mc_test.getCandidatureBean().getId() == mc_recup.getCandidatureBean().getId()
+						&& (mc_test.getOffreEmploiBean().getId() == mc_recup.getOffreEmploiBean().getId()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des MessageCandidatures : ");
+				messagescandidatures = messagecandidatureDAO.findAll();
+				for (MessageCandidature messagecandidature : messagescandidatures) {
+					out.println(messagecandidature.getCorpsmessage());
+				}
+				out.println();
+
+				out.println("Modification du messagecandidature de test");
+				mc_recup.setCorpsmessage("Prenez-moi je dois rembourser mon crédit");
+				messagecandidatureDAO.update(mc_recup);
+
+				mc_recup = messagecandidatureDAO.findById(id_mc);
+				if (mc_test.getCorpsmessage() != mc_recup.getCorpsmessage()) {
+					out.println("Modif OK");
+					out.println("Ancien Corps Message : " + mc_test.getCorpsmessage());
+					out.println("Nouveau Corps Message : " + mc_recup.getCorpsmessage());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien Corps Message : " + mc_test.getCorpsmessage());
+					out.println("Nouveau Corps Message : " + mc_recup.getCorpsmessage());
+				}
+				out.println();
+
+				out.println("Suppression du messagecandidature de test");
+				messagecandidatureDAO.remove(mc_recup);
+
+				if (messagecandidatureDAO.findById(id_mc) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des MessageCandidatures : ");
+				messagescandidatures = messagecandidatureDAO.findAll();
+				for (MessageCandidature messagecandidature : messagescandidatures) {
+					out.println(messagecandidature.getCorpsmessage());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_5) {
+				// TODO Auto-generated catch block
+				e_ajout_5.printStackTrace();
+			}
+			
+			
 		} catch (Exception e_tests_5) {
 			// TODO Auto-generated catch block
 			e_tests_5.printStackTrace();
@@ -710,6 +841,74 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Cv : " + mod.getCandidatureBean().getCv());
 			out.println("Offre Emploi : " + mod.getOffreEmploiBean().getTitre());
 			out.println();
+			
+			try {
+				String s_envoi = "06/02/2021";
+				Date dateenvoi = new SimpleDateFormat("dd/MM/yyyy").parse(s_envoi);
+				MessageOffredemploi moe_test = new MessageOffredemploi("Bonjour voici une offre sympa pour vous",dateenvoi, candidatureDAO.findById(5), offreemploiDAO.findById(1));
+				MessageOffredemploi moe_recup = null;
+				int id_moe = 0;
+				out.println("Ajout du messageoffredemploi de test");
+				moe_test = messageoffredemploiDAO.persist(moe_test);
+
+				id_moe = moe_test.getId();
+				moe_recup = messageoffredemploiDAO.findById(id_moe);
+				if ((moe_test.getId() == moe_recup.getId())
+						&& (moe_test.getCorpsmessage().equals(moe_recup.getCorpsmessage()))
+						&& (moe_test.getDateenvoi().equals(moe_recup.getDateenvoi()))
+						&& (moe_test.getCandidatureBean().getId() == moe_recup.getCandidatureBean().getId()
+						&& (moe_test.getOffreEmploiBean().getId() == moe_recup.getOffreEmploiBean().getId()))) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des MessageOffredemplois : ");
+				messagesoffresdemplois = messageoffredemploiDAO.findAll();
+				for (MessageOffredemploi messageoffredemploi : messagesoffresdemplois) {
+					out.println(messageoffredemploi.getCorpsmessage());
+				}
+				out.println();
+
+				out.println("Modification du messageoffredemploi de test");
+				moe_recup.setCorpsmessage("REPONDEZ VITE A L'OFFRE !!!");
+				messageoffredemploiDAO.update(moe_recup);
+
+				moe_recup = messageoffredemploiDAO.findById(id_moe);
+				if (moe_test.getCorpsmessage() != moe_recup.getCorpsmessage()) {
+					out.println("Modif OK");
+					out.println("Ancien Corps Message : " + moe_test.getCorpsmessage());
+					out.println("Nouveau Corps Message : " + moe_recup.getCorpsmessage());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien Corps Message : " + moe_test.getCorpsmessage());
+					out.println("Nouveau Corps Message : " + moe_recup.getCorpsmessage());
+				}
+				out.println();
+
+				out.println("Suppression du messageoffredemploi de test");
+				messageoffredemploiDAO.remove(moe_recup);
+
+				if (messageoffredemploiDAO.findById(id_moe) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des MessageOffredemplois : ");
+				messagesoffresdemplois = messageoffredemploiDAO.findAll();
+				for (MessageOffredemploi messageoffredemploi : messagesoffresdemplois) {
+					out.println(messageoffredemploi.getCorpsmessage());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_6) {
+				// TODO Auto-generated catch block
+				e_ajout_6.printStackTrace();
+			}
+				
 		} catch (Exception e_tests_6) {
 			// TODO Auto-generated catch block
 			e_tests_6.printStackTrace();

@@ -65,4 +65,12 @@ public class SecteuractiviteDAO {
 		}
 		return SecteurActivite;
 	}
+	// -----------------------------------------------------------------------------
+	public SecteurActivite remove(SecteurActivite SecteurActivite) {
+		if (SecteurActivite != null) {
+			SecteurActivite sa_suppr = entityManager.merge(SecteurActivite);
+			entityManager.remove(sa_suppr);
+		}
+		return SecteurActivite;
+	}
 }
