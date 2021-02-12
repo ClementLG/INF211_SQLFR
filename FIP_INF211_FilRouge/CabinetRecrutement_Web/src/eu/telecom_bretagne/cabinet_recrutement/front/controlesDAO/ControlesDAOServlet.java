@@ -424,7 +424,7 @@ public class ControlesDAOServlet extends HttpServlet {
 		out.println("-----------------------------------------------------------------------------");
 
 		// --------------------------------OFFRE
-		// EMPLOI------------------------------------------
+		// EMPLOi------------------------------------------
 
 		// Récupération de la référence vers le(s) DAO(s)
 		out.println();
@@ -481,21 +481,22 @@ public class ControlesDAOServlet extends HttpServlet {
 				String s_depot = "02/02/2021";
 				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_depot);
 				OffreEmploi offre_test = new OffreEmploi(datedepot, "OFFRE DE FOUMALADE", "INGENIEUR TROP FORT",
-						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(4));
+						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(1));
 				OffreEmploi offre_recup = null;
-				int id_oe = 0;
-				out.println("Ajout de l'offreemploi de test");
+				int id_cand = 0;
+				out.println("Ajout de la offreemploi de test");
 				offre_test = offreemploiDAO.persist(offre_test);
 
-				id_oe = offre_test.getId();
-				offre_recup = offreemploiDAO.findById(id_oe);
+				id_cand = offre_test.getId();
+				offre_recup = offreemploiDAO.findById(id_cand);
 				if ((offre_test.getId() == offre_recup.getId())
 						&& (offre_test.getDescriptifmission().equals(offre_recup.getDescriptifmission()))
 						&& (offre_test.getTitre().equals(offre_recup.getTitre()))
 						&& (offre_test.getProfilrecherche().equals(offre_recup.getProfilrecherche()))
 						&& (offre_test.getDatedepot().equals(offre_recup.getDatedepot()))
-						&& (offre_test.getEntrepriseBean().getId() == offre_recup.getEntrepriseBean().getId())
-						&& (offre_test.getNiveauQualificationBean().getId() == offre_recup.getNiveauQualificationBean().getId())) {
+						&& (offre_test.getEntrepriseBean().equals(offre_recup.getEntrepriseBean()))
+						&& (offre_test.getNiveauQualificationBean().getId() == offre_recup.getNiveauQualificationBean()
+								.getId())) {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
@@ -509,19 +510,19 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 
-				out.println("Modification de l'offreemploi de test");
-				offre_recup.setTitre("HACKER LA DGSE");
+				out.println("Modification de la offreemploi de test");
+				offre_recup.setTitre("CV pas si lourd en fait");
 				offreemploiDAO.update(offre_recup);
 
-				offre_recup = offreemploiDAO.findById(id_oe);
+				offre_recup = offreemploiDAO.findById(id_cand);
 				if (offre_test.getTitre() != offre_recup.getTitre()) {
 					out.println("Modif OK");
-					out.println("Ancien Titre : " + offre_test.getTitre());
-					out.println("Nouveau Titre : " + offre_recup.getTitre());
+					out.println("Ancien CV : " + offre_test.getTitre());
+					out.println("Nouveau CV : " + offre_recup.getTitre());
 				} else {
 					out.println("Modif KO");
-					out.println("Ancien Titre : " + offre_test.getTitre());
-					out.println("Nouveau Titre : " + offre_recup.getTitre());
+					out.println("Ancien CV : " + offre_test.getTitre());
+					out.println("Nouveau CV : " + offre_recup.getTitre());
 				}
 				out.println();
 
@@ -532,10 +533,10 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 
-				out.println("Suppression de l'offreemploi de test");
+				out.println("Suppression de la OffreEmploi de test");
 				offreemploiDAO.remove(offre_recup);
 
-				if (offreemploiDAO.findById(id_oe) == null) {
+				if (offreemploiDAO.findById(id_cand) == null) {
 					out.println("Suppression OK");
 				} else {
 					out.println("Suppression KO");
@@ -549,9 +550,9 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 
-			} catch (Exception e_ajout_3) {
+			} catch (Exception e_ajout_1) {
 				// TODO Auto-generated catch block
-				e_ajout_3.printStackTrace();
+				e_ajout_1.printStackTrace();
 			}
 
 		} catch (Exception e_tests_3) {
