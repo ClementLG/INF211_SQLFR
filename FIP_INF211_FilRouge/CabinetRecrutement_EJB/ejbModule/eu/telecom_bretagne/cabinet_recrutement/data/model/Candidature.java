@@ -52,13 +52,14 @@ public class Candidature implements Serializable {
 	public Candidature() {
 	}
 
-	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif) {
+	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif, Set<SecteurActivite> liste_secteurs) {
 		this.adresseemail = mail;
 		this.adressepostale = adresse;
 		this.cv = CV;
 		this.datedepot = depot;
 		this.datenaissance = naissance;
 		this.niveauQualificationBean = qualif;
+		this.secteurActivites = liste_secteurs;
 	}
 
 	public Integer getId() {

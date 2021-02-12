@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -280,6 +282,115 @@ public class ControlesDAOServlet extends HttpServlet {
 		}
 
 		out.println("-----------------------------------------------------------------------------");
+		
+		// -------------------------SECTEUR ACTIVITE------------------------------
+				// Récupération de la référence vers le(s) DAO(s)
+				SecteuractiviteDAO secteuractiviteDAO = null;
+				try {
+					secteuractiviteDAO = (SecteuractiviteDAO) ServicesLocator.getInstance()
+							.getRemoteInterface("SecteuractiviteDAO");
+				} catch (ServicesLocatorException e4) {
+					e4.printStackTrace();
+				}
+				out.println("Contrôles de fonctionnement du DAO SecteuractiviteDAO");
+				out.println();
+
+				try {
+					// Contrôle(s) de fonctionnalités.
+					out.println("Liste des secteursactivites :");
+					List<SecteurActivite> secteursactivites = secteuractiviteDAO.findAll();
+
+					for (SecteurActivite secteuractivite : secteursactivites) {
+						out.println(secteuractivite.getIntitule());
+					}
+					out.println();
+
+					out.println("Obtention du secteuractivite n° 1 :");
+					SecteurActivite sa = secteuractiviteDAO.findById(1);
+					out.println("Id : " + sa.getId());
+					out.println("Intitule : " + sa.getIntitule());
+					out.println();
+
+					out.println("Obtention du secteuractivite n° 2 :");
+					sa = secteuractiviteDAO.findById(2);
+					out.println("Id : " + sa.getId());
+					out.println("Intitule : " + sa.getIntitule());
+					out.println();
+
+					out.println("Obtention du secteuractivite n° 3 :");
+					sa = secteuractiviteDAO.findById(3);
+					out.println("Id : " + sa.getId());
+					out.println("Intitule : " + sa.getIntitule());
+					out.println();
+					
+					try {
+						SecteurActivite sa_test = new SecteurActivite("Le monde merveilleux du curling sur gazon (FFCG)");
+						SecteurActivite sa_recup = null;
+						int id_sa = 0;
+						out.println("Ajout du secteuractivite de test");
+						sa_test = secteuractiviteDAO.persist(sa_test);
+						id_sa = sa_test.getId();
+
+						sa_recup = secteuractiviteDAO.findById(id_sa);
+						if ((sa_test.getId() == sa_recup.getId()) && (sa_test.getIntitule().equals(sa_recup.getIntitule()))) {
+							out.println("Ajout et Recup OK");
+						} else {
+							out.println("Ajout et Recup KO");
+						}
+						out.println();
+
+						out.println("Liste des secteursactivites : ");
+						secteursactivites = secteuractiviteDAO.findAll();
+						for (SecteurActivite secteuractivite : secteursactivites) {
+							out.println(secteuractivite.getIntitule());
+						}
+						out.println();
+
+						out.println("Modification du secteuractivite de test");
+						sa_recup.setIntitule("L'incroyable fédération du bobsleigh (FIBT)");
+						secteuractiviteDAO.update(sa_recup);
+
+						sa_recup = secteuractiviteDAO.findById(id_sa);
+						if (sa_test.getIntitule() != sa_recup.getIntitule()) {
+							out.println("Modif OK");
+							out.println("Ancien Intitule : " + sa_test.getIntitule());
+							out.println("Nouveau Intitule : " + sa_recup.getIntitule());
+						} else {
+							out.println("Modif KO");
+							out.println("Ancien Intitule : " + sa_test.getIntitule());
+							out.println("Nouveau Intitule : " + sa_recup.getIntitule());
+						}
+						out.println();
+
+						out.println("Suppression du secteuractivite de test");
+						secteuractiviteDAO.remove(sa_recup);
+
+						if (secteuractiviteDAO.findById(id_sa) == null) {
+							out.println("Suppression OK");
+						} else {
+							out.println("Suppression KO");
+						}
+						out.println();
+
+						out.println("Liste des secteursactivites : ");
+						secteursactivites = secteuractiviteDAO.findAll();
+						for (SecteurActivite secteuractivite : secteursactivites) {
+							out.println(secteuractivite.getIntitule());
+						}
+						out.println();
+
+					} catch (Exception e_ajout_4) {
+						// TODO Auto-generated catch block
+						e_ajout_4.printStackTrace();
+					}	
+					
+				} catch (Exception e_tests_4) {
+					// TODO Auto-generated catch block
+					e_tests_4.printStackTrace();
+				}
+
+				out.println("-----------------------------------------------------------------------------");
+
 
 		// -----------------------------------CANDIDATURE------------------------------------------
 
@@ -340,9 +451,12 @@ public class ControlesDAOServlet extends HttpServlet {
 				String s_datenaissance = "23/05/1998";
 				Date datenaissance = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
 				s_datenaissance = "11/03/2021";
+				Set<SecteurActivite> liste_secteurs = new HashSet<SecteurActivite>();
+				liste_secteurs.add(secteuractiviteDAO.findById(19));
+				liste_secteurs.add(secteuractiviteDAO.findById(25));
 				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
 				Candidature cand_test = new Candidature("Florianelanesse@gmail.com", "Carquefou", "CV trop lourd",
-						datedepot, datenaissance, niveauqualificationDAO.findById(1));
+						datedepot, datenaissance, niveauqualificationDAO.findById(1),liste_secteurs);
 				Candidature cand_recup = null;
 				int id_cand = 0;
 				out.println("Ajout de la candidature de test");
@@ -361,6 +475,13 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
+				}
+				out.println();
+				
+				out.println("Liste des Secteurs Activites de la candidature test : ");
+				Set<SecteurActivite> listes_activite_recup = cand_recup.getSecteuractivites();
+				for (SecteurActivite secteurs_recup : listes_activite_recup) {
+					out.println(secteurs_recup.getIntitule());
 				}
 				out.println();
 
@@ -480,8 +601,11 @@ public class ControlesDAOServlet extends HttpServlet {
 			try {
 				String s_depot = "02/02/2021";
 				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_depot);
+				Set<SecteurActivite> liste_secteurs = new HashSet<SecteurActivite>();
+				liste_secteurs.add(secteuractiviteDAO.findById(19));
+				liste_secteurs.add(secteuractiviteDAO.findById(25));
 				OffreEmploi offre_test = new OffreEmploi(datedepot, "OFFRE DE FOUMALADE", "INGENIEUR TROP FORT",
-						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(4));
+						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(4), liste_secteurs);
 				OffreEmploi offre_recup = null;
 				int id_oe = 0;
 				out.println("Ajout de l'offreemploi de test");
@@ -561,114 +685,7 @@ public class ControlesDAOServlet extends HttpServlet {
 
 		out.println("-----------------------------------------------------------------------------");
 
-		// -------------------------SECTEUR ACTIVITE------------------------------
-		// Récupération de la référence vers le(s) DAO(s)
-		SecteuractiviteDAO secteuractiviteDAO = null;
-		try {
-			secteuractiviteDAO = (SecteuractiviteDAO) ServicesLocator.getInstance()
-					.getRemoteInterface("SecteuractiviteDAO");
-		} catch (ServicesLocatorException e4) {
-			e4.printStackTrace();
-		}
-		out.println("Contrôles de fonctionnement du DAO SecteuractiviteDAO");
-		out.println();
-
-		try {
-			// Contrôle(s) de fonctionnalités.
-			out.println("Liste des secteursactivites :");
-			List<SecteurActivite> secteursactivites = secteuractiviteDAO.findAll();
-
-			for (SecteurActivite secteuractivite : secteursactivites) {
-				out.println(secteuractivite.getIntitule());
-			}
-			out.println();
-
-			out.println("Obtention du secteuractivite n° 1 :");
-			SecteurActivite sa = secteuractiviteDAO.findById(1);
-			out.println("Id : " + sa.getId());
-			out.println("Intitule : " + sa.getIntitule());
-			out.println();
-
-			out.println("Obtention du secteuractivite n° 2 :");
-			sa = secteuractiviteDAO.findById(2);
-			out.println("Id : " + sa.getId());
-			out.println("Intitule : " + sa.getIntitule());
-			out.println();
-
-			out.println("Obtention du secteuractivite n° 3 :");
-			sa = secteuractiviteDAO.findById(3);
-			out.println("Id : " + sa.getId());
-			out.println("Intitule : " + sa.getIntitule());
-			out.println();
-			
-			try {
-				SecteurActivite sa_test = new SecteurActivite("Le monde merveilleux du curling sur gazon (FFCG)");
-				SecteurActivite sa_recup = null;
-				int id_sa = 0;
-				out.println("Ajout du secteuractivite de test");
-				sa_test = secteuractiviteDAO.persist(sa_test);
-				id_sa = sa_test.getId();
-
-				sa_recup = secteuractiviteDAO.findById(id_sa);
-				if ((sa_test.getId() == sa_recup.getId()) && (sa_test.getIntitule().equals(sa_recup.getIntitule()))) {
-					out.println("Ajout et Recup OK");
-				} else {
-					out.println("Ajout et Recup KO");
-				}
-				out.println();
-
-				out.println("Liste des secteursactivites : ");
-				secteursactivites = secteuractiviteDAO.findAll();
-				for (SecteurActivite secteuractivite : secteursactivites) {
-					out.println(secteuractivite.getIntitule());
-				}
-				out.println();
-
-				out.println("Modification du secteuractivite de test");
-				sa_recup.setIntitule("L'incroyable fédération du bobsleigh (FIBT)");
-				secteuractiviteDAO.update(sa_recup);
-
-				sa_recup = secteuractiviteDAO.findById(id_sa);
-				if (sa_test.getIntitule() != sa_recup.getIntitule()) {
-					out.println("Modif OK");
-					out.println("Ancien Intitule : " + sa_test.getIntitule());
-					out.println("Nouveau Intitule : " + sa_recup.getIntitule());
-				} else {
-					out.println("Modif KO");
-					out.println("Ancien Intitule : " + sa_test.getIntitule());
-					out.println("Nouveau Intitule : " + sa_recup.getIntitule());
-				}
-				out.println();
-
-				out.println("Suppression du secteuractivite de test");
-				secteuractiviteDAO.remove(sa_recup);
-
-				if (secteuractiviteDAO.findById(id_sa) == null) {
-					out.println("Suppression OK");
-				} else {
-					out.println("Suppression KO");
-				}
-				out.println();
-
-				out.println("Liste des secteursactivites : ");
-				secteursactivites = secteuractiviteDAO.findAll();
-				for (SecteurActivite secteuractivite : secteursactivites) {
-					out.println(secteuractivite.getIntitule());
-				}
-				out.println();
-
-			} catch (Exception e_ajout_4) {
-				// TODO Auto-generated catch block
-				e_ajout_4.printStackTrace();
-			}	
-			
-		} catch (Exception e_tests_4) {
-			// TODO Auto-generated catch block
-			e_tests_4.printStackTrace();
-		}
-
-		out.println("-----------------------------------------------------------------------------");
-
+		
 		// ----------------------MSG CANDIDATURE------------------------------
 		// Récupération de la référence vers le(s) DAO(s)
 		MessagecandidatureDAO messagecandidatureDAO = null;
