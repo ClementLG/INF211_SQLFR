@@ -44,7 +44,7 @@ public class MessagecandidatureDAO {
 	// ----------------------------------------------------------------------------
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<MessageCandidature> findAll() {
-		Query query = entityManager.createQuery("select messagecandidature from MessageCandidature messagecandidature order by MessageCandidature.id");
+		Query query = entityManager.createQuery("select messagecandidature from MessageCandidature messagecandidature order by messagecandidature.id");
 		List l = query.getResultList();
 
 		return (List<MessageCandidature>) l;
