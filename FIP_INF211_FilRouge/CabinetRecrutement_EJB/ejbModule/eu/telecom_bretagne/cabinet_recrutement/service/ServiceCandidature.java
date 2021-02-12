@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +20,8 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
+
+import org.apache.jasper.tagplugins.jstl.ForEach;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
@@ -96,12 +100,10 @@ public class ServiceCandidature implements IServiceCandidature
 	 String SecteursToString = "";
 	 
 	 try {
-		 SecteursToString+=cand.getSecteuractivites().iterator().next().getIntitule();
-		 //System.out.println(SecteursToString);
-		 for (int i = 1; i < cand.getSecteuractivites().size(); i++) {
-			 SecteursToString+="<br>"+cand.getSecteuractivites().iterator().next().getIntitule();
-		 }
-		 
+		 for (SecteurActivite secteurs_recup : cand.getSecteuractivites()) {
+			 SecteursToString+=secteurs_recup.getIntitule()+"<br>";
+         }
+				 
 	 } catch (Exception e) {
 		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
 	}
@@ -118,16 +120,11 @@ public class ServiceCandidature implements IServiceCandidature
 	//-----------------------------------------------------------------------------
 	public Set<SecteurActivite> transformSecteurs(String[] sect) {
 		//System.out.println(sect[0]+""+sect[1]);
-		Set<SecteurActivite> l = new HashSet<>();		
+		Set<SecteurActivite> mySet = new HashSet<SecteurActivite>();
 		for (int i = 0; i < sect.length; i++) {
-			try {
-				l.add(secteuractiviteDAO.findById(Integer.parseInt(sect[i])));
-				//System.out.println("-----"+l.iterator().next().getIntitule());
-			} catch (Exception e) {
-				System.out.println("transformation secteur pété");
-			}
-			
+			mySet.add(secteuractiviteDAO.findById(Integer.parseInt(sect[i])));
+			//System.out.println(secteuractiviteDAO.findById(Integer.parseInt(sect[i])).getIntitule());
 		}
-		  return l;
+		return mySet;
 	}
 }

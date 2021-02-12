@@ -250,7 +250,6 @@ if(request.getParameter("submit-insertion") != null){
 		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
 		);
 		String[] sect = request.getParameterValues("secteur");
-		
 		cand_ok.setSecteurActivites(serviceCandidature.transformSecteurs(sect));
 		serviceCandidature.execPersist(cand_ok);
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
