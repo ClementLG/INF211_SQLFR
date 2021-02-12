@@ -478,7 +478,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 				
-				out.println("Liste des Secteurs Activites de la candidature test : ");
+				out.println("Liste des Secteurs Activites de la candidature de test : ");
 				Set<SecteurActivite> listes_activite_recup = cand_recup.getSecteuractivites();
 				for (SecteurActivite secteurs_recup : listes_activite_recup) {
 					out.println(secteurs_recup.getIntitule());
@@ -623,6 +623,13 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
+				}
+				out.println();
+				
+				out.println("Liste des Secteurs Activites de l'offreemploi de test : ");
+				Set<SecteurActivite> listes_activite_recup = offre_recup.getSecteurActivites();
+				for (SecteurActivite secteurs_recup : listes_activite_recup) {
+					out.println(secteurs_recup.getIntitule());
 				}
 				out.println();
 
