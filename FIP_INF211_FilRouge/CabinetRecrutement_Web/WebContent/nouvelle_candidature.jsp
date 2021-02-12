@@ -240,10 +240,17 @@ if(request.getParameter("submit-insertion") != null){
 	&& request.getParameter("niveau").length() >0
 	&& request.getParameter("secteur").length() >0
 	){
-		//Entreprise ent_new = new Entreprise(request.getParameter("adresse_postale"), 
-				//request.getParameter("descriptif"),
-				//request.getParameter("nom"));
-		//serviceEntreprise.execPersist(ent_new);
+		
+		
+		Candidature cand_ok = new Candidature(
+				request.getParameter("adresse_email"), 
+				request.getParameter("adresse_postale"), 
+				request.getParameter("cv"),
+				serviceCandidature.getCurrentDate(),
+				serviceCandidature.convertDate(request.getParameter("date_naissance")),
+				serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
+				);
+		        serviceCandidature.execPersist(cand_ok);
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
 		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
 	}

@@ -1,11 +1,13 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 
 /**
@@ -30,4 +32,10 @@ public interface IServiceCandidature
    */
   public List<Candidature> listeCandidature();
   //-----------------------------------------------------------------------------
+  public NiveauQualification findNQByID(Integer id);
+  public Date getCurrentDate();
+  public Date convertDate(String date);
+  public Candidature execPersist(Candidature candidature);
+	
+
 }
