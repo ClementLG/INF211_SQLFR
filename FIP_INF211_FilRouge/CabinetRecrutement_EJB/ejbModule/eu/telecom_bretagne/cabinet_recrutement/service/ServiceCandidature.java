@@ -87,26 +87,22 @@ public class ServiceCandidature implements IServiceCandidature
 	  return dateConvertiSQL;
   }
   
-  //-----------------------------------------------------------------------------
-  //chiade deso --cclg
+//-----------------------------------------------------------------------------
+//chiade deso --cclg
   @Override
   public String GetSecteursString(Candidature cand) {
 	 String SecteursToString = "";
+	 
 	 try {
 		 SecteursToString+=cand.getSecteuractivites().iterator().next().getIntitule();
-	} catch (Exception e) {
+		 for (int i = 1; i < cand.getSecteuractivites().size(); i++) {
+			 SecteursToString+="<br>"+cand.getSecteuractivites().iterator().next().getIntitule();
+		}
+		 
+	 } catch (Exception e) {
 		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
 	}
-	 /**while (cand.getSecteuractivites().iterator().hasNext()) {
-		 try {
-			 SecteursToString+="<br>"+cand.getSecteuractivites().iterator().next().getIntitule();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		}*/
-	 
-		
-	
+
 	return SecteursToString;
   }
   
