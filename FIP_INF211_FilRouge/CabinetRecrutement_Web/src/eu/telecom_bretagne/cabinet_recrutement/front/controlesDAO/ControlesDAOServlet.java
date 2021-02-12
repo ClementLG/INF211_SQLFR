@@ -356,12 +356,8 @@ public class ControlesDAOServlet extends HttpServlet {
 						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
 						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
 						&& (cand_test.getDatedepot().equals(cand_recup.getDatedepot()))
-<<<<<<< HEAD
-						&& (cand_test.getNiveauqualificationBean().getId()==cand_recup.getNiveauqualificationBean().getId())) {
-=======
 						&& (cand_test.getNiveauqualificationBean().getId() == cand_recup.getNiveauqualificationBean()
 								.getId())) {
->>>>>>> ac6c6fc... work in progress offreemploi test
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
