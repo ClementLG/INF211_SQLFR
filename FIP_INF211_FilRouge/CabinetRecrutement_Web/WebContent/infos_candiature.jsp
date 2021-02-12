@@ -94,6 +94,11 @@
                   <td><strong>Date de depot</strong></td>
                   <td><%=candidature.getDatedepot()%></td>
                 </tr>
+                <tr class="warning">
+                  <td><strong>CV</strong></td>
+                  <td><%=candidature.getCv()%></td>
+                </tr>
+                
               </tbody>
             </table>
             </small>      

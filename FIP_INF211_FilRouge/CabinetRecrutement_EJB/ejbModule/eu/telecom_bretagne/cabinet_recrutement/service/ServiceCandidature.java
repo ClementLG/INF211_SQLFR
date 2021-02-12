@@ -94,7 +94,7 @@ public class ServiceCandidature implements IServiceCandidature
   }
   
 //-----------------------------------------------------------------------------
-//chiade deso --cllg
+
   @Override
   public String GetSecteursString(Candidature cand) {
 	 String SecteursToString = "";
@@ -102,8 +102,8 @@ public class ServiceCandidature implements IServiceCandidature
 	 try {
 		 for (SecteurActivite secteurs_recup : cand.getSecteuractivites()) {
 			 SecteursToString+=secteurs_recup.getIntitule()+"<br>";
-         }
-				 
+			 //System.out.println(secteurs_recup.getIntitule());
+         }			 
 	 } catch (Exception e) {
 		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
 	}
