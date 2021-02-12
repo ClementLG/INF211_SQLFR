@@ -4,6 +4,9 @@
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature"%>
+<%
+  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
+%>
 
 <%
   String erreur = null;
@@ -76,8 +79,16 @@
                   <td><%=candidature.getAdresseemail()%></td>
                 </tr>
                 <tr class="warning">
+                  <td><strong>Date de naissance</strong></td>
+                  <td><%=candidature.getDatenaissance()%></td>
+                </tr>
+                <tr class="warning">
                   <td><strong>Niveau qualification</strong></td>
                   <td><%=candidature.getNiveauqualificationBean().getIntitule()%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Secteur activite</strong></td>
+                  <td><%=serviceCandidature.GetSecteursString(candidature)%></td>
                 </tr>
                 <tr class="warning">
                   <td><strong>Date de depot</strong></td>

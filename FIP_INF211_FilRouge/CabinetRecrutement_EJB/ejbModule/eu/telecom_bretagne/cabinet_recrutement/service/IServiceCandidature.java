@@ -36,6 +36,7 @@ public interface IServiceCandidature
   public Date getCurrentDate();
   public Date convertDate(String date);
   public Candidature execPersist(Candidature candidature);
+  public String GetSecteursString(Candidature cand);
 	
 
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -21,6 +22,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
@@ -37,6 +39,7 @@ public class ServiceCandidature implements IServiceCandidature
   //-----------------------------------------------------------------------------
   @EJB private CandidatureDAO         candidatureDAO;
   @EJB private NiveauqualificationDAO         niveauqualificationDAO;
+  @EJB private SecteuractiviteDAO         secteuractiviteDAO;
   //-----------------------------------------------------------------------------
   /**
    * Default constructor.
@@ -66,29 +69,45 @@ public class ServiceCandidature implements IServiceCandidature
   //-----------------------------------------------------------------------------
   @Override
   public Date getCurrentDate() {
-	  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-	  LocalDateTime now = LocalDateTime.now();  
-	  System.out.println(dtf.format(now));
-	  Date dateBonne=new Date(0);
-	try {
-		dateBonne = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dtf.format(now)+"");
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	  return dateBonne;
+	  Date currentDate=new Date(System.currentTimeMillis());
+	  return currentDate;
   }
   
   //-----------------------------------------------------------------------------
   public Date convertDate(String date) {
-	  Date dateConverti=new Date(0);
+	  //String date dd/mm/yyyy to Date object
+	  java.sql.Date dateConvertiSQL = new Date(0);
 	try {
-		dateConverti = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		java.util.Date dateConverti = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+		dateConvertiSQL = new Date(dateConverti.getTime());
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	  return dateConverti;
+	  return dateConvertiSQL;
+  }
+  
+  //-----------------------------------------------------------------------------
+  //chiade deso --cclg
+  @Override
+  public String GetSecteursString(Candidature cand) {
+	 String SecteursToString = "";
+	 try {
+		 SecteursToString+=cand.getSecteuractivites().iterator().next().getIntitule();
+	} catch (Exception e) {
+		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
+	}
+	 /**while (cand.getSecteuractivites().iterator().hasNext()) {
+		 try {
+			 SecteursToString+="<br>"+cand.getSecteuractivites().iterator().next().getIntitule();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		}*/
+	 
+		
+	
+	return SecteursToString;
   }
   
   //-----------------------------------------------------------------------------
