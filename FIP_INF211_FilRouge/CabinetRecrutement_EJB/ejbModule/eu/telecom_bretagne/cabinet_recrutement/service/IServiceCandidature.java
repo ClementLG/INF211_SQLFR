@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Remote;
 
@@ -9,6 +10,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Interface du service gérant les entreprises.
@@ -37,6 +39,6 @@ public interface IServiceCandidature
   public Date convertDate(String date);
   public Candidature execPersist(Candidature candidature);
   public String GetSecteursString(Candidature cand);
-	
+  public Set<SecteurActivite> transformSecteurs(String[] sect);
 
 }

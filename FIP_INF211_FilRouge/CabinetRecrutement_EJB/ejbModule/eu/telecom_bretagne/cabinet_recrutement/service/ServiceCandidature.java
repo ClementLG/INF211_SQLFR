@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -27,6 +28,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -88,16 +90,17 @@ public class ServiceCandidature implements IServiceCandidature
   }
   
 //-----------------------------------------------------------------------------
-//chiade deso --cclg
+//chiade deso --cllg
   @Override
   public String GetSecteursString(Candidature cand) {
 	 String SecteursToString = "";
 	 
 	 try {
 		 SecteursToString+=cand.getSecteuractivites().iterator().next().getIntitule();
+		 //System.out.println(SecteursToString);
 		 for (int i = 1; i < cand.getSecteuractivites().size(); i++) {
 			 SecteursToString+="<br>"+cand.getSecteuractivites().iterator().next().getIntitule();
-		}
+		 }
 		 
 	 } catch (Exception e) {
 		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
@@ -111,4 +114,20 @@ public class ServiceCandidature implements IServiceCandidature
 	  candidatureDAO.persist(candidature);
 	  return null;
   }
+
+	//-----------------------------------------------------------------------------
+	public Set<SecteurActivite> transformSecteurs(String[] sect) {
+		//System.out.println(sect[0]+""+sect[1]);
+		Set<SecteurActivite> l = new HashSet<>();		
+		for (int i = 0; i < sect.length; i++) {
+			try {
+				l.add(secteuractiviteDAO.findById(Integer.parseInt(sect[i])));
+				//System.out.println("-----"+l.iterator().next().getIntitule());
+			} catch (Exception e) {
+				System.out.println("transformation secteur pété");
+			}
+			
+		}
+		  return l;
+	}
 }
