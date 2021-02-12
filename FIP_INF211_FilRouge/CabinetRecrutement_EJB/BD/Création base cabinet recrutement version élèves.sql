@@ -144,6 +144,8 @@ INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qua
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage codage de PASS',1,'Coder tout le backend en PHP',1,'Etudiant Ingénieur',TO_DATE('01/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage gestion BDD',2,'Analyse BDD du personnel',4,'Etudiant Ingénieur',TO_DATE('05/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Thèse en IA',3,'Ameliorer recherche avec une IA',5,'Doctorant Informatique',TO_DATE('18/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('CDI Data Analyst',3,'Detecter tendance du marché',4,'Ingénieur Data',TO_DATE('27/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('PostDoc Compression Image',1,'Ameliorer algo compression',5,'Doctorant Informatique',TO_DATE('06/02/2021','DD-MM-YYYY'));
 
 INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Bonjour je souhaite avoir le stage',TO_DATE('03/02/2021','DD-MM-YYYY'));
 INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Bonsoir je souhaite avoir le stage siouplait',TO_DATE('03/02/2021','DD-MM-YYYY'));
@@ -165,5 +167,8 @@ INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (1,19);
 INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (2,19);
 INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (3,19);
 INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (3,25);
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (4,19);
+INSERT INTO secteur_offre (offre_emploi,secteur_activite) VALUES (5,19);
+
 
 -- CLLG - 28012021 : ok avec querytool postgresql								
