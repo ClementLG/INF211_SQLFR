@@ -483,12 +483,12 @@ public class ControlesDAOServlet extends HttpServlet {
 				OffreEmploi offre_test = new OffreEmploi(datedepot, "OFFRE DE FOUMALADE", "INGENIEUR TROP FORT",
 						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(4));
 				OffreEmploi offre_recup = null;
-				int id_cand = 0;
+				int id_oe = 0;
 				out.println("Ajout de l'offreemploi de test");
 				offre_test = offreemploiDAO.persist(offre_test);
 
-				id_cand = offre_test.getId();
-				offre_recup = offreemploiDAO.findById(id_cand);
+				id_oe = offre_test.getId();
+				offre_recup = offreemploiDAO.findById(id_oe);
 				if ((offre_test.getId() == offre_recup.getId())
 						&& (offre_test.getDescriptifmission().equals(offre_recup.getDescriptifmission()))
 						&& (offre_test.getTitre().equals(offre_recup.getTitre()))
@@ -513,7 +513,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				offre_recup.setTitre("HACKER LA DGSE");
 				offreemploiDAO.update(offre_recup);
 
-				offre_recup = offreemploiDAO.findById(id_cand);
+				offre_recup = offreemploiDAO.findById(id_oe);
 				if (offre_test.getTitre() != offre_recup.getTitre()) {
 					out.println("Modif OK");
 					out.println("Ancien Titre : " + offre_test.getTitre());
@@ -535,7 +535,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Suppression de l'offreemploi de test");
 				offreemploiDAO.remove(offre_recup);
 
-				if (offreemploiDAO.findById(id_cand) == null) {
+				if (offreemploiDAO.findById(id_oe) == null) {
 					out.println("Suppression OK");
 				} else {
 					out.println("Suppression KO");
@@ -549,9 +549,9 @@ public class ControlesDAOServlet extends HttpServlet {
 				}
 				out.println();
 
-			} catch (Exception e_ajout_1) {
+			} catch (Exception e_ajout_3) {
 				// TODO Auto-generated catch block
-				e_ajout_1.printStackTrace();
+				e_ajout_3.printStackTrace();
 			}
 
 		} catch (Exception e_tests_3) {
