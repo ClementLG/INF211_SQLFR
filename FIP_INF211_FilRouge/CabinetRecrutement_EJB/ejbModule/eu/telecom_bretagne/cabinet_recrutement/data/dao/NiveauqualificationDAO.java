@@ -45,7 +45,7 @@ public class NiveauqualificationDAO {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<NiveauQualification> findAll() {
 		Query query = entityManager.createQuery(
-				"select niveauqualification from NiveauQualification niveauqualification order by NiveauQualification.id");
+				"select niveauqualification from NiveauQualification niveauqualification order by niveauqualification.id");
 		List l = query.getResultList();
 
 		return (List<NiveauQualification>) l;
