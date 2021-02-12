@@ -145,8 +145,13 @@ INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualificatio
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage gestion BDD',2,'Analyse BDD du personnel',4,'Etudiant Ingénieur',TO_DATE('05/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Thèse en IA',3,'Ameliorer recherche avec une IA',5,'Doctorant Informatique',TO_DATE('18/01/2021','DD-MM-YYYY'));
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Trayeur de mouches',3,'Traire avec des gants de boxe',5,'Un gars motive',TO_DATE('13/01/2021','DD-MM-YYYY'));
 
+=======
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('CDI Data Analyst',3,'Detecter tendance du marché',4,'Ingénieur Data',TO_DATE('27/01/2021','DD-MM-YYYY'));
+INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('PostDoc Compression Image',1,'Ameliorer algo compression',5,'Doctorant Informatique',TO_DATE('06/02/2021','DD-MM-YYYY'));
+>>>>>>> f35b4fa... fix service locator typos and test OffreEmploi OK
 =======
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('CDI Data Analyst',3,'Detecter tendance du marché',4,'Ingénieur Data',TO_DATE('27/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('PostDoc Compression Image',1,'Ameliorer algo compression',5,'Doctorant Informatique',TO_DATE('06/02/2021','DD-MM-YYYY'));

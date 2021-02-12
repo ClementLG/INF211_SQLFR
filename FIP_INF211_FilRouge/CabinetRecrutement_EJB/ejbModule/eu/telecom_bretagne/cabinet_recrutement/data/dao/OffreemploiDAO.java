@@ -46,11 +46,15 @@ public class OffreemploiDAO {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<OffreEmploi> findAll() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Query query = entityManager.createQuery("select offreemploi from OffreEmploi offreemploi order by offreemploi.id desc");
 =======
 		Query query = entityManager.createQuery(
 				"select offreemploi from OffreEmploi offreemploi order by offreemploi.id");
 >>>>>>> ac6c6fc... work in progress offreemploi test
+=======
+		Query query = entityManager.createQuery("select offreemploi from OffreEmploi offreemploi order by offreemploi.id desc");
+>>>>>>> f35b4fa... fix service locator typos and test OffreEmploi OK
 		List l = query.getResultList();
 
 	// ----------------------------------------------------------------------------
