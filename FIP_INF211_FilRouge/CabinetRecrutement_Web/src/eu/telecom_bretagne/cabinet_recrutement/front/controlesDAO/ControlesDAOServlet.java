@@ -212,7 +212,7 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + nq.getId());
 			out.println("Intitule : " + nq.getIntitule());
 			out.println();
-			
+
 			try {
 				NiveauQualification nq_test = new NiveauQualification("LE MEGA BREVET DES COLLEGES");
 				NiveauQualification nq_recup = null;
@@ -273,8 +273,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e_ajout_2.printStackTrace();
 			}
-			
-			
+
 		} catch (Exception e_tests_2) {
 			// TODO Auto-generated catch block
 			e_tests_2.printStackTrace();
@@ -348,17 +347,17 @@ public class ControlesDAOServlet extends HttpServlet {
 				int id_cand = 0;
 				out.println("Ajout de la candidature de test");
 				cand_test = candidatureDAO.persist(cand_test);
-				out.println();
+
 				id_cand = cand_test.getId();
 				cand_recup = candidatureDAO.findById(id_cand);
-				out.println();
 				if ((cand_test.getId() == cand_recup.getId())
 						&& (cand_test.getAdresseemail().equals(cand_recup.getAdresseemail()))
 						&& (cand_test.getCv().equals(cand_recup.getCv()))
 						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
 						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
 						&& (cand_test.getDatedepot().equals(cand_recup.getDatedepot()))
-						&& (cand_test.getNiveauqualificationBean().getId().equals(cand_recup.getNiveauqualificationBean().getId()))) {
+						&& (cand_test.getNiveauqualificationBean().getId() == cand_recup.getNiveauqualificationBean()
+								.getId())) {
 					out.println("Ajout et Recup OK");
 				} else {
 					out.println("Ajout et Recup KO");
@@ -387,7 +386,7 @@ public class ControlesDAOServlet extends HttpServlet {
 					out.println("Nouveau CV : " + cand_recup.getCv());
 				}
 				out.println();
-				
+
 				out.println("Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) ");
 				List<Candidature> list_test = candidatureDAO.findByActivitySector(19, 4);
 				for (Candidature candidature : list_test) {
@@ -424,7 +423,8 @@ public class ControlesDAOServlet extends HttpServlet {
 
 		out.println("-----------------------------------------------------------------------------");
 
-		// -----------------OFFRE EMPLOi------------------------------------------
+		// --------------------------------OFFRE
+		// EMPLOi------------------------------------------
 
 		// Récupération de la référence vers le(s) DAO(s)
 		out.println();
@@ -477,6 +477,85 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Niveau Qualification : " + of.getNiveauQualificationBean().getIntitule());
 			out.println("Date de Depot : " + of.getDatedepot());
 			out.println();
+
+			try {
+				String s_depot = "02/02/2021";
+				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_depot);
+				OffreEmploi offre_test = new OffreEmploi(datedepot, "OFFRE DE FOUMALADE", "INGENIEUR TROP FORT",
+						"HACKER LA NASA", entrepriseDAO.findById(2), niveauqualificationDAO.findById(1));
+				OffreEmploi offre_recup = null;
+				int id_cand = 0;
+				out.println("Ajout de la offreemploi de test");
+				offre_test = offreemploiDAO.persist(offre_test);
+
+				id_cand = offre_test.getId();
+				offre_recup = offreemploiDAO.findById(id_cand);
+				if ((offre_test.getId() == offre_recup.getId())
+						&& (offre_test.getDescriptifmission().equals(offre_recup.getDescriptifmission()))
+						&& (offre_test.getTitre().equals(offre_recup.getTitre()))
+						&& (offre_test.getProfilrecherche().equals(offre_recup.getProfilrecherche()))
+						&& (offre_test.getDatedepot().equals(offre_recup.getDatedepot()))
+						&& (offre_test.getEntrepriseBean().equals(offre_recup.getEntrepriseBean()))
+						&& (offre_test.getNiveauQualificationBean().getId() == offre_recup.getNiveauQualificationBean()
+								.getId())) {
+					out.println("Ajout et Recup OK");
+				} else {
+					out.println("Ajout et Recup KO");
+				}
+				out.println();
+
+				out.println("Liste des OffreEmplois : ");
+				offresemplois = offreemploiDAO.findAll();
+				for (OffreEmploi offreemploi : offresemplois) {
+					out.println(offreemploi.getTitre());
+				}
+				out.println();
+
+				out.println("Modification de la offreemploi de test");
+				offre_recup.setTitre("CV pas si lourd en fait");
+				offreemploiDAO.update(offre_recup);
+
+				offre_recup = offreemploiDAO.findById(id_cand);
+				if (offre_test.getTitre() != offre_recup.getTitre()) {
+					out.println("Modif OK");
+					out.println("Ancien CV : " + offre_test.getTitre());
+					out.println("Nouveau CV : " + offre_recup.getTitre());
+				} else {
+					out.println("Modif KO");
+					out.println("Ancien CV : " + offre_test.getTitre());
+					out.println("Nouveau CV : " + offre_recup.getTitre());
+				}
+				out.println();
+
+				out.println("Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) ");
+				List<OffreEmploi> list_test = offreemploiDAO.findByActivitySector(19, 4);
+				for (OffreEmploi offreemploi : list_test) {
+					out.println(offreemploi.getTitre());
+				}
+				out.println();
+
+				out.println("Suppression de la OffreEmploi de test");
+				offreemploiDAO.remove(offre_recup);
+
+				if (offreemploiDAO.findById(id_cand) == null) {
+					out.println("Suppression OK");
+				} else {
+					out.println("Suppression KO");
+				}
+				out.println();
+
+				out.println("Liste des OffreEmplois : ");
+				offresemplois = offreemploiDAO.findAll();
+				for (OffreEmploi offreemploi : offresemplois) {
+					out.println(offreemploi.getTitre());
+				}
+				out.println();
+
+			} catch (Exception e_ajout_1) {
+				// TODO Auto-generated catch block
+				e_ajout_1.printStackTrace();
+			}
+
 		} catch (Exception e_tests_3) {
 			// TODO Auto-generated catch block
 			e_tests_3.printStackTrace();
