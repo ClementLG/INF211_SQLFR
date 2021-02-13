@@ -12,7 +12,7 @@ promo : FIP2022
 - Les codes sources correspondants à la partie 2 sont dispos dans :
 _Depot/CodeSources/Part2/_
 
-- La partie 3 est presque terminée également, les fichiers supplémentaire sont disponibles dans : 
+- La partie 3 est presque terminée également, les fichiers supplémentaires sont disponibles dans : 
 _Depot/CodeSources/Part3/_
 
 - Une archive du projet complet est également présente dans :
@@ -21,10 +21,12 @@ _Depot/CodeSources/FULL.zip/_
 - Les documents de la partie 1 ont été mis à jour ainsi que la fiche de temps :
 _Depot/DocumentsMisAJour/_
 
+- Le projet fonctionne.
+
 
 ## Tests
 
-- La partie 2 a été testé avec controlesDAO.
+- La partie 2 a été testée avec controlesDAO.
 (voir _Depot/CodeSources/Part2/controlesDAO/controlesDAO.java_)
 
 - La partie 3 a été en partie testée :
@@ -42,7 +44,8 @@ _Depot/DocumentsMisAJour/_
 		- problèmes au remove aussi pour les mêmes raisons...
 
 
-
+:email: clement.le-gruiec@imt-atlantique.net
+:email: elouan.le-duc@imt-atlantique.net
 
 
  

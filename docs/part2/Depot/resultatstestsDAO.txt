@@ -1,23 +1,24 @@
-Contr�les de fonctionnement du DAO EntrepriseDAO
+Contrôles de fonctionnement du DAO EntrepriseDAO
 
 Liste des entreprises : 
 IMT Atlantique
 ENIB
 GOOGLE
+CISCO
 
-Obtention de l'entreprise n� 1 :
+Obtention de l'entreprise n° 1 :
 Id : 1
 Nom : IMT Atlantique
-Descriptif : IMT Atlantique est une grande �cole pionni�re en formation, en recherche et en entrepreneuriat et en tout plein de choses...
-Adresse Postale : Plouzan�
+Descriptif : IMT Atlantique est une grande école pionnière en formation, en recherche et en entrepreneuriat et en tout plein de choses...
+Adresse Postale : Plouzané
 
-Obtention de l'entreprise n� 2 :
+Obtention de l'entreprise n° 2 :
 Id : 2
 Nom : ENIB
-Descriptif : Une �cole d'ing�nieur juste � c�t�...
-Adresse Postale : Plouzan�
+Descriptif : Une école d'ingénieur juste à côté...
+Adresse Postale : Plouzané
 
-Obtention de l'entreprise n� 3 :
+Obtention de l'entreprise n° 3 :
 Id : 3
 Nom : GOOGLE
 Descriptif : Grande entreprise de la Tech
@@ -30,6 +31,7 @@ Liste des entreprises :
 IMT Atlantique
 ENIB
 GOOGLE
+CISCO
 TEST&CO
 
 Modification de l'entreprise de test
@@ -44,10 +46,11 @@ Liste des entreprises :
 IMT Atlantique
 ENIB
 GOOGLE
+CISCO
 
 -----------------------------------------------------------------------------
 
-Contr�les de fonctionnement du DAO NiveauqualificationDAO
+Contrôles de fonctionnement du DAO NiveauqualificationDAO
 
 Liste des niveauxqualifications :
 CAP/BEP
@@ -56,15 +59,15 @@ Bac+3
 Bac+5
 Doctorat
 
-Obtention du niveauqualification n� 1 :
+Obtention du niveauqualification n° 1 :
 Id : 1
 Intitule : CAP/BEP
 
-Obtention du niveauqualification n� 2 :
+Obtention du niveauqualification n° 2 :
 Id : 2
 Intitule : Bac
 
-Obtention du niveauqualification n� 3 :
+Obtention du niveauqualification n° 3 :
 Id : 3
 Intitule : Bac+3
 
@@ -95,44 +98,44 @@ Bac+5
 Doctorat
 
 -----------------------------------------------------------------------------
-Contr�les de fonctionnement du DAO SecteuractiviteDAO
+Contrôles de fonctionnement du DAO SecteuractiviteDAO
 
 Liste des secteursactivites :
 Achats/Logistique
-Assistanat/Secr�tariat
+Assistanat/Secrétariat
 Agriculture
 Agroali- mentaire
 Assurance
 Audit/Conseil/Expertises
 BTP/Immobilier
 Commercial
-Com- munication/Art/M�dia/Mode
-Comptabilit�
-Direction G�n�rale/Executive
+Com- munication/Art/Média/Mode
+Comptabilité
+Direction Générale/Executive
 Distribution/- Commerce
-Electronique/Micro�lectronique
+Electronique/Microélectronique
 Environnement
 Finance/Banque
 Forma- tion/Enseignement
-H�tellerie/Restauration/Tourisme
-Industrie/Ing�nierie/Production
+Hôtellerie/Restauration/Tourisme
+Industrie/Ingénierie/Production
 Informatique
 Juridique/Fiscal/Droit
 Marketing
 Public/Parapublic
 Ressources Hu- maines
-Sant�/Social/Biologie/Humanitaire
-T�l�com/R�seaux
+Santé/Social/Biologie/Humanitaire
+Télécom/Réseaux
 
-Obtention du secteuractivite n� 1 :
+Obtention du secteuractivite n° 1 :
 Id : 1
 Intitule : Achats/Logistique
 
-Obtention du secteuractivite n� 2 :
+Obtention du secteuractivite n° 2 :
 Id : 2
-Intitule : Assistanat/Secr�tariat
+Intitule : Assistanat/Secrétariat
 
-Obtention du secteuractivite n� 3 :
+Obtention du secteuractivite n° 3 :
 Id : 3
 Intitule : Agriculture
 
@@ -141,69 +144,69 @@ Ajout et Recup OK
 
 Liste des secteursactivites : 
 Achats/Logistique
-Assistanat/Secr�tariat
+Assistanat/Secrétariat
 Agriculture
 Agroali- mentaire
 Assurance
 Audit/Conseil/Expertises
 BTP/Immobilier
 Commercial
-Com- munication/Art/M�dia/Mode
-Comptabilit�
-Direction G�n�rale/Executive
+Com- munication/Art/Média/Mode
+Comptabilité
+Direction Générale/Executive
 Distribution/- Commerce
-Electronique/Micro�lectronique
+Electronique/Microélectronique
 Environnement
 Finance/Banque
 Forma- tion/Enseignement
-H�tellerie/Restauration/Tourisme
-Industrie/Ing�nierie/Production
+Hôtellerie/Restauration/Tourisme
+Industrie/Ingénierie/Production
 Informatique
 Juridique/Fiscal/Droit
 Marketing
 Public/Parapublic
 Ressources Hu- maines
-Sant�/Social/Biologie/Humanitaire
-T�l�com/R�seaux
+Santé/Social/Biologie/Humanitaire
+Télécom/Réseaux
 Le monde merveilleux du curling sur gazon (FFCG)
 
 Modification du secteuractivite de test
 Modif OK
 Ancien Intitule : Le monde merveilleux du curling sur gazon (FFCG)
-Nouveau Intitule : L'incroyable f�d�ration du bobsleigh (FIBT)
+Nouveau Intitule : L'incroyable fédération du bobsleigh (FIBT)
 
 Suppression du secteuractivite de test
 Suppression OK
 
 Liste des secteursactivites : 
 Achats/Logistique
-Assistanat/Secr�tariat
+Assistanat/Secrétariat
 Agriculture
 Agroali- mentaire
 Assurance
 Audit/Conseil/Expertises
 BTP/Immobilier
 Commercial
-Com- munication/Art/M�dia/Mode
-Comptabilit�
-Direction G�n�rale/Executive
+Com- munication/Art/Média/Mode
+Comptabilité
+Direction Générale/Executive
 Distribution/- Commerce
-Electronique/Micro�lectronique
+Electronique/Microélectronique
 Environnement
 Finance/Banque
 Forma- tion/Enseignement
-H�tellerie/Restauration/Tourisme
-Industrie/Ing�nierie/Production
+Hôtellerie/Restauration/Tourisme
+Industrie/Ingénierie/Production
 Informatique
 Juridique/Fiscal/Droit
 Marketing
 Public/Parapublic
 Ressources Hu- maines
-Sant�/Social/Biologie/Humanitaire
-T�l�com/R�seaux
+Santé/Social/Biologie/Humanitaire
+Télécom/Réseaux
 
 -----------------------------------------------------------------------------
-Contr�les de fonctionnement du DAO CandidatureDAO
+Contrôles de fonctionnement du DAO CandidatureDAO
 
 Liste des candidatures :
 CV1
@@ -213,7 +216,7 @@ CV4
 CV5
 CV6
 
-Obtention de la candidature n� 1 :
+Obtention de la candidature n° 1 :
 Id : 1
 Cv : CV1
 Date de Depot : Sat Feb 06 00:00:00 CET 2021
@@ -222,7 +225,7 @@ Date de Naissance : Fri Jan 01 00:00:00 CET 1999
 Adresse Postale : 4 rue des bouleaux PARIS
 Niveau Qualification : Bac+3
 
-Obtention de la candidature n� 2 :
+Obtention de la candidature n° 2 :
 Id : 2
 Cv : CV2
 Date de Depot : Wed Feb 03 00:00:00 CET 2021
@@ -231,7 +234,7 @@ Date de Naissance : Sat Nov 18 00:00:00 CET 2000
 Adresse Postale : 46 rue des ifs BORDEAUX
 Niveau Qualification : Bac
 
-Obtention de la candidature n� 3 :
+Obtention de la candidature n° 3 :
 Id : 3
 Cv : CV3
 Date de Depot : Sun Jan 24 00:00:00 CET 2021
@@ -244,8 +247,8 @@ Ajout de la candidature de test
 Ajout et Recup OK
 
 Liste des Secteurs Activites de la candidature de test : 
+Télécom/Réseaux
 Informatique
-T�l�com/R�seaux
 
 Liste des Candidatures : 
 CV1
@@ -261,7 +264,7 @@ Modif OK
 Ancien CV : CV trop lourd
 Nouveau CV : CV pas si lourd en fait
 
-Affichage par Secteur Activit� et Niveau Qualif (Informatique et Bac+4) 
+Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) 
 CV6
 CV4
 CV3
@@ -279,32 +282,32 @@ CV6
 
 -----------------------------------------------------------------------------
 
-Contr�les de fonctionnement du DAO OffreemploiDAO
+Contrôles de fonctionnement du DAO OffreemploiDAO
 
 Liste des offresemplois :
 PostDoc Compression Image
 CDI Data Analyst
-Th�se en IA
+Thèse en IA
 Stage gestion BDD
 Stage codage de PASS
 
-Obtention de l'offre n� 1 :
+Obtention de l'offre n° 1 :
 Id : 1
 Entreprise : IMT Atlantique
 Descriptif Mission : Coder tout le backend en PHP
-Profil Recherche : Etudiant Ing�nieur
+Profil Recherche : Etudiant Ingénieur
 Niveau Qualification : CAP/BEP
 Date de Depot : Fri Jan 01 00:00:00 CET 2021
 
-Obtention de l'offre n� 2 :
+Obtention de l'offre n° 2 :
 Id : 2
 Entreprise : ENIB
 Descriptif Mission : Analyse BDD du personnel
-Profil Recherche : Etudiant Ing�nieur
+Profil Recherche : Etudiant Ingénieur
 Niveau Qualification : Bac+5
 Date de Depot : Tue Jan 05 00:00:00 CET 2021
 
-Obtention de l'offre n� 3 :
+Obtention de l'offre n° 3 :
 Id : 3
 Entreprise : GOOGLE
 Descriptif Mission : Ameliorer recherche avec une IA
@@ -316,14 +319,14 @@ Ajout de l'offreemploi de test
 Ajout et Recup OK
 
 Liste des Secteurs Activites de l'offreemploi de test : 
-T�l�com/R�seaux
+Télécom/Réseaux
 Informatique
 
 Liste des OffreEmplois : 
 HACKER LA NASA
 PostDoc Compression Image
 CDI Data Analyst
-Th�se en IA
+Thèse en IA
 Stage gestion BDD
 Stage codage de PASS
 
@@ -332,7 +335,7 @@ Modif OK
 Ancien Titre : HACKER LA NASA
 Nouveau Titre : HACKER LA DGSE
 
-Affichage par Secteur Activit� et Niveau Qualif (Informatique et Bac+4) 
+Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) 
 CDI Data Analyst
 Stage gestion BDD
 
@@ -342,38 +345,38 @@ Suppression OK
 Liste des OffreEmplois : 
 PostDoc Compression Image
 CDI Data Analyst
-Th�se en IA
+Thèse en IA
 Stage gestion BDD
 Stage codage de PASS
 
 -----------------------------------------------------------------------------
-Contr�les de fonctionnement du DAO MessagecandidatureDAO
+Contrôles de fonctionnement du DAO MessagecandidatureDAO
 
 Liste des messagescandidatures :
 Bonjour je souhaite avoir le stage
 Bonsoir je souhaite avoir le stage siouplait
-Bonjour je souhaite �tre docteur
+Bonjour je souhaite être docteur
 
-Obtention du messagecandidature n� 1 :
+Obtention du messagecandidature n° 1 :
 Id : 1
 Corps Message : Bonjour je souhaite avoir le stage
 Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
 Cv : CV2
 Offre Emploi : Stage codage de PASS
 
-Obtention du messagecandidature n� 2 :
+Obtention du messagecandidature n° 2 :
 Id : 2
 Corps Message : Bonsoir je souhaite avoir le stage siouplait
 Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
 Cv : CV3
 Offre Emploi : Stage gestion BDD
 
-Obtention du messagecandidature n� 3 :
+Obtention du messagecandidature n° 3 :
 Id : 3
-Corps Message : Bonjour je souhaite �tre docteur
+Corps Message : Bonjour je souhaite être docteur
 Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
 Cv : CV1
-Offre Emploi : Th�se en IA
+Offre Emploi : Thèse en IA
 
 Ajout du messagecandidature de test
 Ajout et Recup OK
@@ -381,13 +384,13 @@ Ajout et Recup OK
 Liste des MessageCandidatures : 
 Bonjour je souhaite avoir le stage
 Bonsoir je souhaite avoir le stage siouplait
-Bonjour je souhaite �tre docteur
+Bonjour je souhaite être docteur
 Bonjour j'aime l'argent, embauchez moi.
 
 Modification du messagecandidature de test
 Modif OK
 Ancien Corps Message : Bonjour j'aime l'argent, embauchez moi.
-Nouveau Corps Message : Prenez-moi je dois rembourser mon cr�dit
+Nouveau Corps Message : Prenez-moi je dois rembourser mon crédit
 
 Suppression du messagecandidature de test
 Suppression OK
@@ -395,36 +398,36 @@ Suppression OK
 Liste des MessageCandidatures : 
 Bonjour je souhaite avoir le stage
 Bonsoir je souhaite avoir le stage siouplait
-Bonjour je souhaite �tre docteur
+Bonjour je souhaite être docteur
 
 -----------------------------------------------------------------------------
-Contr�les de fonctionnement du DAO MessageoffredemploiDAO
+Contrôles de fonctionnement du DAO MessageoffredemploiDAO
 
 Liste des messagesoffresdemplois :
 Voici une offre de stage pour vous
 Voici une offre de stage pour vous
-Voici une offre de th�se pour vous
+Voici une offre de thèse pour vous
 
-Obtention du messageoffredemploi n� 1 :
+Obtention du messageoffredemploi n° 1 :
 Id : 1
 Corps Message : Voici une offre de stage pour vous
 Date d'Envoi : Fri Jan 01 00:00:00 CET 2021
 Cv : CV2
 Offre Emploi : Stage codage de PASS
 
-Obtention du messageoffredemploi n� 2 :
+Obtention du messageoffredemploi n° 2 :
 Id : 2
 Corps Message : Voici une offre de stage pour vous
 Date d'Envoi : Tue Jan 05 00:00:00 CET 2021
 Cv : CV3
 Offre Emploi : Stage gestion BDD
 
-Obtention du messageoffredemploi n� 3 :
+Obtention du messageoffredemploi n° 3 :
 Id : 3
-Corps Message : Voici une offre de th�se pour vous
+Corps Message : Voici une offre de thèse pour vous
 Date d'Envoi : Mon Jan 18 00:00:00 CET 2021
 Cv : CV1
-Offre Emploi : Th�se en IA
+Offre Emploi : Thèse en IA
 
 Ajout du messageoffredemploi de test
 Ajout et Recup OK
@@ -432,7 +435,7 @@ Ajout et Recup OK
 Liste des MessageOffredemplois : 
 Voici une offre de stage pour vous
 Voici une offre de stage pour vous
-Voici une offre de th�se pour vous
+Voici une offre de thèse pour vous
 Bonjour voici une offre sympa pour vous
 
 Modification du messageoffredemploi de test
@@ -446,5 +449,6 @@ Suppression OK
 Liste des MessageOffredemplois : 
 Voici une offre de stage pour vous
 Voici une offre de stage pour vous
-Voici une offre de th�se pour vous
+Voici une offre de thèse pour vous
+
 
