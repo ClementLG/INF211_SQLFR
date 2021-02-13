@@ -114,6 +114,7 @@ public class ServiceCandidature implements IServiceCandidature
   //-----------------------------------------------------------------------------
   public Candidature execPersist(Candidature candidature) {
 	  candidatureDAO.persist(candidature);
+	  candidatureDAO.update(candidature);
 	  return null;
   }
 
@@ -121,8 +122,8 @@ public class ServiceCandidature implements IServiceCandidature
 	public Set<SecteurActivite> transformSecteurs(String[] sect) {
 		//System.out.println(sect[0]+""+sect[1]);
 		Set<SecteurActivite> mySet = new HashSet<SecteurActivite>();
-		for (int i = 0; i < sect.length; i++) {
-			mySet.add(secteuractiviteDAO.findById(Integer.parseInt(sect[i])));
+		for (String s : sect) {
+			mySet.add(secteuractiviteDAO.findById(Integer.parseInt(s)));
 			//System.out.println(secteuractiviteDAO.findById(Integer.parseInt(sect[i])).getIntitule());
 		}
 		return mySet;

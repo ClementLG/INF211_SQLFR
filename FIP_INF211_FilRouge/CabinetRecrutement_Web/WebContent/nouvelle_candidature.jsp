@@ -247,10 +247,9 @@ if(request.getParameter("submit-insertion") != null){
 		request.getParameter("cv"),
 		serviceCandidature.getCurrentDate(),
 		serviceCandidature.convertDate(request.getParameter("date_naissance")),
-		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
+		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau"))),
+		serviceCandidature.transformSecteurs(request.getParameterValues("secteur"))
 		);
-		String[] sect = request.getParameterValues("secteur");
-		cand_ok.setSecteurActivites(serviceCandidature.transformSecteurs(sect));
 		serviceCandidature.execPersist(cand_ok);
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
 		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
