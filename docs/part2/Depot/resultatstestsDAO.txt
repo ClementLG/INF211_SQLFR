@@ -1,0 +1,450 @@
+Contr�les de fonctionnement du DAO EntrepriseDAO
+
+Liste des entreprises : 
+IMT Atlantique
+ENIB
+GOOGLE
+
+Obtention de l'entreprise n� 1 :
+Id : 1
+Nom : IMT Atlantique
+Descriptif : IMT Atlantique est une grande �cole pionni�re en formation, en recherche et en entrepreneuriat et en tout plein de choses...
+Adresse Postale : Plouzan�
+
+Obtention de l'entreprise n� 2 :
+Id : 2
+Nom : ENIB
+Descriptif : Une �cole d'ing�nieur juste � c�t�...
+Adresse Postale : Plouzan�
+
+Obtention de l'entreprise n� 3 :
+Id : 3
+Nom : GOOGLE
+Descriptif : Grande entreprise de la Tech
+Adresse Postale : DUBLIN Irlande
+
+Ajout de l'entreprise de test
+Ajout et Recup OK
+
+Liste des entreprises : 
+IMT Atlantique
+ENIB
+GOOGLE
+TEST&CO
+
+Modification de l'entreprise de test
+Modif OK
+Ancien Nom : TEST&CO
+Nouveau Nom : TEST&COModif
+
+Suppression de l'entreprise de test
+Suppression OK
+
+Liste des entreprises : 
+IMT Atlantique
+ENIB
+GOOGLE
+
+-----------------------------------------------------------------------------
+
+Contr�les de fonctionnement du DAO NiveauqualificationDAO
+
+Liste des niveauxqualifications :
+CAP/BEP
+Bac
+Bac+3
+Bac+5
+Doctorat
+
+Obtention du niveauqualification n� 1 :
+Id : 1
+Intitule : CAP/BEP
+
+Obtention du niveauqualification n� 2 :
+Id : 2
+Intitule : Bac
+
+Obtention du niveauqualification n� 3 :
+Id : 3
+Intitule : Bac+3
+
+Ajout du niveauqualification de test
+Ajout et Recup OK
+
+Liste des niveauxqualifications : 
+CAP/BEP
+Bac
+Bac+3
+Bac+5
+Doctorat
+LE MEGA BREVET DES COLLEGES
+
+Modification du niveauqualification de test
+Modif OK
+Ancien Intitule : LE MEGA BREVET DES COLLEGES
+Nouveau Intitule : LE DNB
+
+Suppression du niveauqualification de test
+Suppression OK
+
+Liste des niveauxqualifications : 
+CAP/BEP
+Bac
+Bac+3
+Bac+5
+Doctorat
+
+-----------------------------------------------------------------------------
+Contr�les de fonctionnement du DAO SecteuractiviteDAO
+
+Liste des secteursactivites :
+Achats/Logistique
+Assistanat/Secr�tariat
+Agriculture
+Agroali- mentaire
+Assurance
+Audit/Conseil/Expertises
+BTP/Immobilier
+Commercial
+Com- munication/Art/M�dia/Mode
+Comptabilit�
+Direction G�n�rale/Executive
+Distribution/- Commerce
+Electronique/Micro�lectronique
+Environnement
+Finance/Banque
+Forma- tion/Enseignement
+H�tellerie/Restauration/Tourisme
+Industrie/Ing�nierie/Production
+Informatique
+Juridique/Fiscal/Droit
+Marketing
+Public/Parapublic
+Ressources Hu- maines
+Sant�/Social/Biologie/Humanitaire
+T�l�com/R�seaux
+
+Obtention du secteuractivite n� 1 :
+Id : 1
+Intitule : Achats/Logistique
+
+Obtention du secteuractivite n� 2 :
+Id : 2
+Intitule : Assistanat/Secr�tariat
+
+Obtention du secteuractivite n� 3 :
+Id : 3
+Intitule : Agriculture
+
+Ajout du secteuractivite de test
+Ajout et Recup OK
+
+Liste des secteursactivites : 
+Achats/Logistique
+Assistanat/Secr�tariat
+Agriculture
+Agroali- mentaire
+Assurance
+Audit/Conseil/Expertises
+BTP/Immobilier
+Commercial
+Com- munication/Art/M�dia/Mode
+Comptabilit�
+Direction G�n�rale/Executive
+Distribution/- Commerce
+Electronique/Micro�lectronique
+Environnement
+Finance/Banque
+Forma- tion/Enseignement
+H�tellerie/Restauration/Tourisme
+Industrie/Ing�nierie/Production
+Informatique
+Juridique/Fiscal/Droit
+Marketing
+Public/Parapublic
+Ressources Hu- maines
+Sant�/Social/Biologie/Humanitaire
+T�l�com/R�seaux
+Le monde merveilleux du curling sur gazon (FFCG)
+
+Modification du secteuractivite de test
+Modif OK
+Ancien Intitule : Le monde merveilleux du curling sur gazon (FFCG)
+Nouveau Intitule : L'incroyable f�d�ration du bobsleigh (FIBT)
+
+Suppression du secteuractivite de test
+Suppression OK
+
+Liste des secteursactivites : 
+Achats/Logistique
+Assistanat/Secr�tariat
+Agriculture
+Agroali- mentaire
+Assurance
+Audit/Conseil/Expertises
+BTP/Immobilier
+Commercial
+Com- munication/Art/M�dia/Mode
+Comptabilit�
+Direction G�n�rale/Executive
+Distribution/- Commerce
+Electronique/Micro�lectronique
+Environnement
+Finance/Banque
+Forma- tion/Enseignement
+H�tellerie/Restauration/Tourisme
+Industrie/Ing�nierie/Production
+Informatique
+Juridique/Fiscal/Droit
+Marketing
+Public/Parapublic
+Ressources Hu- maines
+Sant�/Social/Biologie/Humanitaire
+T�l�com/R�seaux
+
+-----------------------------------------------------------------------------
+Contr�les de fonctionnement du DAO CandidatureDAO
+
+Liste des candidatures :
+CV1
+CV2
+CV3
+CV4
+CV5
+CV6
+
+Obtention de la candidature n� 1 :
+Id : 1
+Cv : CV1
+Date de Depot : Sat Feb 06 00:00:00 CET 2021
+Adresse Mail : jean@gmail.com
+Date de Naissance : Fri Jan 01 00:00:00 CET 1999
+Adresse Postale : 4 rue des bouleaux PARIS
+Niveau Qualification : Bac+3
+
+Obtention de la candidature n� 2 :
+Id : 2
+Cv : CV2
+Date de Depot : Wed Feb 03 00:00:00 CET 2021
+Adresse Mail : paul@gmail.com
+Date de Naissance : Sat Nov 18 00:00:00 CET 2000
+Adresse Postale : 46 rue des ifs BORDEAUX
+Niveau Qualification : Bac
+
+Obtention de la candidature n� 3 :
+Id : 3
+Cv : CV3
+Date de Depot : Sun Jan 24 00:00:00 CET 2021
+Adresse Mail : jacques@gmail.com
+Date de Naissance : Sat Sep 27 00:00:00 CEST 1997
+Adresse Postale : 34 rue des arbustes MARSEILLE
+Niveau Qualification : Bac+5
+
+Ajout de la candidature de test
+Ajout et Recup OK
+
+Liste des Secteurs Activites de la candidature de test : 
+Informatique
+T�l�com/R�seaux
+
+Liste des Candidatures : 
+CV1
+CV2
+CV3
+CV4
+CV5
+CV6
+CV trop lourd
+
+Modification de la candidature de test
+Modif OK
+Ancien CV : CV trop lourd
+Nouveau CV : CV pas si lourd en fait
+
+Affichage par Secteur Activit� et Niveau Qualif (Informatique et Bac+4) 
+CV6
+CV4
+CV3
+
+Suppression de la Candidature de test
+Suppression OK
+
+Liste des Candidatures : 
+CV1
+CV2
+CV3
+CV4
+CV5
+CV6
+
+-----------------------------------------------------------------------------
+
+Contr�les de fonctionnement du DAO OffreemploiDAO
+
+Liste des offresemplois :
+PostDoc Compression Image
+CDI Data Analyst
+Th�se en IA
+Stage gestion BDD
+Stage codage de PASS
+
+Obtention de l'offre n� 1 :
+Id : 1
+Entreprise : IMT Atlantique
+Descriptif Mission : Coder tout le backend en PHP
+Profil Recherche : Etudiant Ing�nieur
+Niveau Qualification : CAP/BEP
+Date de Depot : Fri Jan 01 00:00:00 CET 2021
+
+Obtention de l'offre n� 2 :
+Id : 2
+Entreprise : ENIB
+Descriptif Mission : Analyse BDD du personnel
+Profil Recherche : Etudiant Ing�nieur
+Niveau Qualification : Bac+5
+Date de Depot : Tue Jan 05 00:00:00 CET 2021
+
+Obtention de l'offre n� 3 :
+Id : 3
+Entreprise : GOOGLE
+Descriptif Mission : Ameliorer recherche avec une IA
+Profil Recherche : Doctorant Informatique
+Niveau Qualification : Doctorat
+Date de Depot : Mon Jan 18 00:00:00 CET 2021
+
+Ajout de l'offreemploi de test
+Ajout et Recup OK
+
+Liste des Secteurs Activites de l'offreemploi de test : 
+T�l�com/R�seaux
+Informatique
+
+Liste des OffreEmplois : 
+HACKER LA NASA
+PostDoc Compression Image
+CDI Data Analyst
+Th�se en IA
+Stage gestion BDD
+Stage codage de PASS
+
+Modification de l'offreemploi de test
+Modif OK
+Ancien Titre : HACKER LA NASA
+Nouveau Titre : HACKER LA DGSE
+
+Affichage par Secteur Activit� et Niveau Qualif (Informatique et Bac+4) 
+CDI Data Analyst
+Stage gestion BDD
+
+Suppression de l'offreemploi de test
+Suppression OK
+
+Liste des OffreEmplois : 
+PostDoc Compression Image
+CDI Data Analyst
+Th�se en IA
+Stage gestion BDD
+Stage codage de PASS
+
+-----------------------------------------------------------------------------
+Contr�les de fonctionnement du DAO MessagecandidatureDAO
+
+Liste des messagescandidatures :
+Bonjour je souhaite avoir le stage
+Bonsoir je souhaite avoir le stage siouplait
+Bonjour je souhaite �tre docteur
+
+Obtention du messagecandidature n� 1 :
+Id : 1
+Corps Message : Bonjour je souhaite avoir le stage
+Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
+Cv : CV2
+Offre Emploi : Stage codage de PASS
+
+Obtention du messagecandidature n� 2 :
+Id : 2
+Corps Message : Bonsoir je souhaite avoir le stage siouplait
+Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
+Cv : CV3
+Offre Emploi : Stage gestion BDD
+
+Obtention du messagecandidature n� 3 :
+Id : 3
+Corps Message : Bonjour je souhaite �tre docteur
+Date d'Envoi : Wed Feb 03 00:00:00 CET 2021
+Cv : CV1
+Offre Emploi : Th�se en IA
+
+Ajout du messagecandidature de test
+Ajout et Recup OK
+
+Liste des MessageCandidatures : 
+Bonjour je souhaite avoir le stage
+Bonsoir je souhaite avoir le stage siouplait
+Bonjour je souhaite �tre docteur
+Bonjour j'aime l'argent, embauchez moi.
+
+Modification du messagecandidature de test
+Modif OK
+Ancien Corps Message : Bonjour j'aime l'argent, embauchez moi.
+Nouveau Corps Message : Prenez-moi je dois rembourser mon cr�dit
+
+Suppression du messagecandidature de test
+Suppression OK
+
+Liste des MessageCandidatures : 
+Bonjour je souhaite avoir le stage
+Bonsoir je souhaite avoir le stage siouplait
+Bonjour je souhaite �tre docteur
+
+-----------------------------------------------------------------------------
+Contr�les de fonctionnement du DAO MessageoffredemploiDAO
+
+Liste des messagesoffresdemplois :
+Voici une offre de stage pour vous
+Voici une offre de stage pour vous
+Voici une offre de th�se pour vous
+
+Obtention du messageoffredemploi n� 1 :
+Id : 1
+Corps Message : Voici une offre de stage pour vous
+Date d'Envoi : Fri Jan 01 00:00:00 CET 2021
+Cv : CV2
+Offre Emploi : Stage codage de PASS
+
+Obtention du messageoffredemploi n� 2 :
+Id : 2
+Corps Message : Voici une offre de stage pour vous
+Date d'Envoi : Tue Jan 05 00:00:00 CET 2021
+Cv : CV3
+Offre Emploi : Stage gestion BDD
+
+Obtention du messageoffredemploi n� 3 :
+Id : 3
+Corps Message : Voici une offre de th�se pour vous
+Date d'Envoi : Mon Jan 18 00:00:00 CET 2021
+Cv : CV1
+Offre Emploi : Th�se en IA
+
+Ajout du messageoffredemploi de test
+Ajout et Recup OK
+
+Liste des MessageOffredemplois : 
+Voici une offre de stage pour vous
+Voici une offre de stage pour vous
+Voici une offre de th�se pour vous
+Bonjour voici une offre sympa pour vous
+
+Modification du messageoffredemploi de test
+Modif OK
+Ancien Corps Message : Bonjour voici une offre sympa pour vous
+Nouveau Corps Message : REPONDEZ VITE A L'OFFRE !!!
+
+Suppression du messageoffredemploi de test
+Suppression OK
+
+Liste des MessageOffredemplois : 
+Voici une offre de stage pour vous
+Voici une offre de stage pour vous
+Voici une offre de th�se pour vous
+
