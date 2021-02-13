@@ -1,8 +1,10 @@
 ---
 authors: LE GRUIEC Clément & LE DUC ELOUAN
 date: 14/02/2021
+Depot : Partie2
 promo : FIP2022
 ---
+
 # PROJET FIL ROUGE
 
 ## Docs rendus
@@ -15,6 +17,10 @@ _Depot/CodeSources/Part3/_
 
 - Une archive du projet complet est également présente dans :
 _Depot/CodeSources/FULL.zip/_
+
+- Les documents de la partie 1 ont été mis à jour ainsi que la fiche de temps :
+_Depot/DocumentsMisAJour/_
+
 
 ## Tests
 
