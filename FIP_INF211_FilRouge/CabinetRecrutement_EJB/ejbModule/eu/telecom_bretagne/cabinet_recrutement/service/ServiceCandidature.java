@@ -1,37 +1,21 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
-
-import org.apache.jasper.tagplugins.jstl.ForEach;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
-import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
-import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
-import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
@@ -119,11 +103,13 @@ public class ServiceCandidature implements IServiceCandidature
   }
 
 	//-----------------------------------------------------------------------------
-	public Set<SecteurActivite> transformSecteurs(String[] sect) {
+	public Set<SecteurActivite> UpdateSecteurActivite(String[] sect, Candidature c) {
 		//System.out.println(sect[0]+""+sect[1]);
 		Set<SecteurActivite> mySet = new HashSet<SecteurActivite>();
 		for (String s : sect) {
-			mySet.add(secteuractiviteDAO.findById(Integer.parseInt(s)));
+			secteuractiviteDAO.findById(Integer.parseInt(s)).getCandidatures().add(c);
+			//secteuractiviteDAO.findById(Integer.parseInt(s)).addCandidatures(c);
+			secteuractiviteDAO.update(secteuractiviteDAO.findById(Integer.parseInt(s)));
 			//System.out.println(secteuractiviteDAO.findById(Integer.parseInt(sect[i])).getIntitule());
 		}
 		return mySet;

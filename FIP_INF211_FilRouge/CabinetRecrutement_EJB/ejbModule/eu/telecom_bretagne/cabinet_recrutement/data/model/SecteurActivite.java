@@ -79,6 +79,10 @@ public class SecteurActivite implements Serializable {
 		this.candidatures = candidatures;
 	}
 
+	public void addCandidatures(Candidature candidature) {
+		this.candidatures.add(candidature);
+	}
+
 	public Set<OffreEmploi> getOffreEmplois() {
 		return this.offreEmplois;
 	}

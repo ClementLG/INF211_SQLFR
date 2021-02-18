@@ -39,6 +39,6 @@ public interface IServiceCandidature
   public Date convertDate(String date);
   public Candidature execPersist(Candidature candidature);
   public String GetSecteursString(Candidature cand);
-  public Set<SecteurActivite> transformSecteurs(String[] sect);
+  public Set<SecteurActivite> UpdateSecteurActivite(String[] sect, Candidature c);
 
 }

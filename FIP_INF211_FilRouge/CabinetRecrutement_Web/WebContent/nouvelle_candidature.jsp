@@ -1,3 +1,4 @@
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur"%>
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
@@ -6,8 +7,9 @@
                 java.util.List"%>
 
 <%
-  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
+  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
   List<Candidature> candidatures = serviceCandidature.listeCandidature();
+  IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
 %>
 <!-- base code demo -->
 <div class="row">
@@ -247,10 +249,10 @@ if(request.getParameter("submit-insertion") != null){
 		request.getParameter("cv"),
 		serviceCandidature.getCurrentDate(),
 		serviceCandidature.convertDate(request.getParameter("date_naissance")),
-		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau"))),
-		serviceCandidature.transformSecteurs(request.getParameterValues("secteur"))
+		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
 		);
 		serviceCandidature.execPersist(cand_ok);
+		serviceCandidature.UpdateSecteurActivite(request.getParameterValues("secteur"), cand_ok);
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
 		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
 	

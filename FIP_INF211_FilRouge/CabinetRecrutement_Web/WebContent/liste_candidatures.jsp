@@ -6,7 +6,7 @@
                 java.util.List"%>
 
 <%
-  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
+  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
   List<Candidature> candidatures = serviceCandidature.listeCandidature();
 %>
 
@@ -43,7 +43,7 @@
                  <td><%=candidature.getAdresseemail()%></td>
                  <td><%=candidature.getNiveauqualificationBean().getIntitule()%></td>
                  <td><%=candidature.getDatedepot()%></td>
-                  <td align="center"><a href="template.jsp?action=infos_candiature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
+                  <td align="center"><a href="template.jsp?action=infos_candidature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%
               }

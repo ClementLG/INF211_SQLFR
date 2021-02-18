@@ -5,7 +5,7 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature"%>
 <%
-  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
+  IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
 %>
 
 <%
@@ -24,7 +24,7 @@
     {
       id = new Integer(idStringValue);
       // C'est OK : on a bien un id
-      IServiceCandidature serviceEntreprise = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandature");
+      IServiceCandidature serviceEntreprise = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
       candidature = serviceEntreprise.getCandidature(id);
       if(candidature == null)
       {
