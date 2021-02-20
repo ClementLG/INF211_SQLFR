@@ -33,6 +33,7 @@ public class SecteurActivite implements Serializable {
 			@JoinColumn(name="candidature")
 			}
 		)
+	
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-many association to OffreEmploi

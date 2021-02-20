@@ -244,17 +244,18 @@ if(request.getParameter("submit-insertion") != null){
 	){
 		
 		Candidature cand_ok = new Candidature(
-		request.getParameter("adresse_email"), 
-		request.getParameter("adresse_postale"), 
-		request.getParameter("cv"),
-		serviceCandidature.getCurrentDate(),
-		serviceCandidature.convertDate(request.getParameter("date_naissance")),
-		serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))
+				request.getParameter("adresse_email"), 
+				request.getParameter("adresse_postale"), 
+				request.getParameter("cv"),
+				serviceCandidature.getCurrentDate(),
+				serviceCandidature.convertDate(request.getParameter("date_naissance")),
+				serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau")))	
 		);
-		serviceCandidature.execPersist(cand_ok);
-		serviceCandidature.UpdateSecteurActivite(request.getParameterValues("secteur"), cand_ok);
+		cand_ok = serviceCandidature.execPersist(cand_ok);
+		//out.println("iDDDDDDDDDDDDDDDDDDDDDDD = "+cand_ok.getId());
+		serviceCandidature.majSecteursActivites(request.getParameterValues("secteur"), cand_ok.getId());
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
-		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise ajoutée ! </h1>");
+		out.println("<h1 style=\"color: green;text-align: center\"> Candidature ajoutée ! </h1>");
 	
 	} else {
 		if (!request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")

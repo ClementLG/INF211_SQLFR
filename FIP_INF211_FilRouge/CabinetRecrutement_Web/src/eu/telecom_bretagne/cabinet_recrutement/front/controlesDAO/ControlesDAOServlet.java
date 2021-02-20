@@ -378,6 +378,22 @@ public class ControlesDAOServlet extends HttpServlet {
 							out.println(secteuractivite.getIntitule());
 						}
 						out.println();
+						
+						try {
+							out.println("----------------->test ajout en cascade");
+							SecteurActivite s = secteuractiviteDAO.findById(Integer.parseInt("21"));
+							CandidatureDAO candidatureDAO2 = (CandidatureDAO) ServicesLocator.getInstance().getRemoteInterface("CandidatureDAO");
+							Candidature c = candidatureDAO2.findById(5);
+							 s.getCandidatures().add(c);
+							 secteuractiviteDAO.update(s);
+							 out.println("update du secteur ok");
+							 c.getSecteuractivites().add(s);
+							 candidatureDAO2.update(c);
+							 out.println("update du cand ok");
+							 out.println("secteur cascade ok !");
+						} catch (Exception e) {
+							out.println("secteur cascade KO !");
+						}
 
 					} catch (Exception e_ajout_4) {
 						// TODO Auto-generated catch block
@@ -932,7 +948,9 @@ public class ControlesDAOServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e_ajout_6.printStackTrace();
 			}
-				
+			
+			out.println("-----------------------------------------------------------------------------");
+
 		} catch (Exception e_tests_6) {
 			// TODO Auto-generated catch block
 			e_tests_6.printStackTrace();

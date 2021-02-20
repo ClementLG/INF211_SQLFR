@@ -76,6 +76,7 @@ public class CandidatureDAO {
 		}
 		return Candidature;
 	}
+	
 	//-----------------------------------------------------------------------------
 	public void remove(Candidature Candidature) {
 		if (Candidature != null) {

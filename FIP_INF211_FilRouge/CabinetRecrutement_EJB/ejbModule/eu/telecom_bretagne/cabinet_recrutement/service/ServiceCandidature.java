@@ -32,6 +32,7 @@ public class ServiceCandidature implements IServiceCandidature
   @EJB private SecteuractiviteDAO         secteuractiviteDAO;
   //-----------------------------------------------------------------------------
   /**
+   * 
    * Default constructor.
    */
   public ServiceCandidature()
@@ -97,19 +98,42 @@ public class ServiceCandidature implements IServiceCandidature
   
   //-----------------------------------------------------------------------------
   public Candidature execPersist(Candidature candidature) {
-	  candidatureDAO.persist(candidature);
-	  candidatureDAO.update(candidature);
-	  return null;
+	  Candidature c = candidatureDAO.persist(candidature);
+	  return c;
   }
-
+  
+  //-----------------------------------------------------------------------------
+  public void execUpdate(Candidature candidature) {
+	  candidatureDAO.update(candidature);
+  }
+  
 	//-----------------------------------------------------------------------------
-	public Set<SecteurActivite> UpdateSecteurActivite(String[] sect, Candidature c) {
+	public void majSecteursActivites(String[] sects, int idC) {
+		SecteurActivite s;
+		Candidature c;
+		c = candidatureDAO.findById(idC);
+		//System.out.println("-------------> idC = "+idC);
+		for(String sect : sects) {
+			try {
+				 s = secteuractiviteDAO.findById(Integer.parseInt(sect));
+				 s.getCandidatures().add(c);
+				 secteuractiviteDAO.update(s);
+				 c.getSecteuractivites().add(s);
+				 candidatureDAO.update(c);	
+			} catch (Exception e) {
+				System.out.println("---------------> majDuSecteurDansCandErreur");
+			}
+					 
+			 
+		}
+	}
+	
+	//-----------------------------------------------------------------------------
+	public Set<SecteurActivite> transformSecteurs(String[] sect) {
 		//System.out.println(sect[0]+""+sect[1]);
 		Set<SecteurActivite> mySet = new HashSet<SecteurActivite>();
 		for (String s : sect) {
-			secteuractiviteDAO.findById(Integer.parseInt(s)).getCandidatures().add(c);
-			//secteuractiviteDAO.findById(Integer.parseInt(s)).addCandidatures(c);
-			secteuractiviteDAO.update(secteuractiviteDAO.findById(Integer.parseInt(s)));
+			mySet.add(secteuractiviteDAO.findById(Integer.parseInt(s)));
 			//System.out.println(secteuractiviteDAO.findById(Integer.parseInt(sect[i])).getIntitule());
 		}
 		return mySet;
