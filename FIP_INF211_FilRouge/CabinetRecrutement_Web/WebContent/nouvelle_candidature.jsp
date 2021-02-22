@@ -1,3 +1,5 @@
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite"%>
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification"%>
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur"%>
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -9,6 +11,8 @@
 <%
   IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
   List<Candidature> candidatures = serviceCandidature.listeCandidature();
+  List<NiveauQualification> niveauqualif = serviceCandidature.listeNiveauQualification();
+  List<SecteurActivite> secteurActs = serviceCandidature.listeSecteurs();
   IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
 %>
 <!-- base code demo -->
@@ -47,37 +51,14 @@
                   <div class="form-group">
                     <label>Niveau de qualification</label>
                     <small>
+                    <% for(NiveauQualification nq : niveauqualif){%>
                       
                         <div class="radio">
                           <label>
-                            <input type="radio" name="niveau" value="1" />CAP/BEP
+                            <input type="radio" name="niveau" value=<%=nq.getId() %> /><%=nq.getIntitule() %>
                           </label>
                         </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="2" />Bac
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="3" />Bac+3
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="4" />Bac+5
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="5" />Doctorat
-                          </label>
-                        </div>
-                        
+                        <%} %>                         
                     </small>
                   </div>
                 </div>
@@ -87,134 +68,25 @@
                   <small>
                     <table border="0" width="100%">
                       <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
-                      
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="1" /> Achats/Logistique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="2" /> Assistanat/Secrétariat
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="3" /> Agriculture
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="4" /> Agroalimentaire
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="5" /> Assurance
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="6" /> Audit/Conseil/Expertises
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="7" /> BTP/Immobilier
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="8" /> Commercial
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="9" /> Communication/Art/Média/Mode
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="10" /> Comptabilité
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="11" /> Direction Générale/Executive
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="12" /> Distribution/Commerce
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="13" /> Electronique/Microélectronique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="14" /> Environnement
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="15" /> Finance/Banque
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="16" /> Formation/Enseignement
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="17" /> Hôtellerie/Restauration/Tourisme
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="18" /> Industrie/Ingénierie/Production
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="19" /> Informatique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="20" /> Juridique/Fiscal/Droit
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="21" /> Marketing
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="22" /> Public/Parapublic
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="23" /> Ressources Humaines
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="24" /> Santé/Social/Biologie/Humanitaire
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="25" /> Télécom/Réseaux
-                            </td>
-                            
-                              <td>&nbsp;</td>
-                              </tr>
+                      		<%
+                      		int i=0;
+                      		for(SecteurActivite s : secteurActs) {
+                      			i++;
+                      			if(i%2 == 0) {%>
+		                            
+		                            <td>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> /><%=s.getIntitule()%>
+		                            </td>
+		                            </tr>
+                            	<%} else{%>
+                            		<tr>
+		                            <td>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> /><%=s.getIntitule()%>
+		                            </td>
+		                            
+                            	<%} %>
+                            <%} 
+                      		if(i%2==1) out.println("</tr>");%>
                               
                     </table>                
                   </small>

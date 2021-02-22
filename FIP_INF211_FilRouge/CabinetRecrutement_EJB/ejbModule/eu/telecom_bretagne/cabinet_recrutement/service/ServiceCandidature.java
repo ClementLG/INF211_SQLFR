@@ -53,6 +53,18 @@ public class ServiceCandidature implements IServiceCandidature
   }
   //-----------------------------------------------------------------------------
   @Override
+  public List<SecteurActivite> listeSecteurs()
+  {
+    return secteuractiviteDAO.findAll();
+  }
+//-----------------------------------------------------------------------------
+  @Override
+  public List<NiveauQualification> listeNiveauQualification()
+  {
+    return niveauqualificationDAO.findAll();
+  }
+  //-----------------------------------------------------------------------------
+  @Override
   public NiveauQualification findNQByID(Integer id)
   {
     return niveauqualificationDAO.findById(id);

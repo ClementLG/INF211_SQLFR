@@ -1,3 +1,5 @@
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite"%>
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification"%>
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur"%>
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -9,6 +11,8 @@
 <%
   IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator.getInstance().getRemoteInterface("ServiceCandidature");
   List<Candidature> candidatures = serviceCandidature.listeCandidature();
+  List<NiveauQualification> niveauqualif = serviceCandidature.listeNiveauQualification();
+  List<SecteurActivite> secteurActs = serviceCandidature.listeSecteurs();
   IServiceSecteur serviceSecteur = (IServiceSecteur) ServicesLocator.getInstance().getRemoteInterface("ServiceSecteur");
   Object utilisateur = session.getAttribute("utilisateur");
   Candidature candX = (Candidature) utilisateur;
@@ -51,37 +55,15 @@
                   <div class="form-group">
                     <label>Niveau de qualification</label>
                     <small>
+                    <% for(NiveauQualification nq : niveauqualif){%>
                       
                         <div class="radio">
                           <label>
-                            <input type="radio" name="niveau" value="1" <%if(candX.getNiveauqualificationBean().getId()==1) out.print("checked"); %>/>CAP/BEP
+                            <input type="radio" name="niveau" value=<%=nq.getId()%> <%if(candX.getNiveauqualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
+                            <%//if(candX.getNiveauqualificationBean().getId()==nq.getId()) out.println("checked"); %>
                           </label>
                         </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="2" <%if(candX.getNiveauqualificationBean().getId()==2) out.print("checked"); %>/>Bac
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="3" <%if(candX.getNiveauqualificationBean().getId()==3) out.print("checked"); %>/>Bac+3
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="4" <%if(candX.getNiveauqualificationBean().getId()==4) out.print("checked"); %>/>Bac+5
-                          </label>
-                        </div>
-                        
-                        <div class="radio">
-                          <label>
-                            <input type="radio" name="niveau" value="5" <%if(candX.getNiveauqualificationBean().getId()==5) out.print("checked"); %>/>Doctorat
-                          </label>
-                        </div>
-                        
+                        <%} %>                         
                     </small>
                   </div>
                 </div>
@@ -91,134 +73,25 @@
                   <small>
                     <table border="0" width="100%">
                       <!-- Un petit système à la volée pour mettre les checkboxes en deux colonnes...  -->
-                      
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="1" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 1)) out.print("checked");%>/> Achats/Logistique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="2" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 2)) out.print("checked");%>/> Assistanat/Secrétariat
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="3" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 3)) out.print("checked");%>/> Agriculture
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="4" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 4)) out.print("checked");%>/> Agroalimentaire
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="5" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 5)) out.print("checked");%>/> Assurance
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="6" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 6)) out.print("checked");%>/> Audit/Conseil/Expertises
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="7" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 7)) out.print("checked");%>/> BTP/Immobilier
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="8" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 8)) out.print("checked");%>/> Commercial
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="9" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 9)) out.print("checked");%>/> Communication/Art/Média/Mode
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="10" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 10)) out.print("checked");%>/> Comptabilité
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="11" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 11)) out.print("checked");%>/> Direction Générale/Executive
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="12" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 12)) out.print("checked");%>/> Distribution/Commerce
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="13" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 13)) out.print("checked");%>/> Electronique/Microélectronique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="14" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 14)) out.print("checked");%>/> Environnement
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="15" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 15)) out.print("checked");%>/> Finance/Banque
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="16" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 16)) out.print("checked");%>/> Formation/Enseignement
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="17" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 17)) out.print("checked");%>/> Hôtellerie/Restauration/Tourisme
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="18" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 18)) out.print("checked");%>/> Industrie/Ingénierie/Production
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="19" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 19)) out.print("checked");%>/> Informatique
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="20" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 20)) out.print("checked");%>/> Juridique/Fiscal/Droit
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="21" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 21)) out.print("checked");%>/> Marketing
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="22" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 22)) out.print("checked");%>/> Public/Parapublic
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="23" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 23)) out.print("checked");%>/> Ressources Humaines
-                            </td>
-                            
-                            <td>
-                              <input type="checkbox" name="secteur" value="24" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 24)) out.print("checked");%>/> Santé/Social/Biologie/Humanitaire
-                            </td>
-                            </tr>
-                            
-                            <tr>
-                            <td>
-                              <input type="checkbox" name="secteur" value="25" <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), 25)) out.print("checked");%>/> Télécom/Réseaux
-                            </td>
-                            
-                              <td>&nbsp;</td>
-                              </tr>
+                      		<%
+                      		int i=0;
+                      		for(SecteurActivite s : secteurActs) {
+                      			i++;
+                      			if(i%2 == 0) {%>
+		                            
+		                            <td>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                            </td>
+		                            </tr>
+                            	<%} else{%>
+                            		<tr>
+		                            <td>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                            </td>
+		                            
+                            	<%} %>
+                            <%} 
+                      		if(i%2==1) out.println("</tr>");%>
                               
                     </table>                
                   </small>

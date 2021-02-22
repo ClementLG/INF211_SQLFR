@@ -34,6 +34,8 @@ public interface IServiceCandidature
    */
   public List<Candidature> listeCandidature();
   //-----------------------------------------------------------------------------
+  public List<NiveauQualification> listeNiveauQualification();
+  public List<SecteurActivite> listeSecteurs();
   public NiveauQualification findNQByID(Integer id);
   public Date getCurrentDate();
   public Date convertDate(String date);
