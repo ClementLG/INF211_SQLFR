@@ -2,7 +2,13 @@
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
-                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise"%>
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature"%>
+
+<%
+
+Object utilisateur = session.getAttribute("utilisateur");
+%>
 
 <div class="navbar-default sidebar" role="navigation">
   <div class="sidebar-nav navbar-collapse">
@@ -29,7 +35,36 @@
           <li><a href="template.jsp?action=liste_candidatures">Liste des candidatures</a></li>
         </ul> <!-- /.nav-second-level -->
       </li>
+      
+      <!--
+        MENU Entreprise
+      -->
+      <%
 
+      if(utilisateur instanceof Entreprise){
+	  %>
+      
+	  <li><a href="#"><i class="fa fa-th"></i> Menu <strong>ENTREPRISE</strong><span class="fa arrow"></span></a>
+      <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+      	<li><a href="template.jsp?action=maj_entreprise&amp;id_entreprise=2">Mettre à jour les informations de l'entreprise</a></li>
+        	<li><a href="template.jsp?action=nouvelle_offre">Nouvelle offre d'emploi</a></li>
+			<li><a href="template.jsp?action=entreprise_liste_offres&amp;id_entreprise=2">Liste de mes offres d'emploi (1)</a></li>
+       </ul> <!-- /.nav-second-level -->
+	   </li> 
+		<%} %>
+	
+	  <%
+
+      if(utilisateur instanceof Candidature){
+	  %>
+	   <li>
+       	<a href="#"><i class="fa fa-user"></i> Menu <strong>CANDIDATURE</strong><span class="fa arrow"></span></a>
+        	<ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+            <li><a href="template.jsp?action=maj_candidature&amp;id_candidature=1">Mettre à jour les informations de la candidature</a></li>
+            <li><a href="template.jsp?action=candidature_liste_offres&amp;id_candidature=1">Liste des offres d'emploi potentielles (1)</a></li>
+            </ul> <!-- /.nav-second-level -->
+       </li>
+       <%} %>
       <!--
         MENU SECONDAIRE
       -->
