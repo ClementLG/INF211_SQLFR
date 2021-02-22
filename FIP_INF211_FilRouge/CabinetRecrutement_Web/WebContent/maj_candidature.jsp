@@ -19,6 +19,45 @@
   //DEBUG DE KALITE
   //out.println("o------k :"+candX.getAdresseemail());
 %>
+<%
+	//?action=nouvelle_candidature&date_naissance=a&adresse_postale=b&adresse_email=c&cv=d&niveau=5&secteur=23&submit-insertion=
+//Pas de nom prenom car on a zappe che pas pk...
+if(request.getParameter("submit-insertion") != null){
+	if(request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
+	&& request.getParameter("adresse_postale").length() >0
+	&& request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
+	&& request.getParameter("cv").length() >0
+	&& request.getParameter("niveau").length() >0
+	&& request.getParameter("secteur").length() >0
+	){
+		candX.setAdresseemail(request.getParameter("adresse_email"));
+		candX.setAdressepostale(request.getParameter("adresse_postale"));
+		candX.setCv(request.getParameter("cv"));
+		candX.setDatenaissance(serviceCandidature.convertDate(request.getParameter("date_naissance")));
+		candX.setNiveauQualificationBean(serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau"))));
+
+		candX = serviceCandidature.execUpdate(candX);
+		session.setAttribute("utilisateur",candX);
+		
+		//out.println("iDDDDDDDDDDDDDDDDDDDDDDD = "+cand_ok.getId());
+		//serviceCandidature.majSecteursActivites(request.getParameterValues("secteur"), cand_ok.getId());
+		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
+		out.println("<h1 style=\"color: green;text-align: center\"> Candidature MAJ ! </h1>");
+	
+	} else {
+		if (!request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
+		&& request.getParameter("date_naissance").length() > 0) {
+	out.println("<h2 style=\"color: red;text-align: center\"> Date  au incorrecte !  (jj/mm/aaaa) ! </h2>");
+		} else if (!request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
+		&& request.getParameter("adresse_email").length() > 0) {
+
+	out.println(
+			"<h2 style=\"color: red;text-align: center\"> adresse email incorrecte ! (exemple@fournisseur.ex) </h2>");
+		} else
+	out.println("<h2 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h2>");
+	}
+}
+%>
 <!-- base code demo -->
 <div class="row">
   <div class="col-lg-12">
@@ -108,43 +147,4 @@
     </div> <!-- /.panel -->
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
-<%
-	//?action=nouvelle_candidature&date_naissance=a&adresse_postale=b&adresse_email=c&cv=d&niveau=5&secteur=23&submit-insertion=
-//Pas de nom prenom car on a zappe che pas pk...
-if(request.getParameter("submit-insertion") != null){
-	if(request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
-	&& request.getParameter("adresse_postale").length() >0
-	&& request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
-	&& request.getParameter("cv").length() >0
-	&& request.getParameter("niveau").length() >0
-	&& request.getParameter("secteur").length() >0
-	){
-		candX.setAdresseemail(request.getParameter("adresse_email"));
-		candX.setAdressepostale(request.getParameter("adresse_postale"));
-		candX.setCv(request.getParameter("cv"));
-		candX.setDatenaissance(serviceCandidature.convertDate(request.getParameter("date_naissance")));
-		candX.setNiveauQualificationBean(serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau"))));
 
-		candX = serviceCandidature.execUpdate(candX);
-		session.setAttribute("utilisateur",candX);
-		
-		//out.println("iDDDDDDDDDDDDDDDDDDDDDDD = "+cand_ok.getId());
-		//serviceCandidature.majSecteursActivites(request.getParameterValues("secteur"), cand_ok.getId());
-		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
-		out.println("<h1 style=\"color: green;text-align: center\"> Candidature MAJ ! </h1>");
-		response.sendRedirect("index.jsp");
-	
-	} else {
-		if (!request.getParameter("date_naissance").matches("((0?[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4})")
-		&& request.getParameter("date_naissance").length() > 0) {
-	out.println("<h2 style=\"color: red;text-align: center\"> Date  au incorrecte !  (jj/mm/aaaa) ! </h2>");
-		} else if (!request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
-		&& request.getParameter("adresse_email").length() > 0) {
-
-	out.println(
-			"<h2 style=\"color: red;text-align: center\"> adresse email incorrecte ! (exemple@fournisseur.ex) </h2>");
-		} else
-	out.println("<h2 style=\"color: red;text-align: center\"> merci de rentrer des champs ! </h2>");
-	}
-}
-%>
