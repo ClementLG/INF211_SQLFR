@@ -37,7 +37,7 @@ public class MessageCandidature implements Serializable {
 
 	public MessageCandidature() {
 	}
-	
+
 	public MessageCandidature(String corps, Date envoi, Candidature candidature, OffreEmploi offre) {
 		this.corpsmessage = corps;
 		this.dateenvoi = envoi;

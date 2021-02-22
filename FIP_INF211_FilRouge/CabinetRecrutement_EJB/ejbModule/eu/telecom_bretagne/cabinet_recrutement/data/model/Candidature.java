@@ -32,6 +32,10 @@ public class Candidature implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date datenaissance;
 
+	private String nom;
+
+	private String prenom;
+
 	//bi-directional many-to-one association to NiveauQualification
 	@ManyToOne
 	@JoinColumn(name="niveau_qualification")
@@ -48,10 +52,10 @@ public class Candidature implements Serializable {
 	//bi-directional many-to-many association to SecteurActivite
 	@ManyToMany(mappedBy="candidatures", fetch=FetchType.EAGER)
 	private Set<SecteurActivite> secteurActivites;
-	
+
 	public Candidature() {
 	}
-	
+
 	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif) {
 		this.adresseemail = mail;
 		this.adressepostale = adresse;
@@ -62,6 +66,18 @@ public class Candidature implements Serializable {
 	}
 
 	public Candidature(String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif, Set<SecteurActivite> liste_secteurs) {
+		this.adresseemail = mail;
+		this.adressepostale = adresse;
+		this.cv = CV;
+		this.datedepot = depot;
+		this.datenaissance = naissance;
+		this.niveauQualificationBean = qualif;
+		this.secteurActivites = liste_secteurs;
+	}
+	
+	public Candidature(String nom, String prenom, String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif, Set<SecteurActivite> liste_secteurs) {
+		this.nom = nom;
+		this.prenom = prenom;
 		this.adresseemail = mail;
 		this.adressepostale = adresse;
 		this.cv = CV;
@@ -119,7 +135,23 @@ public class Candidature implements Serializable {
 		this.datenaissance = datenaissance;
 	}
 
-	public NiveauQualification getNiveauqualificationBean() {
+	public String getNom() {
+		return this.nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return this.prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public NiveauQualification getNiveauQualificationBean() {
 		return this.niveauQualificationBean;
 	}
 
@@ -127,7 +159,7 @@ public class Candidature implements Serializable {
 		this.niveauQualificationBean = niveauQualificationBean;
 	}
 
-	public Set<MessageCandidature> getMessagecandidatures() {
+	public Set<MessageCandidature> getMessageCandidatures() {
 		return this.messageCandidatures;
 	}
 
@@ -136,20 +168,20 @@ public class Candidature implements Serializable {
 	}
 
 	public MessageCandidature addMessageCandidature(MessageCandidature messageCandidature) {
-		getMessagecandidatures().add(messageCandidature);
+		getMessageCandidatures().add(messageCandidature);
 		messageCandidature.setCandidatureBean(this);
 
 		return messageCandidature;
 	}
 
 	public MessageCandidature removeMessageCandidature(MessageCandidature messageCandidature) {
-		getMessagecandidatures().remove(messageCandidature);
+		getMessageCandidatures().remove(messageCandidature);
 		messageCandidature.setCandidatureBean(null);
 
 		return messageCandidature;
 	}
 
-	public Set<MessageOffredemploi> getMessageoffredemplois() {
+	public Set<MessageOffredemploi> getMessageOffredemplois() {
 		return this.messageOffredemplois;
 	}
 
@@ -158,20 +190,20 @@ public class Candidature implements Serializable {
 	}
 
 	public MessageOffredemploi addMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
-		getMessageoffredemplois().add(messageOffredemploi);
+		getMessageOffredemplois().add(messageOffredemploi);
 		messageOffredemploi.setCandidatureBean(this);
 
 		return messageOffredemploi;
 	}
 
 	public MessageOffredemploi removeMessageOffredemploi(MessageOffredemploi messageOffredemploi) {
-		getMessageoffredemplois().remove(messageOffredemploi);
+		getMessageOffredemplois().remove(messageOffredemploi);
 		messageOffredemploi.setCandidatureBean(null);
 
 		return messageOffredemploi;
 	}
 
-	public Set<SecteurActivite> getSecteuractivites() {
+	public Set<SecteurActivite> getSecteurActivites() {
 		return this.secteurActivites;
 	}
 

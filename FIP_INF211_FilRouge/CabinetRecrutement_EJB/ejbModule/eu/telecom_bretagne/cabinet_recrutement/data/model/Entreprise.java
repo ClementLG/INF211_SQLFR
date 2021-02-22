@@ -31,7 +31,7 @@ public class Entreprise implements Serializable {
 
 	public Entreprise() {
 	}
-	
+
 	public Entreprise(String adresse, String Descriptif, String Nom) {
 		this.adressepostale = adresse;
 		this.descriptif = Descriptif;
@@ -50,7 +50,7 @@ public class Entreprise implements Serializable {
 		return this.adressepostale;
 	}
 
-	public void setAdressepostale(String adressepostale) {
+	public void setAdressePostale(String adressepostale) {
 		this.adressepostale = adressepostale;
 	}
 
@@ -70,7 +70,7 @@ public class Entreprise implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<OffreEmploi> getOffreemplois() {
+	public Set<OffreEmploi> getOffreEmplois() {
 		return this.offreEmplois;
 	}
 
@@ -79,14 +79,14 @@ public class Entreprise implements Serializable {
 	}
 
 	public OffreEmploi addOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreemplois().add(offreEmploi);
+		getOffreEmplois().add(offreEmploi);
 		offreEmploi.setEntrepriseBean(this);
 
 		return offreEmploi;
 	}
 
 	public OffreEmploi removeOffreEmploi(OffreEmploi offreEmploi) {
-		getOffreemplois().remove(offreEmploi);
+		getOffreEmplois().remove(offreEmploi);
 		offreEmploi.setEntrepriseBean(null);
 
 		return offreEmploi;

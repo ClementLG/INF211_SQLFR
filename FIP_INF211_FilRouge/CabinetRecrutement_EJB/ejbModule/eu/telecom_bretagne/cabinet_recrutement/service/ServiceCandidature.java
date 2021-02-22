@@ -97,7 +97,7 @@ public class ServiceCandidature implements IServiceCandidature
 	 String SecteursToString = "";
 	 
 	 try {
-		 for (SecteurActivite secteurs_recup : cand.getSecteuractivites()) {
+		 for (SecteurActivite secteurs_recup : cand.getSecteurActivites()) {
 			 SecteursToString+=secteurs_recup.getIntitule()+"<br>";
 			 //System.out.println(secteurs_recup.getIntitule());
          }			 
@@ -131,7 +131,7 @@ public class ServiceCandidature implements IServiceCandidature
 				 s = secteuractiviteDAO.findById(Integer.parseInt(sect));
 				 s.getCandidatures().add(c);
 				 secteuractiviteDAO.update(s);
-				 c.getSecteuractivites().add(s);
+				 c.getSecteurActivites().add(s);
 				 candidatureDAO.update(c);	
 			} catch (Exception e) {
 				System.out.println("---------------> majDuSecteurDansCandErreur");

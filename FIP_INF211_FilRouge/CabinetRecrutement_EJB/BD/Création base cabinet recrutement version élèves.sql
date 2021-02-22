@@ -69,6 +69,8 @@ CREATE TABLE offre_emploi (
 CREATE TABLE candidature (
     id serial NOT NULL,
 	niveau_qualification integer,
+	nom varchar(255) NOT NULL,
+	prenom varchar(255) NOT NULL,
 	datenaissance date,
 	adressepostale varchar(255),
 	adresseemail varchar(255) NOT NULL,
@@ -134,12 +136,12 @@ INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('IMT Atlantique
 INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('ENIB','Une école d''ingénieur juste à côté...','Plouzané');
 INSERT INTO entreprise (nom, descriptif, adressepostale) VALUES ('GOOGLE','Grande entreprise de la Tech','DUBLIN Irlande');
 
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV1',TO_DATE('01/01/1999','DD-MM-YYYY'),'jean@gmail.com','4 rue des bouleaux PARIS',3,TO_DATE('06/02/2021','DD-MM-YYYY'));
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV2',TO_DATE('18/11/2000','DD-MM-YYYY'),'paul@gmail.com','46 rue des ifs BORDEAUX',2,TO_DATE('03/02/2021','DD-MM-YYYY'));
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV3',TO_DATE('27/09/1997','DD-MM-YYYY'),'jacques@gmail.com','34 rue des arbustes MARSEILLE',4,TO_DATE('24/01/2021','DD-MM-YYYY'));
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV4',TO_DATE('14/04/1994','DD-MM-YYYY'),'pierre@gmail.com','8 rue des tulipes LYON',4,TO_DATE('30/01/2021','DD-MM-YYYY'));
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV5',TO_DATE('07/06/2000','DD-MM-YYYY'),'florian@gmail.com','27 rue des paquerettes LILLE',4,TO_DATE('11/02/2021','DD-MM-YYYY'));
-INSERT INTO candidature (cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('CV6',TO_DATE('30/10/2001','DD-MM-YYYY'),'matthieu@gmail.com','26 rue des coquelicots ANGERS',4,TO_DATE('27/01/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('VALJEAN','Jean','CV1',TO_DATE('01/01/1999','DD-MM-YYYY'),'jean@gmail.com','4 rue des bouleaux PARIS',3,TO_DATE('06/02/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('GIROND','Paul','CV2',TO_DATE('18/11/2000','DD-MM-YYYY'),'paul@gmail.com','46 rue des ifs BORDEAUX',2,TO_DATE('03/02/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('HADIT','Jacques','CV3',TO_DATE('27/09/1997','DD-MM-YYYY'),'jacques@gmail.com','34 rue des arbustes MARSEILLE',4,TO_DATE('24/01/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('GALET','Pierre','CV4',TO_DATE('14/04/1994','DD-MM-YYYY'),'pierre@gmail.com','8 rue des tulipes LYON',4,TO_DATE('30/01/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('TABOUL','Florian','CV5',TO_DATE('07/06/2000','DD-MM-YYYY'),'florian@gmail.com','27 rue des paquerettes LILLE',4,TO_DATE('11/02/2021','DD-MM-YYYY'));
+INSERT INTO candidature (nom,prenom,cv,datenaissance,adresseemail,adressepostale,niveau_qualification,datedepot) VALUES ('RICHARD','Matthieu','CV6',TO_DATE('30/10/2001','DD-MM-YYYY'),'matthieu@gmail.com','26 rue des coquelicots ANGERS',4,TO_DATE('27/01/2021','DD-MM-YYYY'));
 
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage codage de PASS',1,'Coder tout le backend en PHP',1,'Etudiant Ingénieur',TO_DATE('01/01/2021','DD-MM-YYYY'));
 INSERT INTO offre_emploi (titre,entreprise,descriptifmission,niveau_qualification,profilrecherche,datedepot) VALUES ('Stage gestion BDD',2,'Analyse BDD du personnel',4,'Etudiant Ingénieur',TO_DATE('05/01/2021','DD-MM-YYYY'));

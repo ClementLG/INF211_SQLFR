@@ -41,7 +41,7 @@
                  <td>ENT_<%=entreprise.getId()%></td>
                  <td><%=entreprise.getNom()%></td>
                  <td><%=entreprise.getAdressePostale()%></td>
-                 <td><%=entreprise.getOffreemplois().size()%></td>
+                 <td><%=entreprise.getOffreEmplois().size()%></td>
                   <td align="center"><a href="template.jsp?action=infos_entreprise&id=<%=entreprise.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
                 <%

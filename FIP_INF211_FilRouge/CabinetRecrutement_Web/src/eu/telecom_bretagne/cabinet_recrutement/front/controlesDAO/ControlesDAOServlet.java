@@ -387,7 +387,7 @@ public class ControlesDAOServlet extends HttpServlet {
 							 s.getCandidatures().add(c);
 							 secteuractiviteDAO.update(s);
 							 out.println("update du secteur ok");
-							 c.getSecteuractivites().add(s);
+							 c.getSecteurActivites().add(s);
 							 candidatureDAO2.update(c);
 							 out.println("update du cand ok");
 							 out.println("secteur cascade ok !");
@@ -426,7 +426,7 @@ public class ControlesDAOServlet extends HttpServlet {
 			List<Candidature> candidatures = candidatureDAO.findAll();
 
 			for (Candidature candidature : candidatures) {
-				out.println(candidature.getCv());
+				out.println(candidature.getNom() + " " + candidature.getPrenom());
 			}
 			out.println();
 
@@ -435,10 +435,12 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + c.getId());
 			out.println("Cv : " + c.getCv());
 			out.println("Date de Depot : " + c.getDatedepot());
+			out.println("Nom : " + c.getNom());
+			out.println("Prenom : " + c.getPrenom());
 			out.println("Adresse Mail : " + c.getAdresseemail());
 			out.println("Date de Naissance : " + c.getDatenaissance());
 			out.println("Adresse Postale : " + c.getAdressepostale());
-			out.println("Niveau Qualification : " + c.getNiveauqualificationBean().getIntitule());
+			out.println("Niveau Qualification : " + c.getNiveauQualificationBean().getIntitule());
 			out.println();
 
 			out.println("Obtention de la candidature n° 2 :");
@@ -446,10 +448,12 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + c.getId());
 			out.println("Cv : " + c.getCv());
 			out.println("Date de Depot : " + c.getDatedepot());
+			out.println("Nom : " + c.getNom());
+			out.println("Prenom : " + c.getPrenom());
 			out.println("Adresse Mail : " + c.getAdresseemail());
 			out.println("Date de Naissance : " + c.getDatenaissance());
 			out.println("Adresse Postale : " + c.getAdressepostale());
-			out.println("Niveau Qualification : " + c.getNiveauqualificationBean().getIntitule());
+			out.println("Niveau Qualification : " + c.getNiveauQualificationBean().getIntitule());
 			out.println();
 
 			out.println("Obtention de la candidature n° 3 :");
@@ -457,10 +461,12 @@ public class ControlesDAOServlet extends HttpServlet {
 			out.println("Id : " + c.getId());
 			out.println("Cv : " + c.getCv());
 			out.println("Date de Depot : " + c.getDatedepot());
+			out.println("Nom : " + c.getNom());
+			out.println("Prenom : " + c.getPrenom());
 			out.println("Adresse Mail : " + c.getAdresseemail());
 			out.println("Date de Naissance : " + c.getDatenaissance());
 			out.println("Adresse Postale : " + c.getAdressepostale());
-			out.println("Niveau Qualification : " + c.getNiveauqualificationBean().getIntitule());
+			out.println("Niveau Qualification : " + c.getNiveauQualificationBean().getIntitule());
 			out.println();
 
 			try {
@@ -471,7 +477,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				liste_secteurs.add(secteuractiviteDAO.findById(19));
 				liste_secteurs.add(secteuractiviteDAO.findById(25));
 				Date datedepot = new SimpleDateFormat("dd/MM/yyyy").parse(s_datenaissance);
-				Candidature cand_test = new Candidature("Florianelanesse@gmail.com", "Carquefou", "CV trop lourd",
+				Candidature cand_test = new Candidature("CARLITA", "Floriane", "Florianelanesse@gmail.com", "Carquefou", "CV trop lourd",
 						datedepot, datenaissance, niveauqualificationDAO.findById(1),liste_secteurs);
 				Candidature cand_recup = null;
 				int id_cand = 0;
@@ -481,12 +487,14 @@ public class ControlesDAOServlet extends HttpServlet {
 				id_cand = cand_test.getId();
 				cand_recup = candidatureDAO.findById(id_cand);
 				if ((cand_test.getId() == cand_recup.getId())
+						&& (cand_test.getNom().equals(cand_recup.getNom()))
+						&& (cand_test.getPrenom().equals(cand_recup.getPrenom()))
 						&& (cand_test.getAdresseemail().equals(cand_recup.getAdresseemail()))
 						&& (cand_test.getCv().equals(cand_recup.getCv()))
 						&& (cand_test.getAdressepostale().equals(cand_recup.getAdressepostale()))
 						&& (cand_test.getDatenaissance().equals(cand_recup.getDatenaissance()))
 						&& (cand_test.getDatedepot().equals(cand_recup.getDatedepot()))
-						&& (cand_test.getNiveauqualificationBean().getId() == cand_recup.getNiveauqualificationBean()
+						&& (cand_test.getNiveauQualificationBean().getId() == cand_recup.getNiveauQualificationBean()
 								.getId())) {
 					out.println("Ajout et Recup OK");
 				} else {
@@ -495,7 +503,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println();
 				
 				out.println("Liste des Secteurs Activites de la candidature de test : ");
-				Set<SecteurActivite> listes_activite_recup = cand_recup.getSecteuractivites();
+				Set<SecteurActivite> listes_activite_recup = cand_recup.getSecteurActivites();
 				for (SecteurActivite secteurs_recup : listes_activite_recup) {
 					out.println(secteurs_recup.getIntitule());
 				}
@@ -504,7 +512,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Liste des Candidatures : ");
 				candidatures = candidatureDAO.findAll();
 				for (Candidature candidature : candidatures) {
-					out.println(candidature.getCv());
+					out.println(candidature.getNom() + " " + candidature.getPrenom());
 				}
 				out.println();
 
@@ -527,7 +535,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Affichage par Secteur Activité et Niveau Qualif (Informatique et Bac+4) ");
 				List<Candidature> list_test = candidatureDAO.findByActivitySector(19, 4);
 				for (Candidature candidature : list_test) {
-					out.println(candidature.getCv());
+					out.println(candidature.getNom() + " " + candidature.getPrenom());
 				}
 				out.println();
 
@@ -544,7 +552,7 @@ public class ControlesDAOServlet extends HttpServlet {
 				out.println("Liste des Candidatures : ");
 				candidatures = candidatureDAO.findAll();
 				for (Candidature candidature : candidatures) {
-					out.println(candidature.getCv());
+					out.println(candidature.getNom() + " " + candidature.getPrenom());
 				}
 				out.println();
 
