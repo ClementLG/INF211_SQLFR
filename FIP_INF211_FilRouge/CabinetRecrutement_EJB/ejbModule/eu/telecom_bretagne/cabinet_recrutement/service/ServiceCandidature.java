@@ -103,8 +103,9 @@ public class ServiceCandidature implements IServiceCandidature
   }
   
   //-----------------------------------------------------------------------------
-  public void execUpdate(Candidature candidature) {
-	  candidatureDAO.update(candidature);
+  public Candidature execUpdate(Candidature candidature) {
+	  Candidature c = candidatureDAO.update(candidature);
+	  return c;
   }
   
 	//-----------------------------------------------------------------------------
@@ -137,5 +138,14 @@ public class ServiceCandidature implements IServiceCandidature
 			//System.out.println(secteuractiviteDAO.findById(Integer.parseInt(sect[i])).getIntitule());
 		}
 		return mySet;
+	}
+	//-----------------------------------------------------------------------------
+	public Boolean doesSectorExist(Set<SecteurActivite> sects, int id) {
+		for(SecteurActivite s : sects) {
+			if(s.getId()==id) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
