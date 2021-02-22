@@ -33,7 +33,6 @@ public class SecteurActivite implements Serializable {
 			@JoinColumn(name="candidature")
 			}
 		)
-	
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-many association to OffreEmploi
@@ -51,7 +50,7 @@ public class SecteurActivite implements Serializable {
 
 	public SecteurActivite() {
 	}
-	
+
 	public SecteurActivite(String intitule)  {
 		this.intitule = intitule;
 	}
@@ -71,7 +70,7 @@ public class SecteurActivite implements Serializable {
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
 	}
-	
+
 	public Set<Candidature> getCandidatures() {
 		return this.candidatures;
 	}
@@ -79,9 +78,9 @@ public class SecteurActivite implements Serializable {
 	public void setCandidatures(Set<Candidature> candidatures) {
 		this.candidatures = candidatures;
 	}
-
-	public void addCandidatures(Candidature candidature) {
-		this.candidatures.add(candidature);
+	
+	public void addCandidatures(Candidature candidature) {	
+		this.candidatures.add(candidature);	
 	}
 
 	public Set<OffreEmploi> getOffreEmplois() {

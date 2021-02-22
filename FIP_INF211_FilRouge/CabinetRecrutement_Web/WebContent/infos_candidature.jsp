@@ -84,7 +84,7 @@
                 </tr>
                 <tr class="warning">
                   <td><strong>Niveau qualification</strong></td>
-                  <td><%=candidature.getNiveauqualificationBean().getIntitule()%></td>
+                  <td><%=candidature.getNiveauQualificationBean().getIntitule()%></td>
                 </tr>
                 <tr class="warning">
                   <td><strong>Secteur activite</strong></td>

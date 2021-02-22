@@ -41,7 +41,7 @@
                  <td>CAND_<%=candidature.getId()%></td>
                  <td><%=candidature.getAdressepostale()%></td>
                  <td><%=candidature.getAdresseemail()%></td>
-                 <td><%=candidature.getNiveauqualificationBean().getIntitule()%></td>
+                 <td><%=candidature.getNiveauQualificationBean().getIntitule()%></td>
                  <td><%=candidature.getDatedepot()%></td>
                   <td align="center"><a href="template.jsp?action=infos_candidature&id=<%=candidature.getId()%>"><i class="fa fa-eye fa-lg"></i></a></td>
                 </tr>
