@@ -26,7 +26,8 @@ if(request.getParameter("submit-insertion") != null){
 		entX.setAdressepostale(request.getParameter("adresse_postale"));
 		entX.setDescriptif(request.getParameter("descriptif"));
 		entX.setNom(request.getParameter("nom"));
-		entX = serviceEntreprise.execPersist(entX);
+		entX = serviceEntreprise.execUpdate(entX);
+		session.setAttribute("utilisateur",entX);
 		//rediriger vers un truc, persite returne lentreprise et donc l ID --cllg
 		out.println("<h1 style=\"color: green;text-align: center\"> Entreprise MAJ ! </h1>");
 	}

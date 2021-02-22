@@ -42,13 +42,14 @@ Object utilisateur = session.getAttribute("utilisateur");
       <%
 
       if(utilisateur instanceof Entreprise){
+    	  Entreprise entX = (Entreprise) utilisateur;
 	  %>
       
 	  <li><a href="#"><i class="fa fa-th"></i> Menu <strong>ENTREPRISE</strong><span class="fa arrow"></span></a>
       <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
       	<li><a href="template.jsp?action=maj_entreprise&amp;id_entreprise=2">Mettre à jour les informations de l'entreprise</a></li>
         	<li><a href="template.jsp?action=nouvelle_offre">Nouvelle offre d'emploi</a></li>
-			<li><a href="template.jsp?action=entreprise_liste_offres&amp;id_entreprise=2">Liste de mes offres d'emploi (1)</a></li>
+			<li><a href="template.jsp?action=entreprise_liste_offres&amp;id_entreprise=2">Liste de mes offres d'emploi (<%=entX.getOffreemplois().size()%>)</a></li>
        </ul> <!-- /.nav-second-level -->
 	   </li> 
 		<%} %>

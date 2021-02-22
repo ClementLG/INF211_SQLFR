@@ -35,4 +35,10 @@ public interface IServiceEntreprise
    */
   public Entreprise execPersist(Entreprise entreprise);
 //-----------------------------------------------------------------------------
+  /**
+   * Permet de maj le tuble dans la table
+   * 
+   * @return l'objet entreprise maj
+   */
+  public Entreprise execUpdate(Entreprise entreprise);
 }

@@ -47,5 +47,11 @@ public class ServiceEntreprise implements IServiceEntreprise
   {
     return entrepriseDAO.persist(entreprise);
   }
+//-----------------------------------------------------------------------------
+  @Override
+  public Entreprise execUpdate(Entreprise entreprise)
+  {
+    return entrepriseDAO.update(entreprise);
+  }
   //-----------------------------------------------------------------------------
 }
