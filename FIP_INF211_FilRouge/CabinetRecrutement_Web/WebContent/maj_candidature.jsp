@@ -98,7 +98,7 @@ if(request.getParameter("submit-insertion") != null){
                       
                         <div class="radio">
                           <label>
-                            <input type="radio" name="niveau" value=<%=nq.getId()%> <%if(candX.getNiveauqualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
+                            <input type="radio" name="niveau" value=<%=nq.getId()%> <%if(candX.getNiveauQualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
                             <%//if(candX.getNiveauqualificationBean().getId()==nq.getId()) out.println("checked"); %>
                           </label>
                         </div>
@@ -119,13 +119,13 @@ if(request.getParameter("submit-insertion") != null){
                       			if(i%2 == 0) {%>
 		                            
 		                            <td>
-		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
 		                            </td>
 		                            </tr>
                             	<%} else{%>
                             		<tr>
 		                            <td>
-		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteuractivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
 		                            </td>
 		                            
                             	<%} %>

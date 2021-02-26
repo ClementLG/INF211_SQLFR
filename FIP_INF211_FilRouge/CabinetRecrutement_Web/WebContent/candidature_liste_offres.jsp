@@ -10,7 +10,7 @@
   IServiceOffreEmploi serviceOffreEmploi = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
   Object utilisateur = session.getAttribute("utilisateur");
   Candidature candX = (Candidature) utilisateur;
-  List<OffreEmploi> offreemplois = serviceOffreEmploi.getEmploiBySectorAndNQ(candX.getSecteuractivites(), candX.getNiveauqualificationBean());
+  List<OffreEmploi> offreemplois = serviceOffreEmploi.getEmploiBySectorAndNQ(candX.getSecteurActivites(), candX.getNiveauQualificationBean());
 %>
 
 <div class="row">

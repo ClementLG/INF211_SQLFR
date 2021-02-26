@@ -23,7 +23,7 @@ if(request.getParameter("submit-insertion") != null){
 	&& request.getParameter("descriptif").length() >0
 	&& request.getParameter("nom").length() >0){
 		
-		entX.setAdressepostale(request.getParameter("adresse_postale"));
+		entX.setAdressePostale(request.getParameter("adresse_postale"));
 		entX.setDescriptif(request.getParameter("descriptif"));
 		entX.setNom(request.getParameter("nom"));
 		entX = serviceEntreprise.execUpdate(entX);

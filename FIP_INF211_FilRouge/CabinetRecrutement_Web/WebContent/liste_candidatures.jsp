@@ -23,6 +23,8 @@
             <thead>
               <tr>
                 <th>Identifiant</th>
+                <th>Nom</th>
+                <th>Prenom</th>
                 <th>Adresse postale (ville)</th>
                 <th>mail</th>
                 <th>Niveau de qualification</th>
@@ -39,6 +41,8 @@
                 %>
                 <tr>
                  <td>CAND_<%=candidature.getId()%></td>
+                 <td><%=candidature.getNom()%></td>
+                 <td><%=candidature.getPrenom()%></td>
                  <td><%=candidature.getAdressepostale()%></td>
                  <td><%=candidature.getAdresseemail()%></td>
                  <td><%=candidature.getNiveauQualificationBean().getIntitule()%></td>

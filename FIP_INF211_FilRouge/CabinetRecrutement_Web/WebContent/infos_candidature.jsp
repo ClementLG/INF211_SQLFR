@@ -71,6 +71,14 @@
                   <td>CAND_<%=candidature.getId()%></td>
                 </tr>
                 <tr class="warning">
+                  <td width="200"><strong>Nom</strong></td>
+                  <td><%=candidature.getNom()%></td>
+                </tr>
+                <tr class="warning">
+                  <td width="200"><strong>Prenom</strong></td>
+                  <td><%=candidature.getPrenom()%></td>
+                </tr>
+                <tr class="warning">
                   <td><strong>Adresse postale</strong></td>
                   <td><%=candidature.getAdressepostale()%></td>
                 </tr>

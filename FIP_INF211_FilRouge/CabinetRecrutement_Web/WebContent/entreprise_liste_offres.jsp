@@ -39,7 +39,7 @@
             -->
             <tbody>
               <%
-              for(OffreEmploi offreemploi : entX.getOffreemplois())
+              for(OffreEmploi offreemploi : entX.getOffreEmplois())
               {
                 %>
                 <tr>

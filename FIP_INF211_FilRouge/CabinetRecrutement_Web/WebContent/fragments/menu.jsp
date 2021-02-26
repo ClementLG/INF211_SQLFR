@@ -49,7 +49,7 @@ Object utilisateur = session.getAttribute("utilisateur");
       <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
       	<li><a href="template.jsp?action=maj_entreprise&amp;id_entreprise=2">Mettre à jour les informations de l'entreprise</a></li>
         	<li><a href="template.jsp?action=nouvelle_offre">Nouvelle offre d'emploi</a></li>
-			<li><a href="template.jsp?action=entreprise_liste_offres&amp;id_entreprise=2">Liste de mes offres d'emploi (<%=entX.getOffreemplois().size()%>)</a></li>
+			<li><a href="template.jsp?action=entreprise_liste_offres&amp;id_entreprise=2">Liste de mes offres d'emploi (<%=entX.getOffreEmplois().size()%>)</a></li>
        </ul> <!-- /.nav-second-level -->
 	   </li> 
 		<%} %>

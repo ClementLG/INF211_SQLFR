@@ -86,6 +86,17 @@ public class Candidature implements Serializable {
 		this.niveauQualificationBean = qualif;
 		this.secteurActivites = liste_secteurs;
 	}
+	
+	public Candidature(String nom, String prenom, String mail,String adresse, String CV, Date depot, Date naissance, NiveauQualification qualif) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresseemail = mail;
+		this.adressepostale = adresse;
+		this.cv = CV;
+		this.datedepot = depot;
+		this.datenaissance = naissance;
+		this.niveauQualificationBean = qualif;
+	}
 
 	public Integer getId() {
 		return this.id;

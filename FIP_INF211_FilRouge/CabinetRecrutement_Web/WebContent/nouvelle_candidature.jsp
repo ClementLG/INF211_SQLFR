@@ -26,15 +26,12 @@
                         col-xs-12">
               <form role="form" action="template.jsp" method="get">
                 <input type="hidden" name="action" value="nouvelle_candidature" />
-                <% /**FAUDRA AJOUTER A LA FIN...
                 <div class="form-group">
                 <input class="form-control" placeholder="Nom" name="nom" />
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Prénom" name="prenom" />
-              </div>*/
-                %>
-                
+                <input class="form-control" placeholder="Prenom" name="prenom" />
+              </div>                
                 <div class="form-group">
                   <input class="form-control" placeholder="Date de naissance (format jj/mm/aaaa)" name="date_naissance" />
                 </div>
@@ -113,9 +110,13 @@ if(request.getParameter("submit-insertion") != null){
 	&& request.getParameter("cv").length() >0
 	&& request.getParameter("niveau").length() >0
 	&& request.getParameter("secteur").length() >0
+	&& request.getParameter("nom").length() >0
+	&& request.getParameter("prenom").length() >0
 	){
 		
 		Candidature cand_ok = new Candidature(
+				request.getParameter("prenom"),
+				request.getParameter("nom"),
 				request.getParameter("adresse_email"), 
 				request.getParameter("adresse_postale"), 
 				request.getParameter("cv"),
