@@ -1,11 +1,14 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Remote;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Interface du service gérant les entreprises.
@@ -29,4 +32,5 @@ public interface IServiceOffreEmploi
    */
   public List<OffreEmploi> listeOffreEmploi();
   //-----------------------------------------------------------------------------
+  public List<OffreEmploi> getEmploiBySectorAndNQ(Set<SecteurActivite> IDsSect, NiveauQualification idNQ);
 }

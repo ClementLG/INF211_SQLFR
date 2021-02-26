@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -11,7 +12,9 @@ import javax.jws.WebService;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServiceEntreprise
@@ -44,6 +47,16 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
     return offreemploiDAO.findAll();
   }
   //-----------------------------------------------------------------------------
-  
+  @Override
+  public List<OffreEmploi> getEmploiBySectorAndNQ(Set<SecteurActivite> IDsSect, NiveauQualification idNQ)
+  {
+	  List<OffreEmploi> l = new ArrayList<>();
+	  for(SecteurActivite s : IDsSect) {
+		  System.out.println("--------------"+s.getId()+"--------"+idNQ.getId()+"---------------");
+		  l.addAll(offreemploiDAO.findByActivitySector(s.getId(), idNQ.getId()));
+	  }
+    return l;
+  }
+  //-----------------------------------------------------------------------------
   
 }

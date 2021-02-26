@@ -51,7 +51,7 @@ if(request.getParameter("submit-insertion") != null){
               <form role="form" action="template.jsp" method="get">
                 <input type="hidden" name="action" value="maj_entreprise" />
                 <div class="form-group">
-                  <input class="form-control" placeholder="Nom de l'entreprise" name="nom" value=<%=entX.getNom()%>/>
+                  <input type="text" class="form-control" placeholder="Nom de l'entreprise" name="nom" value=<%=entX.getNom()%>/>
                 </div>
                 <div class="form-group">
                   <textarea class="form-control" placeholder="Descriptif de l'entreprise" rows="5" name="descriptif" ><%=entX.getDescriptif()%></textarea>
