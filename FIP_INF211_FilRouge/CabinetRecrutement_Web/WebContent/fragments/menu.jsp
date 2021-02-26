@@ -62,7 +62,7 @@ Object utilisateur = session.getAttribute("utilisateur");
        	<a href="#"><i class="fa fa-user"></i> Menu <strong>CANDIDATURE</strong><span class="fa arrow"></span></a>
         	<ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
             <li><a href="template.jsp?action=maj_candidature&amp;id_candidature=1">Mettre à jour les informations de la candidature</a></li>
-            <li><a href="template.jsp?action=candidature_liste_offres&amp;id_candidature=1">Liste des offres d'emploi potentielles (1)</a></li>
+            <li><a href="template.jsp?action=candidature_liste_offres&amp;id_candidature=1">Liste des offres d'emploi potentielles</a></li>
             </ul> <!-- /.nav-second-level -->
        </li>
        <%} %>

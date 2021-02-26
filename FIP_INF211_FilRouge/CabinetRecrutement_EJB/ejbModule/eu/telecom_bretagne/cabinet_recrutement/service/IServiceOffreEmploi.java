@@ -33,4 +33,5 @@ public interface IServiceOffreEmploi
   public List<OffreEmploi> listeOffreEmploi();
   //-----------------------------------------------------------------------------
   public List<OffreEmploi> getEmploiBySectorAndNQ(Set<SecteurActivite> IDsSect, NiveauQualification idNQ);
+  public String GetSecteursString(OffreEmploi offres);
 }

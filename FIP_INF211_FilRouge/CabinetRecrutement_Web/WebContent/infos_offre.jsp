@@ -4,6 +4,10 @@
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi"%>
+                
+<%
+  IServiceOffreEmploi serviceOffreEmploi = (IServiceOffreEmploi) ServicesLocator.getInstance().getRemoteInterface("ServiceOffreEmploi");
+%>
 
 <%
   String erreur = null;
@@ -82,6 +86,10 @@
                 <tr class="warning">
                   <td><strong>Niveau de qualification</strong></td>
                   <td><%=offreEmploi.getNiveauQualificationBean().getIntitule()%></td>
+                </tr>
+                <tr class="warning">
+                  <td><strong>Secteur activite</strong></td>
+                  <td><%=serviceOffreEmploi.GetSecteursString(offreEmploi)%></td>
                 </tr>
                 <tr class="warning">
                   <td><strong>Date de depot</strong></td>

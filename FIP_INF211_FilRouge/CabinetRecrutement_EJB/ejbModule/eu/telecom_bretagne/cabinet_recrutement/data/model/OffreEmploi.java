@@ -49,7 +49,7 @@ public class OffreEmploi implements Serializable {
 	private NiveauQualification niveauQualificationBean;
 
 	//bi-directional many-to-many association to SecteurActivite
-	@ManyToMany(mappedBy="offreEmplois")
+	@ManyToMany(mappedBy="offreEmplois", fetch=FetchType.EAGER)
 	private Set<SecteurActivite> secteurActivites;
 
 	public OffreEmploi() {

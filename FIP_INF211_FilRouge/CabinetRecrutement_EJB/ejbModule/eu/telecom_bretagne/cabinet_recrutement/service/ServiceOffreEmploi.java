@@ -11,6 +11,7 @@ import javax.jws.WebService;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
@@ -56,6 +57,22 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		  l.addAll(offreemploiDAO.findByActivitySector(s.getId(), idNQ.getId()));
 	  }
     return l;
+  }
+//-----------------------------------------------------------------------------
+  @Override
+  public String GetSecteursString(OffreEmploi offres) {
+	 String SecteursToString = "";
+	 
+	 try {
+		 for (SecteurActivite secteurs_recup : offres.getSecteurActivites()) {
+			 SecteursToString+=secteurs_recup.getIntitule()+"<br>";
+			 //System.out.println(secteurs_recup.getIntitule());
+         }			 
+	 } catch (Exception e) {
+		System.out.println("---------------- cassé get secteur acti ServiceOffresEmploi");
+	}
+
+	return SecteursToString;
   }
   //-----------------------------------------------------------------------------
   
