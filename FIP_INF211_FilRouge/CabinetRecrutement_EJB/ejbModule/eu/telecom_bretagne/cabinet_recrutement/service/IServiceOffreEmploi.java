@@ -1,5 +1,6 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -34,4 +35,12 @@ public interface IServiceOffreEmploi
   //-----------------------------------------------------------------------------
   public List<OffreEmploi> getEmploiBySectorAndNQ(Set<SecteurActivite> IDsSect, NiveauQualification idNQ);
   public String GetSecteursString(OffreEmploi offres);
+  public List<NiveauQualification> listeNiveauQualification();
+  public List<SecteurActivite> listeSecteurs();
+  public Date getCurrentDate();
+  public NiveauQualification findNQByID(Integer id);
+  public OffreEmploi execPersist(OffreEmploi oe);
+  public OffreEmploi execUpdate(OffreEmploi oe);
+  
+  
 }

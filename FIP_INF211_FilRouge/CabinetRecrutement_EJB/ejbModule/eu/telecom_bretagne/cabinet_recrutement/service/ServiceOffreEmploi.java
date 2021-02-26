@@ -1,5 +1,6 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -9,8 +10,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.EntrepriseDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
@@ -26,7 +30,10 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 public class ServiceOffreEmploi implements IServiceOffreEmploi
 {
   //-----------------------------------------------------------------------------
+  @EJB private CandidatureDAO         candidatureDAO;
   @EJB private OffreemploiDAO         offreemploiDAO;
+  @EJB private NiveauqualificationDAO         niveauqualificationDAO;
+  @EJB private SecteuractiviteDAO         secteuractiviteDAO;
   //-----------------------------------------------------------------------------
   /**
    * Default constructor.
@@ -75,5 +82,37 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 	return SecteursToString;
   }
   //-----------------------------------------------------------------------------
+  public List<SecteurActivite> listeSecteurs()
+  {
+    return secteuractiviteDAO.findAll();
+  }
+//-----------------------------------------------------------------------------
+  public List<NiveauQualification> listeNiveauQualification()
+  {
+    return niveauqualificationDAO.findAll();
+  }
+  //-----------------------------------------------------------------------------
+  @Override
+  public Date getCurrentDate() {
+	  Date currentDate=new Date(System.currentTimeMillis());
+	  return currentDate;
+  }
+  //----------------------------------------------------------------------------
+  public NiveauQualification findNQByID(Integer id)
+  {
+    return niveauqualificationDAO.findById(id);
+  }
+  public OffreEmploi execPersist(OffreEmploi oe) {
+	  OffreEmploi offre = offreemploiDAO.persist(oe);
+	  return offre;
+  }
   
+  //-----------------------------------------------------------------------------
+  public OffreEmploi execUpdate(OffreEmploi oe) {
+	  OffreEmploi offre = offreemploiDAO.update(oe);
+	  return offre;
+  }
+  
+	//-----------------------------------------------------------------------------
+
 }
