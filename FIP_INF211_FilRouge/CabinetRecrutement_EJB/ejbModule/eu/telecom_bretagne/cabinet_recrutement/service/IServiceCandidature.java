@@ -17,7 +17,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
  * @author Philippe TANGUY
  */
 @Remote
-public interface IServiceCandidature
+public interface IServiceCandidature extends IServicesGeneriques
 {
   //-----------------------------------------------------------------------------
   /**
@@ -34,11 +34,7 @@ public interface IServiceCandidature
    */
   public List<Candidature> listeCandidature();
   //-----------------------------------------------------------------------------
-  public List<NiveauQualification> listeNiveauQualification();
-  public List<SecteurActivite> listeSecteurs();
   public NiveauQualification findNQByID(Integer id);
-  public Date getCurrentDate();
-  public Date convertDate(String date);
   public Candidature execPersist(Candidature candidature);
   public Candidature execUpdate(Candidature candidature);
   public String GetSecteursString(Candidature cand);

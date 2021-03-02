@@ -24,102 +24,70 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
  */
 @Stateless
 @LocalBean
-public class ServiceCandidature implements IServiceCandidature
+public class ServiceCandidature extends ServicesGeneriques implements IServiceCandidature
 {
-  //-----------------------------------------------------------------------------
-  @EJB private CandidatureDAO         candidatureDAO;
-  @EJB private NiveauqualificationDAO         niveauqualificationDAO;
-  @EJB private SecteuractiviteDAO         secteuractiviteDAO;
-  //-----------------------------------------------------------------------------
-  /**
-   * 
-   * Default constructor.
-   */
-  public ServiceCandidature()
-  {
-    // TODO Auto-generated constructor stub
-  }
-  //-----------------------------------------------------------------------------
-  @Override
-  public Candidature getCandidature(int id)
-  {
-    return candidatureDAO.findById(id);
-  }
-  //-----------------------------------------------------------------------------
-  @Override
-  public List<Candidature> listeCandidature()
-  {
-    return candidatureDAO.findAll();
-  }
-  //-----------------------------------------------------------------------------
-  @Override
-  public List<SecteurActivite> listeSecteurs()
-  {
-    return secteuractiviteDAO.findAll();
-  }
-//-----------------------------------------------------------------------------
-  @Override
-  public List<NiveauQualification> listeNiveauQualification()
-  {
-    return niveauqualificationDAO.findAll();
-  }
-  //-----------------------------------------------------------------------------
-  @Override
-  public NiveauQualification findNQByID(Integer id)
-  {
-    return niveauqualificationDAO.findById(id);
-  }
-  //-----------------------------------------------------------------------------
-  @Override
-  public Date getCurrentDate() {
-	  Date currentDate=new Date(System.currentTimeMillis());
-	  return currentDate;
-  }
-  
-  //-----------------------------------------------------------------------------
-  public Date convertDate(String date) {
-	  //String date dd/mm/yyyy to Date object
-	  java.sql.Date dateConvertiSQL = new Date(0);
-	try {
-		java.util.Date dateConverti = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-		dateConvertiSQL = new Date(dateConverti.getTime());
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	//-----------------------------------------------------------------------------
+	@EJB private CandidatureDAO         candidatureDAO;
+	@EJB private NiveauqualificationDAO         niveauqualificationDAO;
+	@EJB private SecteuractiviteDAO         secteuractiviteDAO;
+	//-----------------------------------------------------------------------------
+	/**
+	 * 
+	 * Default constructor.
+	 */
+	public ServiceCandidature()
+	{
+		// TODO Auto-generated constructor stub
 	}
-	  return dateConvertiSQL;
-  }
-  
-//-----------------------------------------------------------------------------
-
-  @Override
-  public String GetSecteursString(Candidature cand) {
-	 String SecteursToString = "";
-	 
-	 try {
-		 for (SecteurActivite secteurs_recup : cand.getSecteurActivites()) {
-			 SecteursToString+=secteurs_recup.getIntitule()+"<br>";
-			 //System.out.println(secteurs_recup.getIntitule());
-         }			 
-	 } catch (Exception e) {
-		System.out.println("---------------- cassé get secteur acti ServiceCandidature");
+	//-----------------------------------------------------------------------------
+	@Override
+	public Candidature getCandidature(int id)
+	{
+		return candidatureDAO.findById(id);
+	}
+	//-----------------------------------------------------------------------------
+	@Override
+	public List<Candidature> listeCandidature()
+	{
+		return candidatureDAO.findAll();
+	}
+	//-----------------------------------------------------------------------------
+	@Override
+	public NiveauQualification findNQByID(Integer id)
+	{
+		return niveauqualificationDAO.findById(id);
 	}
 
-	return SecteursToString;
-  }
-  
-  //-----------------------------------------------------------------------------
-  public Candidature execPersist(Candidature candidature) {
-	  Candidature c = candidatureDAO.persist(candidature);
-	  return c;
-  }
-  
-  //-----------------------------------------------------------------------------
-  public Candidature execUpdate(Candidature candidature) {
-	  Candidature c = candidatureDAO.update(candidature);
-	  return c;
-  }
-  
+	//-----------------------------------------------------------------------------
+
+	@Override
+	public String GetSecteursString(Candidature cand) {
+		String SecteursToString = "";
+
+		try {
+			for (SecteurActivite secteurs_recup : cand.getSecteurActivites()) {
+				SecteursToString+=secteurs_recup.getIntitule()+"<br>";
+				//System.out.println(secteurs_recup.getIntitule());
+			}			 
+		} catch (Exception e) {
+			System.out.println("---------------- cassé get secteur acti ServiceCandidature");
+		}
+
+		return SecteursToString;
+	}
+
+	//-----------------------------------------------------------------------------
+	public Candidature execPersist(Candidature candidature) {
+		Candidature c = candidatureDAO.persist(candidature);
+		return c;
+	}
+
+	//-----------------------------------------------------------------------------
+	public Candidature execUpdate(Candidature candidature) {
+		Candidature c = candidatureDAO.update(candidature);
+		return c;
+	}
+
 	//-----------------------------------------------------------------------------
 	public void majSecteursActivites(String[] sects, int idC) {
 		SecteurActivite s;
@@ -128,19 +96,19 @@ public class ServiceCandidature implements IServiceCandidature
 		//System.out.println("-------------> idC = "+idC);
 		for(String sect : sects) {
 			try {
-				 s = secteuractiviteDAO.findById(Integer.parseInt(sect));
-				 s.getCandidatures().add(c);
-				 secteuractiviteDAO.update(s);
-				 c.getSecteurActivites().add(s);
-				 candidatureDAO.update(c);	
+				s = secteuractiviteDAO.findById(Integer.parseInt(sect));
+				s.getCandidatures().add(c);
+				secteuractiviteDAO.update(s);
+				c.getSecteurActivites().add(s);
+				candidatureDAO.update(c);	
 			} catch (Exception e) {
 				System.out.println("---------------> majDuSecteurDansCandErreur");
 			}
-					 
-			 
+
+
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------------
 	public Set<SecteurActivite> transformSecteurs(String[] sect) {
 		//System.out.println(sect[0]+""+sect[1]);

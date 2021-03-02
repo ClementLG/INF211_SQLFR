@@ -16,7 +16,7 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
  * @author Philippe TANGUY
  */
 @Remote
-public interface IServiceOffreEmploi
+public interface IServiceOffreEmploi extends IServicesGeneriques
 {
   //-----------------------------------------------------------------------------
   /**
@@ -35,12 +35,10 @@ public interface IServiceOffreEmploi
   //-----------------------------------------------------------------------------
   public List<OffreEmploi> getEmploiBySectorAndNQ(Set<SecteurActivite> IDsSect, NiveauQualification idNQ);
   public String GetSecteursString(OffreEmploi offres);
-  public List<NiveauQualification> listeNiveauQualification();
-  public List<SecteurActivite> listeSecteurs();
-  public Date getCurrentDate();
   public NiveauQualification findNQByID(Integer id);
   public OffreEmploi execPersist(OffreEmploi oe);
   public OffreEmploi execUpdate(OffreEmploi oe);
+  public void majSecteursActivites(String[] sects, int idOF);
   
   
 }
