@@ -67,7 +67,7 @@ public class NiveauqualificationDAO {
 	}
 	//-----------------------------------------------------------------------------
 	public NiveauQualification remove(NiveauQualification NiveauQualification) {
-		if (NiveauQualification != null) {
+		if ((NiveauQualification != null) & (!entityManager.contains(NiveauQualification))) {
 			NiveauQualification nq_suppr = entityManager.merge(NiveauQualification);
 			entityManager.remove(nq_suppr);
 		}

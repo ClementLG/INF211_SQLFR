@@ -67,7 +67,7 @@ public class SecteuractiviteDAO {
 	}
 	// -----------------------------------------------------------------------------
 	public SecteurActivite remove(SecteurActivite SecteurActivite) {
-		if (SecteurActivite != null) {
+		if ((SecteurActivite != null) & (!entityManager.contains(SecteurActivite))) {
 			SecteurActivite sa_suppr = entityManager.merge(SecteurActivite);
 			entityManager.remove(sa_suppr);
 		}
