@@ -52,6 +52,8 @@ if(request.getParameter("submit-insertion") != null){
 			entX.getOffreEmplois().add(of_ok);
 			entX = serviceEntreprise.execUpdate(entX);
 			serviceOffreEmploi.majSecteursActivites(request.getParameterValues("secteur"), of_ok.getId());
+			entX=serviceEntreprise.getEntreprise(entX.getId());
+			session.setAttribute("utilisateur", entX);
 			out.println("<h1 style=\"color: green;text-align: center\"> offre ajoutée ! </h1>");
 			
 		} catch(Exception e){
