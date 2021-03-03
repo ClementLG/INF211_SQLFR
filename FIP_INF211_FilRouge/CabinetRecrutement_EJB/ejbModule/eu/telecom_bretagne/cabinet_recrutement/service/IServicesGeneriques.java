@@ -33,6 +33,13 @@ public interface IServicesGeneriques
 	public Date convertDate(String date);
 	//-----------------------------------------------------------------------------
 	/**
+	 * Converti une Date en String
+	 * 
+	 * @return String
+	 */				
+	public String convertDatetoString(java.util.Date date);
+	//-----------------------------------------------------------------------------
+	/**
 	 * liste les niveau de qualification
 	 * 
 	 * @return List<NiveauQualification>

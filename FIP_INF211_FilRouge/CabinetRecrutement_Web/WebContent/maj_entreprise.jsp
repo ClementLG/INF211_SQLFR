@@ -51,13 +51,13 @@ if(request.getParameter("submit-insertion") != null){
               <form role="form" action="template.jsp" method="get">
                 <input type="hidden" name="action" value="maj_entreprise" />
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nom de l'entreprise" name="nom" value=<%=entX.getNom()%>/>
+                  <input type="text" class="form-control" placeholder="Nom de l'entreprise" name="nom" value="<%=entX.getNom()%>"/>
                 </div>
                 <div class="form-group">
                   <textarea class="form-control" placeholder="Descriptif de l'entreprise" rows="5" name="descriptif" ><%=entX.getDescriptif()%></textarea>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Adresse postale (ville)" name="adresse_postale" value=<%=entX.getAdressePostale()%>/>
+                  <input class="form-control" placeholder="Adresse postale (ville)" name="adresse_postale" value="<%=entX.getAdressePostale().toString()%>"/>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-success btn-circle btn-lg" name="submit-insertion"><i class="fa fa-check"></i></button>

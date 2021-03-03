@@ -27,7 +27,7 @@ Object utilisateur = session.getAttribute("utilisateur");
 
   <!-- Menu des messages -->
   <% if(utilisateur != null){ %>
-  <li class="dropdown open">
+  <li class="dropdown">
   	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
     	<i class="fa fa-envelope fa-2x"></i>
         <i class="fa fa-caret-down fa-2x"></i>
@@ -51,7 +51,7 @@ Object utilisateur = session.getAttribute("utilisateur");
   <%} %>
 
   <!-- Menu connexion -->
-  <li class="dropdown open">
+  <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
       <i class="fa fa-user fa-2x"></i>
       <i class="fa fa-caret-down fa-2x"></i>

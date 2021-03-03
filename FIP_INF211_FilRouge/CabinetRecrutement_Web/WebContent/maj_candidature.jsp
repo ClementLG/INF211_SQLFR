@@ -2,7 +2,6 @@
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification"%>
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteur"%>
 <%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
-
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
@@ -69,23 +68,22 @@ if(request.getParameter("submit-insertion") != null){
                         col-xs-12">
               <form role="form" action="template.jsp" method="get">
                 <input type="hidden" name="action" value="maj_candidature" />
-                <% /**FAUDRA AJOUTER A LA FIN...
-                <div class="form-group">
-                <input class="form-control" placeholder="Nom" name="nom" />
-              </div>
-              <div class="form-group">
-                <input class="form-control" placeholder="Prénom" name="prenom" />
-              </div>*/
-                %>
-                
-                <div class="form-group">
-                  <input class="form-control" placeholder="Date de naissance (format jj/mm/aaaa)" name="date_naissance" value=<%=candX.getDatenaissance() %>/>                
+
+				<div class="form-group">
+					<input class="form-control" placeholder="Prénom" name="prenom" value="<%=candX.getPrenom()%>"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control" placeholder="Nom" name="nom" value="<%=candX.getNom()%>"/>
+				</div>
+
+				<div class="form-group">
+                  <input class="form-control" placeholder="Date de naissance (format jj/mm/aaaa)" name="date_naissance" value="<%=serviceCandidature.convertDatetoString(candX.getDatenaissance())%>"/>                
                 </div>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Adresse postale (ville)" name="adresse_postale" value=<%=candX.getAdressepostale() %> />
+                  <input class="form-control" placeholder="Adresse postale (ville)" name="adresse_postale" value="<%=candX.getAdressepostale() %>" />
                 </div>
                 <div class="form-group">
-                  <input class="form-control" placeholder="Adresse email" name="adresse_email" value=<%=candX.getAdresseemail() %> />
+                  <input class="form-control" placeholder="Adresse email" name="adresse_email" value="<%=candX.getAdresseemail() %>" />
                 </div>
                 <div class="form-group">
                   <textarea class="form-control" placeholder="Curriculum vitæ" rows="5" name="cv"> <%out.println(candX.getCv()) ;%></textarea>       
@@ -98,7 +96,7 @@ if(request.getParameter("submit-insertion") != null){
                       
                         <div class="radio">
                           <label>
-                            <input type="radio" name="niveau" value=<%=nq.getId()%> <%if(candX.getNiveauQualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
+                            <input type="radio" name="niveau" value="<%=nq.getId()%>" <%if(candX.getNiveauQualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
                             <%//if(candX.getNiveauqualificationBean().getId()==nq.getId()) out.println("checked"); %>
                           </label>
                         </div>
@@ -119,13 +117,13 @@ if(request.getParameter("submit-insertion") != null){
                       			if(i%2 == 0) {%>
 		                            
 		                            <td>
-		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                              <input type="checkbox" name="secteur" value="<%=s.getId()%>" <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
 		                            </td>
 		                            </tr>
                             	<%} else{%>
                             		<tr>
 		                            <td>
-		                              <input type="checkbox" name="secteur" value=<%=s.getId()%> <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
+		                              <input type="checkbox" name="secteur" value="<%=s.getId()%>" <%if(serviceCandidature.doesSectorExist(candX.getSecteurActivites(), s.getId())) out.println("checked"); %>/><%=s.getIntitule()%>
 		                            </td>
 		                            
                             	<%} %>

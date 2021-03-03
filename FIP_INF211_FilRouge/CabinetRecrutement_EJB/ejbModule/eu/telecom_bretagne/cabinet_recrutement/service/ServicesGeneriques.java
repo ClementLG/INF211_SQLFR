@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.javaIdentifierType;
+
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
@@ -59,6 +61,13 @@ public class ServicesGeneriques implements IServicesGeneriques
 	public List<NiveauQualification> listeNiveauQualification()
 	{
 		return niveauqualificationDAO.findAll();
+	}
+	//-----------------------------------------------------------------------------
+	@Override
+	public String convertDatetoString(java.util.Date date) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		String strDate= formatter.format(date);  
+		return strDate;
 	}
 
 
