@@ -26,8 +26,29 @@ Object utilisateur = session.getAttribute("utilisateur");
 <ul class="nav navbar-top-links navbar-right">
 
   <!-- Menu des messages -->
-  
-  
+  <% if(utilisateur != null){ %>
+  <li class="dropdown open">
+  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    	<i class="fa fa-envelope fa-2x"></i>
+        <i class="fa fa-caret-down fa-2x"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-messages">
+    	<li>
+        	<a href="#"><i class="glyphicon glyphicon-import"></i> Messages reçus <span class="pull-right text-muted"><em>0</em></span></a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="#"><i class="glyphicon glyphicon-export"></i> Messages envoyés <span class="pull-right text-muted"><em>0</em></span></a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a class="text-center" href="template.jsp?action=liste_messages">
+            <strong>Lire les messages</strong> <i class="fa fa-angle-right"></i>
+          </a>
+        </li>
+  	</ul>
+  </li><!-- /.dropdown-messages -->
+  <%} %>
 
   <!-- Menu connexion -->
   <li class="dropdown open">
@@ -50,7 +71,9 @@ Object utilisateur = session.getAttribute("utilisateur");
   	  	{
   	  		Candidature c = (Candidature) utilisateur;
   	  		out.println(c.getAdresseemail());
+  	  		
   	  	}
+
   	  }
         %>
         </a></li><li class="divider"></li>
