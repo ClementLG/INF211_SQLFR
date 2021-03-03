@@ -156,6 +156,8 @@ INSERT INTO message_candidature (offre_emploi,candidature,corpsmessage,dateenvoi
 INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (1,2,'Voici une offre de stage pour vous',TO_DATE('01/01/2021','DD-MM-YYYY'));
 INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,3,'Voici une offre de stage pour vous',TO_DATE('05/01/2021','DD-MM-YYYY'));
 INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (3,1,'Voici une offre de thèse pour vous',TO_DATE('18/01/2021','DD-MM-YYYY'));
+INSERT INTO message_offredemploi (offre_emploi,candidature,corpsmessage,dateenvoi) VALUES (2,1,'Voici une offre de autre thèse pour vous, un peu differente',TO_DATE('19/01/2021','DD-MM-YYYY'));
+
 
 INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (1,19);
 INSERT INTO secteur_candidature (candidature,secteur_activite) VALUES (1,25);

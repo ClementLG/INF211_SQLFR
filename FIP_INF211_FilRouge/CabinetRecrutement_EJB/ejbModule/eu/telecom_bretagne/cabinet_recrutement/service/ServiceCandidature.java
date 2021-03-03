@@ -12,10 +12,16 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.CandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessagecandidatureDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.MessageoffredemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauqualificationDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreemploiDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteuractiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageCandidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.MessageOffredemploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.NiveauQualification;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
@@ -28,8 +34,11 @@ public class ServiceCandidature extends ServicesGeneriques implements IServiceCa
 {
 	//-----------------------------------------------------------------------------
 	@EJB private CandidatureDAO         candidatureDAO;
+	@EJB private OffreemploiDAO         offreemploiDAO;
 	@EJB private NiveauqualificationDAO         niveauqualificationDAO;
 	@EJB private SecteuractiviteDAO         secteuractiviteDAO;
+	@EJB private MessagecandidatureDAO         messagecandidatureDAO;
+	@EJB private MessageoffredemploiDAO         messageoffredemploiDAO;
 	//-----------------------------------------------------------------------------
 	/**
 	 * 
@@ -108,7 +117,27 @@ public class ServiceCandidature extends ServicesGeneriques implements IServiceCa
 
 		}
 	}
-
+	//-----------------------------------------------------------------------------
+	public Candidature RAZsecteurs(int idC) {
+		 Candidature c = candidatureDAO.findById(idC);
+		 Set<SecteurActivite> sas = c.getSecteurActivites();
+		 try {
+			 for(SecteurActivite sa : sas) {
+				 System.out.println("rm-----"+sa.getIntitule());
+				 sa.getCandidatures().remove(c);
+				 secteuractiviteDAO.update(sa);
+			 }
+			 
+			 c.getSecteurActivites().clear();
+			 c=candidatureDAO.update(c);
+			
+		} catch (Exception e) {
+			System.out.println("RAZ cassé");
+			System.out.println(e);
+		}
+		 return c;
+		 
+	}
 	//-----------------------------------------------------------------------------
 	public Set<SecteurActivite> transformSecteurs(String[] sect) {
 		//System.out.println(sect[0]+""+sect[1]);
@@ -127,5 +156,41 @@ public class ServiceCandidature extends ServicesGeneriques implements IServiceCa
 			}
 		}
 		return false;
+	}
+	
+	//-----------------------------------------------------------------------------
+	public void supressionDuneCandidature(Candidature c) {
+		try {
+			//suppression des messages candidatures
+			for(MessageCandidature msgC : c.getMessageCandidatures()) {
+				msgC.getOffreEmploiBean().removeMessageCandidature(msgC);
+				offreemploiDAO.update(msgC.getOffreEmploiBean());
+				messagecandidatureDAO.remove(msgC);
+			}
+			System.out.println("---------------ok 1 ");
+			//suppression des messages offresEmplois
+			for(MessageOffredemploi msgOF : c.getMessageOffredemplois()) {
+				msgOF.getOffreEmploiBean().removeMessageOffredemploi(msgOF);
+				messageoffredemploiDAO.remove(msgOF);
+			}
+			System.out.println("---------------ok 2 ");
+			//suppression dans les secteur activite
+			c.getNiveauQualificationBean().removeCandidature(c);
+			System.out.println("---------------ok 3 ");
+			//suppression dans le niveau qualification
+			for (SecteurActivite sa : c.getSecteurActivites()) {
+				if(c != null) sa.getCandidatures().remove(c);
+			}
+			System.out.println("---------------ok 4 ");
+			//suppression des messages offresEmplois
+			candidatureDAO.remove(c);
+			System.out.println("---------------ok 5 ");
+
+		} catch (Exception e) {
+			
+			System.out.println("--------suppression candidature kassé");
+			System.out.println(e);
+		}
+
 	}
 }

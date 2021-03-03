@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3><i class="fa fa-user"></i> DEV EN COURS - Référencer une nouvelle candidature</h3></div> <!-- /.panel-heading -->
+      <div class="panel-heading"><h3><i class="fa fa-user"></i>Référencer une nouvelle candidature</h3></div> <!-- /.panel-heading -->
       <div class="panel-body">
         
             <div class="col-lg-offset-2 col-lg-8

@@ -41,4 +41,6 @@ public interface IServiceCandidature extends IServicesGeneriques
   public Set<SecteurActivite> transformSecteurs(String[] sect);
   public void majSecteursActivites(String[] sects, int idC);
   public Boolean doesSectorExist(Set<SecteurActivite> sects, int id);
+  public void supressionDuneCandidature(Candidature c);
+  public Candidature RAZsecteurs(int idC);
 }

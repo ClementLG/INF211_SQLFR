@@ -67,6 +67,7 @@ public class EntrepriseDAO {
 	//-----------------------------------------------------------------------------
 	public void remove(Entreprise Entreprise) {
 		if ((Entreprise != null) & (!entityManager.contains(Entreprise))) {
+			
 			Entreprise ent_suppr = entityManager.merge(Entreprise);
 			entityManager.remove(ent_suppr);
 		}

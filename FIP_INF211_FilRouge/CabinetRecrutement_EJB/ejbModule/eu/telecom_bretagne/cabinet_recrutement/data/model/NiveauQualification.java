@@ -23,11 +23,11 @@ public class NiveauQualification implements Serializable {
 	private String intitule;
 
 	//bi-directional many-to-one association to Candidature
-	@OneToMany(mappedBy="niveauQualificationBean")
+	@OneToMany(mappedBy="niveauQualificationBean", fetch=FetchType.EAGER)
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-one association to OffreEmploi
-	@OneToMany(mappedBy="niveauQualificationBean")
+	@OneToMany(mappedBy="niveauQualificationBean", fetch=FetchType.EAGER)
 	private Set<OffreEmploi> offreEmplois;
 
 	public NiveauQualification() {

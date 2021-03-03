@@ -182,7 +182,7 @@
   	                    		 %>
   	                    		 <tr>
 	  	                             <td><%=msgC.getId() %></td>
-	  	                             <td><a href="template.jsp?action=infos_candidature&amp;id=<%=msgC.getCandidatureBean().getId()%>"><%=msgC.getCandidatureBean().getAdresseemail() %></a></td>
+	  	                             <td><a href="template.jsp?action=infos_entreprise&amp;id=<%=msgC.getOffreEmploiBean().getEntrepriseBean().getId()%>"><%=msgC.getOffreEmploiBean().getEntrepriseBean().getNom() %></a></td>
 	  	                             <td><a href="template.jsp?action=infos_offre&amp;id=<%=msgC.getOffreEmploiBean().getId()%>"><%=msgC.getOffreEmploiBean().getTitre()%></a></td>
 	  	                             <td><%=msgC.getDateenvoi()%></td>
 	  	                             <td><%=msgC.getCorpsmessage() %></td>
@@ -231,7 +231,7 @@
   	                    		 %>
   	                    		 <tr>
 	  	                             <td><%=msgOf.getId() %></td>
-	  	                             <td><a href="template.jsp?action=infos_candidature&amp;id=<%=msgOf.getCandidatureBean().getId()%>"><%=msgOf.getCandidatureBean().getAdresseemail() %></a></td>
+	  	                             <td><a href="template.jsp?action=infos_entreprise&amp;id=<%=msgOf.getOffreEmploiBean().getEntrepriseBean().getId()%>"><%=msgOf.getOffreEmploiBean().getEntrepriseBean().getNom() %></a></td>
 	  	                             <td><a href="template.jsp?action=infos_offre&amp;id=<%=msgOf.getOffreEmploiBean().getId()%>"><%=msgOf.getOffreEmploiBean().getTitre()%></a></td>
 	  	                             <td><%=msgOf.getDateenvoi()%></td>
 	  	                             <td><%=msgOf.getCorpsmessage() %></td>

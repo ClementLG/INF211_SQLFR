@@ -27,15 +27,21 @@ if(request.getParameter("submit-insertion") != null){
 	&& request.getParameter("adresse_email").matches("[a-z0-9.-]+@[a-z0-9.-]+\\.[a-zA-Z]{2,6}")
 	&& request.getParameter("cv").length() >0
 	&& request.getParameter("niveau").length() >0
+	&& request.getParameter("nom").length() >0
+	&& request.getParameter("prenom").length() >0
 	&& request.getParameter("secteur").length() >0
 	){
+		candX.setNom(request.getParameter("nom"));
+		candX.setPrenom(request.getParameter("prenom"));
 		candX.setAdresseemail(request.getParameter("adresse_email"));
 		candX.setAdressepostale(request.getParameter("adresse_postale"));
 		candX.setCv(request.getParameter("cv"));
 		candX.setDatenaissance(serviceCandidature.convertDate(request.getParameter("date_naissance")));
 		candX.setNiveauQualificationBean(serviceCandidature.findNQByID(Integer.parseInt(request.getParameter("niveau"))));
-
-		candX = serviceCandidature.execUpdate(candX);
+		candX=serviceCandidature.execUpdate(candX);
+		candX = serviceCandidature.RAZsecteurs(candX.getId());
+		serviceCandidature.majSecteursActivites(request.getParameterValues("secteur"), candX.getId());
+		candX=serviceCandidature.getCandidature(candX.getId());
 		session.setAttribute("utilisateur",candX);
 		
 		//out.println("iDDDDDDDDDDDDDDDDDDDDDDD = "+cand_ok.getId());
@@ -86,7 +92,7 @@ if(request.getParameter("submit-insertion") != null){
                   <input class="form-control" placeholder="Adresse email" name="adresse_email" value="<%=candX.getAdresseemail() %>" />
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" placeholder="Curriculum vitæ" rows="5" name="cv"> <%out.println(candX.getCv()) ;%></textarea>       
+                  <textarea class="form-control" placeholder="Curriculum vitæ" rows="5" name="cv"> <%=candX.getCv()%></textarea>       
                 </div>
                 <div class="col-lg-3">
                   <div class="form-group">
@@ -136,9 +142,37 @@ if(request.getParameter("submit-insertion") != null){
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-success btn-circle btn-lg" name="submit-insertion"><i class="fa fa-check"></i></button>
-                  <button type="reset"  class="btn btn-warning btn-circle btn-lg"><i class="fa fa-times"></i></button>
-                </div>
+              	  </button>
               </form>
+            </div>
+            <div class="col-lg-12 text-center">
+              <br/>
+              <!-- Button trigger modal -->
+              <button class="btn btn-danger" data-toggle="modal" data-target="#modalSuppressionCandidature">
+                <i class="glyphicon glyphicon-remove-sign fa-lg"></i> Supprimer cette candidature
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="modalSuppressionCandidature" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myModalLabel">Êtes-vous sûr de vouloir supprimer votre candidature ?</h4>
+                    </div>
+                    <div class="modal-body">
+                      Attention, cette opération n'est pas réversible !
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                      <button type="button"
+                              class="btn btn-primary"
+                              onclick="window.location.href='suppression_candidature.jsp?id_candidature=13'">
+                        Supprimer
+                      </button>
+                    </div>
+                  </div> <!-- /.modal-content -->
+                </div> <!-- /.modal-dialog -->
+              </div> <!-- /.modal -->
             </div>
             
       </div> <!-- /.panel-body -->

@@ -1,3 +1,4 @@
+<%@page import="eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
@@ -34,11 +35,41 @@ Object utilisateur = session.getAttribute("utilisateur");
     </a>
     <ul class="dropdown-menu dropdown-messages">
     	<li>
-        	<a href="#"><i class="glyphicon glyphicon-import"></i> Messages reçus <span class="pull-right text-muted"><em>0</em></span></a>
+        	<a href="#"><i class="glyphicon glyphicon-import"></i> Messages reçus <span class="pull-right text-muted"><em>
+        	<%
+        	if(utilisateur instanceof Entreprise){
+        		Entreprise entX = (Entreprise) utilisateur;
+        		int i = 0;
+        		for(OffreEmploi of : entX.getOffreEmplois()){
+        			i+=of.getMessageCandidatures().size();
+        		}
+        		out.println(i);
+        	}
+        	else if (utilisateur instanceof Candidature){
+        		Candidature CandX = (Candidature) utilisateur;
+        		out.println(CandX.getMessageOffredemplois().size());
+        	}
+        	%>
+			</em></span></a>
         </li>
         <li class="divider"></li>
         <li>
-          <a href="#"><i class="glyphicon glyphicon-export"></i> Messages envoyés <span class="pull-right text-muted"><em>0</em></span></a>
+          <a href="#"><i class="glyphicon glyphicon-export"></i> Messages envoyés <span class="pull-right text-muted"><em>
+          <%
+        	if(utilisateur instanceof Entreprise){
+        		Entreprise entX = (Entreprise) utilisateur;
+        		int i = 0;
+        		for(OffreEmploi of : entX.getOffreEmplois()){
+        			i+=of.getMessageOffredemplois().size();
+        		}
+        		out.println(i);
+        	}
+        	else if (utilisateur instanceof Candidature){
+        		Candidature CandX = (Candidature) utilisateur;
+        		out.println(CandX.getMessageCandidatures().size());
+        	}
+        	%>
+          </em></span></a>
         </li>
         <li class="divider"></li>
         <li>
