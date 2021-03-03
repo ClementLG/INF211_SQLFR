@@ -79,7 +79,7 @@ public class CandidatureDAO {
 	
 	//-----------------------------------------------------------------------------
 	public void remove(Candidature Candidature) {
-		if (Candidature != null) {
+		if ((Candidature != null) & (!entityManager.contains(Candidature))) {
 			Candidature cand_suppr = entityManager.merge(Candidature);
 			entityManager.remove(cand_suppr);
 		}

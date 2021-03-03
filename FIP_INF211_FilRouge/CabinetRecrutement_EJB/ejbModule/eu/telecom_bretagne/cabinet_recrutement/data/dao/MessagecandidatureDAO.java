@@ -66,7 +66,7 @@ public class MessagecandidatureDAO {
 	}
 	//-----------------------------------------------------------------------------
 	public void remove(MessageCandidature MessageCandidature) {
-		if (MessageCandidature != null) {
+		if ((MessageCandidature != null) & (!entityManager.contains(MessageCandidature))) {
 			MessageCandidature mc_suppr = entityManager.merge(MessageCandidature);
 			entityManager.remove(mc_suppr);
 		}

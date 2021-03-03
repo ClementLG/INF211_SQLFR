@@ -49,25 +49,25 @@ public class EntrepriseDAO {
 		return (List<Entreprise>) l;
 	}
 	// -----------------------------------------------------------------------------
-	public Entreprise persist(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.persist(entreprise);
+	public Entreprise persist(Entreprise Entreprise) {
+		if (Entreprise != null) {
+			entityManager.persist(Entreprise);
 		}
-		return entreprise;
+		return Entreprise;
 	}
 
 	// -----------------------------------------------------------------------------
-	public Entreprise update(Entreprise entreprise) {
-		if (entreprise != null) {
-			entityManager.merge(entreprise);
+	public Entreprise update(Entreprise Entreprise) {
+		if (Entreprise != null) {
+			entityManager.merge(Entreprise);
 		}
-		return entreprise;
+		return Entreprise;
 	}
 
 	//-----------------------------------------------------------------------------
-	public void remove(Entreprise entreprise) {
-		if (entreprise != null) {
-			Entreprise ent_suppr = entityManager.merge(entreprise);
+	public void remove(Entreprise Entreprise) {
+		if ((Entreprise != null) & (!entityManager.contains(Entreprise))) {
+			Entreprise ent_suppr = entityManager.merge(Entreprise);
 			entityManager.remove(ent_suppr);
 		}
 	}
