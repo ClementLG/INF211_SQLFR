@@ -7,6 +7,8 @@ import java.util.Date;
 
 /**
  * The persistent class for the message_candidature database table.
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
  * 
  */
 @Entity

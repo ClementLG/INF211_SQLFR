@@ -33,6 +33,9 @@ import eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocatorExcept
 
 /**
  * Servlet implementation class TestServlet
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
+ * 
  */
 @WebServlet("/ControlesDAO")
 public class ControlesDAOServlet extends HttpServlet {

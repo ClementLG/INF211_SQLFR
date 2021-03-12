@@ -8,8 +8,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Interface du service gérant les SecteurActivite.
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
  * 
- * @author Philippe TANGUY
  */
 @Remote
 public interface IServiceSecteur {

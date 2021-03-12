@@ -11,18 +11,29 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.OffreEmploi;
 
 
 /**
- * Interface du service gérant les entreprises.
- * @author Philippe TANGUY
+ * Interface du service gérant les Messages.
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
+ * 
  */
 @Remote
 public interface IServiceMessage
 {
-
+	  /**
+	   * permet de récupérer un message
+	   * 
+	   * @param id du message candidature
+	   * 
+	   * @return MessageCandidature
+	   */
 	  public MessageCandidature getMessageCandidature(int id);
-	  //-----------------------------------------------------------------------------
-	  //-----------------------------------------------------------------------------
+	  /**
+	   * permet de récupérer un message
+	   * 
+	   * @param id du message offre emploi
+	   * 
+	   * @return MessageOffredemploi
+	   */
 	  public MessageOffredemploi getMessageOffreEmploi(int id);
-	  //-----------------------------------------------------------------------------
-	  //-----------------------------------------------------------------------------
-  
+	
 }

@@ -23,7 +23,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServiceEntreprise
- * @author Philippe TANGUY
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
+ * 
  */
 @Stateless
 @LocalBean

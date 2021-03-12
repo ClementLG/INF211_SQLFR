@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * The persistent class for the secteur_activite database table.
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
  * 
  */
 @Entity

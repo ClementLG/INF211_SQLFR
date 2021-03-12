@@ -20,7 +20,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.SecteurActivite;
 
 /**
  * Session Bean implementation class ServicesGeneriques
- * @author Clement LG & Elouan LD
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
+ * 
  */
 @Stateless
 @LocalBean

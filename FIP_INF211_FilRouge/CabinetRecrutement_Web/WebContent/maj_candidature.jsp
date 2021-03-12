@@ -102,7 +102,7 @@ if(request.getParameter("submit-insertion") != null){
                       
                         <div class="radio">
                           <label>
-                            <input type="radio" name="niveau" value="<%=nq.getId()%>" <%if(candX.getNiveauQualificationBean().getId().equals(nq.getId())) out.println("checked"); %>/><%=nq.getIntitule()%>
+                            <input type="radio" name="niveau" value="<%=nq.getId()%>" <%if(candX.getNiveauQualificationBean().getId().equals(nq.getId())) out.println("checked");%>/><%=nq.getIntitule()%>
                             <%//if(candX.getNiveauqualificationBean().getId()==nq.getId()) out.println("checked"); %>
                           </label>
                         </div>

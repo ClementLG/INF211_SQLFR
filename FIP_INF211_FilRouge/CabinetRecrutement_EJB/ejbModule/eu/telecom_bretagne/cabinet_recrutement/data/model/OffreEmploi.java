@@ -8,6 +8,8 @@ import java.util.Set;
 
 /**
  * The persistent class for the offre_emploi database table.
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
  * 
  */
 @Entity

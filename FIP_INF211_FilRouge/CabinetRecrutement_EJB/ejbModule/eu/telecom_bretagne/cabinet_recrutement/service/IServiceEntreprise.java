@@ -8,7 +8,9 @@ import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 
 /**
  * Interface du service gérant les entreprises.
- * @author Philippe TANGUY
+ * @author Elouan LE DUC
+ * @author Clement LE GRUIEC
+ * 
  */
 @Remote
 public interface IServiceEntreprise
